@@ -2,8 +2,8 @@
     <div class="card text-white bg-primary">
         <img class="card-img-top" src="holder.js/100px180/" alt="">
         <div class="card-body">
-            <h4 class="card-title">This is content section</h4>
-            <p class="card-text">Any contents</p>
+            <h4 class="card-title">คิดแต่ไม่ถึงงงงงงงงงง </h4>
+            <p class="card-text">ไม่สนิทอย่าทัก</p>
         </div>
     </div>
 </div>
