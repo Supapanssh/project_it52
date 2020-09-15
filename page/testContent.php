@@ -24,5 +24,11 @@
                 <p class="card-text">supagonava@gmail.com</p>
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote">
+                    <p>Kik say:</p>
+                </blockquote>
+            </div>
+        </div>
