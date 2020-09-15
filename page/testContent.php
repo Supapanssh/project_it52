@@ -7,3 +7,22 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-xs-1-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Name</h3>
+                <p class="card-text">Email</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-1-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Supakorn</h3>
+                <p class="card-text">supagonava@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</div>
