@@ -7,3 +7,13 @@
         </div>
     </div>
 </div>
+
+
+<div class="card">
+    <div class="card-body">
+        <blockquote class="blockquote">
+            <p>Kik say:</p>
+            <footer class="card-blockquote">Footer<cite title="Source title">Supapan</cite></footer>
+        </blockquote>
+    </div>
+</div>
