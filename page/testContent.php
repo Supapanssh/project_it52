@@ -3,7 +3,7 @@
         <img class="card-img-top" src="holder.js/100px180/" alt="">
         <div class="card-body">
             <h4 class="card-title">จี่หอย </h4>
-            <p class="card-text">ไม่สนิทอย่าทัก</p>
+            <p class="card-text">love so much</p>
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
         <div class="card">
             <div class="card-body">
                 <blockquote class="blockquote">
-                    <p>Kik say:</p>
+                    <p>make you mine</p>
                 </blockquote>
             </div>
         </div>
