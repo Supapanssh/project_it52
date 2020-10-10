@@ -20,7 +20,7 @@ if(isset($_GET['bill'])) {
     #get result
     $rows = $stmt->fetchAll();
 
-    $sql = "SELECT BillDate,BillTotal,BillDiscount,BillCash,Bill_detail,nickname FROM `bill` LEFT JOIN user ON bill.PeoNo=user.userNo WHERE BillNo = $bill";
+    $sql = "SELECT BillDate,BillTotal,BillDiscount,BillCash,Bill_detail,Billvat,nickname FROM `bill` LEFT JOIN user ON bill.PeoNo=user.userNo WHERE BillNo = $bill";
     $bill_detail = $mysql_db->query($sql);
 
     $bill_detail = $bill_detail->fetch();
@@ -38,7 +38,6 @@ else{
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +75,15 @@ else{
             text-align: left;
             width: auto;
         }
+        .navbar-default {
+            background-color: #E8F8F5 !important;
+            border-color: #EBF5FB !important;
+        }
+        #page-wrapper {
+            padding: 0 15px;
+            min-height: 568px;
+            background-color: #F8F9F9 !important;
+        }
     </style>
 </head>
 
@@ -83,29 +91,28 @@ else{
 <body>
 <div id="wrapper">
     <?php include('header.php'); ?>
-
     <div id="page-wrapper">
-
-
 
         <div class="row">
             <div class="col-lg-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <a class="btn btn-info btn-block" href="trad-trans.php" >View all Transaction</a>
-                        <h1 class="page-header">Bill no.<?= $bill?></h1>
+                        <a class="btn btn-info btn-block" href="admin.php?site=trad-trans" >ดูทรานเซกชันทั้งหมด</a>
+                        <h1 class="page-header">ใบเสร็จที่ .<?= $bill?></h1>
                         <ul class="tran-detail-title-list">
-                            <li>Seller</li>
-                            <li>Date</li>
-                            <li>Total</li>
-                            <li>Discount</li>
-                            <li>Cash</li>
+                            <li>ชื่อผู้ขาย</li>
+                            <li>วันเวลา</li>
+                            <li>ยอดรวม</li>
+                            <li>VAT7%</li>
+                            <li>ส่วนลด</li>
+                            <li>ราคาสุทธิ</li>
 
                         </ul>
                         <ul class="tran-detail-title-list-items">
                             <li><span ><?= $bill_detail['nickname']?></span></li>
                             <li><span ><?= $bill_detail['BillDate']?></span></li>
                             <li><span ><?= $bill_detail['BillTotal']?></span></li>
+                            <li><span ><?= $bill_detail['Billvat']?></span></li>
                             <li><span ><?= $bill_detail['BillDiscount']?></span></li>
                             <li><span ><?= $bill_detail['BillCash']?></span></li>
 
@@ -118,7 +125,7 @@ else{
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading" style="font-size: 20px">
-                        Detail
+                        รายละเอียด
                     </div>
                     <div class="panel-body">
                         <p style="font-size: 20px"><?= $bill_detail['Bill_detail']?></p>
@@ -129,16 +136,16 @@ else{
             <div class="col-lg-8">
                 <div class="panel panel-default">
                     <div class="panel-heading" align="center">
-                        Bill Detail
+                        รายละเอียดบิล
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover" >
                                 <thead>
                                     <tr >
-                                        <th style="text-align:center">No.</th>
-                                        <th style="text-align:center">Product name</th>
-                                        <th style="text-align:center">Quantity</th>
+                                        <th style="text-align:center">ที่.</th>
+                                        <th style="text-align:center">ชื่อสินค้า</th>
+                                        <th style="text-align:center">จำนวนสินค้า</th>
 
                                     </tr>
                                 </thead>
@@ -165,8 +172,6 @@ else{
 
     </div>
 </div>
-
-
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -188,4 +193,5 @@ else{
 <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
 <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
 </body>

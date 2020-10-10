@@ -1,14 +1,5 @@
 <?php
-
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-require('../config.php');
-require('../connect.php');
-require_once('../functions.php');
 $want = 'ADMIN';
-require('check_user.php');
 if(isset($_GET['date'])){
     $date = $_GET['date'];
     switch ($date){
@@ -60,8 +51,7 @@ $rows = $stmt->fetchAll();
 <html lang="en">
 
 <head>
-    <?php include('style.php'); ?>
-
+   
     <style>
         tr.minus  td {
             color: red;
@@ -79,13 +69,12 @@ $rows = $stmt->fetchAll();
 
 <body>
 <div id="wrapper">
-    <?php include('header.php'); ?>
-
+    
     <div id="page-wrapper">
 
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" style="align-content: center"> MANAGE TRANSACTIONS </h1>
+                <h1 class="page-header" style="align-content: center">รายการขาย </h1>
             </div>
         </div>
 
@@ -93,17 +82,17 @@ $rows = $stmt->fetchAll();
             <div class="col-lg-12">
                 <div class="panel-body ">
                     <form method="get">
-                        <input class="btn btn-success" type="submit" name="date" value="ALL"/>
-                        <input class="btn btn-success" type="submit" name="date" value="TODAY"/>
-                        <input class="btn btn-success" type="submit" name="date" value="MONTH"/>
-                        <input class="btn btn-success" type="submit" name="date" value="YEAR"/>
+                        <input class="btn btn-success" type="submit" name="date" value="ทั้งหมด"/>
+                        <input class="btn btn-success" type="submit" name="date" value="วันนี้"/>
+                        <input class="btn btn-success" type="submit" name="date" value="เดือน"/>
+                        <input class="btn btn-success" type="submit" name="date" value="ปี"/>
 <!--                        <div class="form-group col-xs-2">-->
-                            <span>Start date </span><input style="max-width: 100px" type="text" name='sdate' id="start-date" />
-                            <span>End date </span><input style="max-width: 100px"  type="text" name="edate" id="end-date" />
+                            <span>Start date </span><input style="max-width: 150px" type="datetime-local" name='sdate' id="start-date" />
+                            <span>End date </span><input style="max-width: 150px"  type="datetime-local" name="edate" id="end-date" />
 <!--                        </div>-->
 
 
-                        <button class="btn btn-success" type="submit" id="custom-date">CUSTOM</button>
+                        <button class="btn btn-success" type="submit" id="custom-date">ตกลง</button>
                     </form>
 
 
@@ -126,11 +115,11 @@ $rows = $stmt->fetchAll();
 
                             <thead>
                             <tr>
-                                <th style="text-align:center">No</th>
-                                <th style="text-align:center">Date</th>
-                                <th style="text-align:center">Name</th>
-                                <th style="text-align:center">Quantity</th>
-                                <th style="text-align:center">Staff</th>
+                                <th style="text-align:center">ลำดับ</th>
+                                <th style="text-align:center">วันที่</th>
+                                <th style="text-align:center">ชื่อสินค้า</th>
+                                <th style="text-align:center">จำนวนสินค้า</th>
+                                <th style="text-align:center">ผู้ดูแล</th>
 
 
 

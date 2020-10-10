@@ -1,4 +1,11 @@
 <?php
+require('../config.php');
+require('../connect.php');
+require_once('../functions.php');
+require('../vendor/autoload.php');
+$want = 'CASHIER';
+require('check_user.php');
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -128,13 +135,22 @@ if (isset($_SESSION['ses_id'])) {
             min-height: 60px;
             text-align: right;
         }
+
+        .navbar-default {
+            background-color: #E8F8F5 !important;
+            border-color: #EBF5FB !important;
+        }
+
+        #page-wrapper {
+            padding: 0 15px;
+            min-height: 568px;
+            background-color: #F8F9F9 !important;
+        }
     </style>
 </head>
 
 <body>
-    <div if="wrapper">
-
-
+    <div id="wrapper">
         <!-- jQuery -->
         <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -160,7 +176,7 @@ if (isset($_SESSION['ses_id'])) {
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+                    <span class="sr-only">System</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -177,7 +193,7 @@ if (isset($_SESSION['ses_id'])) {
                     </a>
                     <ul class="dropdown-menu dropdown-user">
 
-                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> ออกจากระบบ</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -191,43 +207,43 @@ if (isset($_SESSION['ses_id'])) {
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href="index.php"><i class="fa fa-home fa-fw "></i> Cashier</a>
+                            <a href="admin.php"><i class="fa fa-home fa-fw "></i> ขายสินค้า</a>
                         </li>
 
                         <?php if (strcmp($ses_stat, 'ADMIN') == 0 || strcmp($ses_stat, 'MANAGER') == 0) { ?>
                             <li>
-                                <a href="manage.php"><i class="fa fa-edit fa-fw"></i> Manage Product</a>
+                                <a href="admin.php?site=manage"><i class="fa fa-edit fa-fw"></i>จัดการสินค้า</a>
                             </li>
                         <?php } ?>
                         <?php if (strcmp($ses_stat, 'ADMIN') == 0) { ?>
                             <li>
-                                <a href="#"><i class="fa fa-table fa-fw"></i> Transactions <span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> การจัดการ <span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="trad-trans.php"> Trading transaction</a>
+                                        <a href="admin.php?site=trad-trans"> ข้อมูลการซื้อขาย</a>
                                     </li>
                                     <li>
-                                        <a href="mang-trans.php"> Manage transaction</a>
+                                        <a href="admin.php?site=mang-trans">จัดการซื้อขาย</a>
                                     </li>
                                     <li>
-                                        <a href="report.php"> Report</a>
+                                        <a href="admin.php?site=report">รายงาน</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
 
                             <li>
-                                <a href="user.php"><i class="fa fa-users fa-fw "></i> USER</a>
+                                <a href="admin.php?site=user"><i class="fa fa-users fa-fw "></i>ผู้ใช้งาน</a>
 
                             </li>
 
                             <li>
-                                <a href="employee.php"><i class="fa fa-users fa-fw "></i>EMPLOYEE</a>
+                                <a href="admin.php?site=employee"><i class="fa fa-users fa-fw "></i>พนักงาน</a>
 
                             </li>
 
                             <li>
-                                <a href="supplier.php"><i class="fa fa-users fa-fw "></i>SUPPLIER</a>
+                                <a href="admin.php?site=supplier"><i class="fa fa-users fa-fw "></i>บริษัทคู่ค้า</a>
 
                             </li>
                         <?php } ?>
@@ -239,28 +255,43 @@ if (isset($_SESSION['ses_id'])) {
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        <div class="container">
-            <?php
-            $site = null;
-            if (!empty($_GET['site'])) {
-                $site = $_GET['site'];
-            }
-            switch ($site) {
-                case null:
-                    include("home.php");
-                    break;
-                case "test":
-                    include('testContent.php');
-                    break;
-                case "user":
-                    include("user.php");
-                    break;
-                default:
-                    include("home.php");
-                    break;
-            }
-            ?>
-        </div>
+
+        <?php
+        $site = null;
+        if (!empty($_GET['site'])) {
+            $site = $_GET['site'];
+        }
+        switch ($site) {
+            case null:
+                include("home.php");
+                break;
+            case "manage":
+                include('manage.php');
+                break;
+            case "trad-trans":
+                include("trad-trans.php");
+                break;
+            case "mang-trans":
+                include("mang-trans.php");
+                break;
+            case "report":
+                include("report.php");
+                break;
+            case "user":
+                include("user.php");
+                break;
+            case "employee":
+                include("employee.php");
+                break;
+            case "supplier":
+                include("supplier.php");
+                break;
+            default:
+                include("home.php");
+                break;
+        }
+        ?>
+
     </div>
 
 </body>

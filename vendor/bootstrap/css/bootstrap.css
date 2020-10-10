@@ -1085,7 +1085,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333;
+  color: #f0e2e2;
   background-color: #fff;
 }
 input,
@@ -4493,7 +4493,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color:#EBF5FB  ;
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {

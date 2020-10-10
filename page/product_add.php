@@ -97,7 +97,7 @@ if(isset($_POST['pno'])) {
                 <input name="pno" value="<?= $no ?>" hidden>
                 <input style="font-size: 30px;min-height: 50px;text-align:center" type="number" class="form-control" name="quan" value="" >
                 <span class="input-group-btn text_modal">
-                    <button class="btn btn-success text_modal" style="min-height: 50px" type="submit">ADD</button>
+                    <button class="btn btn-success text_modal" style="min-height: 50px" type="submit">เพิ่ม</button>
                 </span>
             </div>
 

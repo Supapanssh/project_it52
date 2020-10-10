@@ -4,7 +4,7 @@ require('../connect.php');
 require_once('../functions.php');
 $want = 'CASHIER';
 require('check_user.php');
-$sql = "SELECT Product_code,Product_name FROM `product` ";
+$sql = "SELECT Product_code,Product_name,Product_desc FROM `product` ";
 
 #excute statement
 $stmt = $mysql_db->query($sql);
@@ -222,7 +222,6 @@ if (isset($_POST['opt'])) {
                     <h1 class="page-header" style="align-content: center">Cashier</h1>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel panel-default">
@@ -347,7 +346,7 @@ if (isset($_POST['opt'])) {
 
                         </div>
                     </div>
-                                                    
+
 
                     <div class="col col-lg-12" style="margin-top: 0px;padding-top: 0px ;">
 
@@ -378,18 +377,18 @@ if (isset($_POST['opt'])) {
                                         </span>
                                     </div>
                                     <tr>
-     
-                                    <?php if ($_SESSION['ses_status'] == "ADMIN") : ?>
-                                        <button type="button" id="click-pay" class="btn pay-button1" style="min-width: 200px">
-                                            PAY
-                                        </button>
-                                    <?php elseif ($_SESSION['ses_status'] == "MANAGER") : ?>
-                                        <button type="button" id="click-pay" class="btn pay-button1" style="min-width: 200px">
-                                            PAY
-                                        </button>
-                                    <?php else : ?>
-                                        You are user
-                                    <?php endif; ?>
+
+                                        <?php if ($_SESSION['ses_status'] == "ADMIN") : ?>
+                                            <button type="button" id="click-pay" class="btn pay-button1" style="min-width: 200px">
+                                                PAY
+                                            </button>
+                                        <?php elseif ($_SESSION['ses_status'] == "MANAGER") : ?>
+                                            <button type="button" id="click-pay" class="btn pay-button1" style="min-width: 200px">
+                                                PAY
+                                            </button>
+                                        <?php else : ?>
+                                            You are user
+                                        <?php endif; ?>
 
                                 </div>
 
@@ -423,7 +422,7 @@ if (isset($_POST['opt'])) {
                                                     <h2 id="modal_disc">ส่วนลด: </h2>
                                                     <h2 id="modal_cash">เงินสด: </h2>
                                                     <h2 id="modal_balance">คงเหลือ: </h2>
-                                                
+
 
                                                 </div>
                                                 <div class="col-lg-6">

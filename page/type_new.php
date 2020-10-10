@@ -55,7 +55,7 @@ if(isset($_POST['name'])) {
 <body>
 <div class="row">
     <div class="col-lg-12 " style="vertical-align:middle;text-align:center">
-        <h1 class="page-header" align="center">เพิ่มหมวดหมู่ใหม่</h1>
+        <h1 class="page-header" align="center">เพิ่มหมวดหมู่</h1>
 
     </div>
     <div class="col-lg-12 " >
@@ -64,14 +64,9 @@ if(isset($_POST['name'])) {
             <div class="form-group input-group" >
                 <input style="font-size: 30px;min-height: 50px;text-align:center" type="text" class="form-control" name="name" placeholder="Type name" autocomplete="off">
                 <span class="input-group-btn text_modal">
-                    <button class="btn btn-success text_modal" style="min-height: 50px" type="submit">ADD</button>
+                    <button class="btn btn-success text_modal" style="min-height: 50px" type="submit">เพิ่ม</button>
                 </span>
             </div>
-
-
-
-
-
 
         </form>
     </div>

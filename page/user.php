@@ -1,13 +1,5 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-require('../config.php');
-require('../connect.php');
-require_once('../functions.php');
 $want = 'ADMIN';
-require('check_user.php');
 
 $sql = "SELECT userNo,username,nickname,user_email,status FROM `user` ";
 
@@ -16,69 +8,14 @@ $stmt = $mysql_db->query($sql);
 #get result
 $rows = $stmt->fetchAll();
 
-if (isset($_POST['username'])) {
-    $username = $_POST['username'];
-    $name = $_POST['name'];
-    $user_email = $_POST['user_email'];
-    $status = $_POST['status'];
-    $password = $_POST['password'];
-
-
-    $sql = "select nickname from user where username = '$username';";
-    $num = $mysql_db->query($sql);
-    $num = $num->rowCount();
-    if ($num == 0) {
-        $sql = "INSERT INTO `user` (`userNo`, `username`, `nickname`, `password`, `user_email`, `status`) VALUES (NULL, '$username', '$name', '$password', '$user_email', '$status');";
-        $stmt = $mysql_db->query($sql);
-    } else {
-        //        echo "HHHH";
-        //        exit();
-    }
-    header('Location: user.php');
-}
-
-
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <?php include('style.php'); ?>
-    <style>
-        table.hover-table tr:hover td {
-            color: #4cae4c;
-            cursor: pointer;
-        }
-
-        .modal {
-            text-align: center;
-            padding: 0 !important;
-        }
-
-        .modal:before {
-            content: '';
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
-            margin-right: -4px;
-        }
-
-        .modal-dialog {
-            display: inline-block;
-            text-align: left;
-            vertical-align: middle;
-        }
-    </style>
-</head>
-
 
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header" style="align-content: center">ข้อมูลผู้ใช้งาน</h1>
-            <form method="post">
+            <form method="post" action="create_user.php">
                 <div class="form-group row">
                     <div class="col-xs-3">
                         <label>ชื่อ</label>
@@ -94,11 +31,11 @@ if (isset($_POST['username'])) {
                     </div>
                     <div class="col-xs-3">
                         <label>อีเมล</label>
-                        <input class="form-control" type="email" name="mail" placeholder="email" autocomplete="off">
+                        <input class="form-control" type="user_email" name="user_email" placeholder="email" autocomplete="off">
                     </div>
                     <div class="col-xs-3">
                         <label>ตำแหน่ง</label>
-                        <select name="usser_status" class="form-control">
+                        <select name="status" class="form-control">
 
                             <option value="CASHIER">Cashier</option>
                             <option value="MANAGER">Manager</option>
@@ -107,8 +44,8 @@ if (isset($_POST['username'])) {
                     </div>
                     <div class="col-xs-3">
                         <br>
-                        <br><br>
-                        <button class="btn btn-info" onclick="click_add()">ADD USER</button>
+                        <br><br> 
+                        <button class="btn btn-info" onclick="click_add()">เพิ่มผู้ใช้งาน</button>
                     </div>
             </form>
 
@@ -135,11 +72,11 @@ if (isset($_POST['username'])) {
 
                         <thead>
                             <tr>
-                                <th style="text-align:center">Username</th>
+                                <th style="text-align:center">ชื่อผู้ใช้</th>
 
-                                <th style="text-align:center">Name</th>
-                                <th style="text-align:center">Email</th>
-                                <th style="text-align:center">Status</th>
+                                <th style="text-align:center">ชื่อ-นามสกุล</th>
+                                <th style="text-align:center">อีเมล</th>
+                                <th style="text-align:center">สถานะ</th>
 
 
                             </tr>

@@ -30,7 +30,7 @@ if (isset($_POST['user']) && $_POST['user'] != '' && $_POST['pass'] != '') {
         $_SESSION['ses_name'] = $data['nickname'];      //สร้าง session สำหรับเก็บค่า Username
         $_SESSION['ses_status'] = $data['status'];
         $_SESSION['ses_userNo'] = $data['userNo'];
-        header('Location: index.php');
+        header('Location: admin.php');
     }
 }
 
@@ -50,7 +50,7 @@ if (isset($_POST['user']) && $_POST['user'] != '' && $_POST['pass'] != '') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login</title>
+    <title>เข้าสู่ระบบ</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

@@ -53,7 +53,7 @@ if(isset($_POST['no'])) {
 //    exit();
 
     $stmt = $mysql_db->query($sql);
-    header('Location: user.php');
+    header('Location:admin.php?site=user');
 
 
 }
@@ -75,25 +75,25 @@ if(isset($_POST['no'])) {
 <body>
 <div class="row">
     <div class="col-lg-12 " style="vertical-align:middle;text-align:center">
-        <h1 class="page-header" align="center">User detail</h1>
+        <h1 class="page-header" align="center">ข้อมูลผู้ใช้งาน</h1>
 
     </div>
     <div class="col-lg-12 " >
         <form action="user_edit.php" method="post" >
             <div class="form-group input-group" >
-                <span style="font-size: 30px" class="input-group-addon">Username</span>
+                <span style="font-size: 30px" class="input-group-addon">ชื่อผู้ใช้งาน</span>
                 <input  style="font-size: 30px;min-height: 50px" type="text" class="form-control" name="username" value="<?= $row['username'] ?>" autocomplete="off">
             </div>
             <div class="form-group input-group" >
-                <span style="font-size: 30px" class="input-group-addon">Name</span>
+                <span style="font-size: 30px" class="input-group-addon">ชื่อ-สกุล</span>
                 <input  style="font-size: 30px;min-height: 50px" type="text" class="form-control" name="name" value="<?= $row['nickname'] ?>" autocomplete="off">
             </div>
             <div class="form-group input-group" >
-                <span style="font-size: 30px" class="input-group-addon">Email</span>
+                <span style="font-size: 30px" class="input-group-addon">อีเมล</span>
                 <input  style="font-size: 30px;min-height: 50px" type="text" class="form-control" name="user_email" value="<?= $row['user_email'] ?>" autocomplete="off">
             </div>
             <div class="form-group input-group" >
-                <span style="font-size: 30px" class="input-group-addon">Type</span>
+                <span style="font-size: 30px" class="input-group-addon">ประเภทผู้ใช้งาน</span>
                 <select name="status" class="form-control" style="font-size: 30px;min-height: 50px">
                     <option value="">--selected--</option>
                     <option value="USER" <?php if(strcmp($row['status'],'USER') == 0)echo 'selected'?>>USER</option>
@@ -104,13 +104,13 @@ if(isset($_POST['no'])) {
             </div>
 
             <div class="form-group input-group" >
-                <span style="font-size: 30px" class="input-group-addon">Password</span>
+                <span style="font-size: 30px" class="input-group-addon">รหัสผ่าน</span>
                 <input  name ="pass" style="font-size: 30px;min-height: 50px" type="password" class="form-control" placeholder="password">
             </div>
 
             <input name="no" value="<?= $no ?>" hidden>
 
-            <button style="font-size: 25px" type="submit" class="btn btn-success btn-block">Update</button>
+            <button style="font-size: 25px" type="submit" class="btn btn-success btn-block">อัปเดท</button>
 
         </form>
     </div>
