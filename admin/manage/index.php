@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProductSearch */
+/* @var $searchModel app\models\ManageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-//เพิ่มบรรทัดด้านล่าง
 use yii\bootstrap4\LinkPager;
-$this->title = 'Products';
+
+$this->title = 'Manages';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-index">
+<div class="manage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Manage', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -30,25 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'PNo',
-            'Product_no',
-            [
-             'attribute'=>'category_id',
-             'value'=> function($model){
-                 return $model->category->category_name;
-             }
-            
-            ],
-            'brand_id',
-            'Product_code',
-            'Product_name',
-            'Product_desc',
-            'Product_price',
-            'Product_cost',
-            'Product_quantity',
-            'Product_unit',
-            'Product_exp',
-            
+            'Manage_No',
+            'Manage_date',
+            ['attribute' => 'PNo', 'value' => function ($model) {
+                return $model->pNo->Product_name;
+            }],
+            ['attribute' =>'PeoNo','value' => function ($model) {
+                return $model->peoNo->nickname;
+            }], 
+            'Manage_Amount',
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'options' => ['style' => 'width:180px;'],

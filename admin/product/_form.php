@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -14,7 +15,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Product_no')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->textInput() ?>
+    <?php
+    $object = app\models\Category::find()->all();
+    $array = ArrayHelper::map($object, 'category_id', 'category_name');
+    ?>
+    <?= $form->field($model, 'category_id')->dropDownList($array) ?>
 
     <?= $form->field($model, 'brand_id')->textInput() ?>
 

@@ -4,19 +4,20 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProductSearch */
+/* @var $searchModel app\models\EmployeeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 //เพิ่มบรรทัดด้านล่าง
 use yii\bootstrap4\LinkPager;
-$this->title = 'Products';
+
+$this->title = 'Employees';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-index">
+<div class="employee-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Employee', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -25,30 +26,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        //
         'filterModel' => $searchModel, 'summary' => '<i class="icon fa fa-file"></i> ข้อมูลตำแหน่งที่ {begin}-{end} (หน้า {page}/{pageCount}) <i class="icon fa fa-file"></i> ข้อมูลทั้งหมด {totalCount} รายการ',
         'pager' => ['class' => LinkPager::className()],
+        //
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'PNo',
-            'Product_no',
-            [
-             'attribute'=>'category_id',
-             'value'=> function($model){
-                 return $model->category->category_name;
-             }
-            
-            ],
-            'brand_id',
-            'Product_code',
-            'Product_name',
-            'Product_desc',
-            'Product_price',
-            'Product_cost',
-            'Product_quantity',
-            'Product_unit',
-            'Product_exp',
-            
+            'ID',
+            'Emp_ID',
+            'Emp_idcard',
+            'Emp_name',
+            'Emp_lname',
+            //'Emp_sex',
+            //'Emp_birth',
+            //'Emp_tel',
+            //'Emp_address:ntext',
+            //'Emp_moo',
+            //'Emp_tumbol',
+            //'Emp_amphur',
+            //'Emp_road',
+            //'Emp_province',
+            //'Emp_zipcode',
+            //'Emp_mail',
+            //'Emp_start',
+            //'Emp_quit',
+            //'Emp_status',
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'options' => ['style' => 'width:180px;'],
@@ -78,7 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 ]
             ],
-
         ],
     ]); ?>
 

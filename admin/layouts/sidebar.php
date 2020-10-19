@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="<?= \yii\helpers\Url::home() ?>" class="brand-link">
         <img src="<?= $assetDir ?>/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text">ScholarShip</span>
+        <span class="brand-text">Bumrungchu N/F</span>
     </a>
 
     <!-- Sidebar -->
@@ -10,7 +10,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="<?= Yii::getAlias('@web'); ?>/assets/images/admin.png" class="img-circle elevation-2" alt="User Image">
+                <img src="<?= Yii::getAlias('@web'); ?>/images/admin.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block"><?= !Yii::$app->user->isGuest ? Yii::$app->user->identity->username : null ?></a>
@@ -33,7 +33,15 @@
                     //     ]
                     // ],
                     ['label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index']],
-                    ['label' => 'ผู้ใช้งาน', 'icon' => 'users', 'url' => ['/user']],
+                    ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
+                    ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/cart']],
+                    ['label' => 'รายการสินค้า', 'icon' => 'warehouse', 'url' => ['/product']],
+                    ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
+                    ['label' => 'ข้อมูลการซื้อขาย', 'icon' => 'users', 'url' => ['/bill']],
+                    ['label' => 'จัดการคลังสินค้า', 'icon' => 'tasks', 'url' => ['/manage']],
+                    ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
+                    ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
+
 
                     ['label' => 'Yii2 PROVIDED', 'header' => true],
                     ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],

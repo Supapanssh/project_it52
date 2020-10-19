@@ -41,12 +41,11 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'category_id' => 'Category ID',
-            'category_name' => 'Category Name',
-            'category_desc' => 'Category Desc',
+            'category_id' => 'รหัสหมวดหมู่สินค้า',
+            'category_name' => 'ชื่อหมวดหมู่',
+            'category_desc' => 'รายละเอียดหมวดหมู่',
         ];
     }
-
     /**
      * Gets query for [[Brands]].
      *

@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\SignupForm;
 use app\components\myRule;
 use app\models\User;
+use app\models\Amphures;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 
@@ -173,5 +174,31 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    public function actionGetAmphures($province)
+    {
+        // $amphures = Amphures::find()->leftJoin('provinces', 'provinces.id = amphures.province_id')
+        //     ->where(['like', 'provinces.name_th', $province])->all();
+        $amphures = Amphures::findBySql("SELECT `amphures`.* FROM `amphures` LEFT JOIN `provinces` ON provinces.id = amphures.province_id WHERE `provinces`.`id` = '$province'")->all();
+        return $this->asJson($amphures);
+    }
+
+    public function actionGetDistricts($amphures)
+    {
+        // $amphures = Amphures::find()->leftJoin('provinces', 'provinces.id = amphures.province_id')
+        //     ->where(['like', 'provinces.name_th', $province])->all();
+        // $amphures = Amphures::findBySql("SELECT `amphures`.* FROM `amphures` LEFT JOIN `provinces` ON provinces.id = amphures.province_id WHERE `provinces`.`name_th` LIKE '%$province%'")->all();
+        $districts = Yii::$app->db->createCommand("select * from districts where amphure_id ='$amphures'")->queryAll();
+        return $this->asJson($districts);
+    }
+
+    public function actionGetZip($district)
+    {
+        // $amphures = Amphures::find()->leftJoin('provinces', 'provinces.id = amphures.province_id')
+        //     ->where(['like', 'provinces.name_th', $province])->all();
+        // $amphures = Amphures::findBySql("SELECT `amphures`.* FROM `amphures` LEFT JOIN `provinces` ON provinces.id = amphures.province_id WHERE `provinces`.`name_th` LIKE '%$province%'")->all();
+        $zip = Yii::$app->db->createCommand("select * from districts where id ='$district'")->queryOne();
+        return $this->asJson($zip);
     }
 }

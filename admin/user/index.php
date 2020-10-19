@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'roles', 'value' => function ($model) {
                 switch ($model->roles) {
                     case 0:
-                        $result = 'แคชเชีย';
+                        $result = 'แคชเชียร์';
                         break;
                     case 10:
                         $result = 'ผู้จัดการ';

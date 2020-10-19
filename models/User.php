@@ -26,7 +26,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const ROLE_CHASIER = 0;
     const ROLE_MANAGER = 10;
     const ROLE_ADMIN = 30;
-    
+
 
     /**
      * @inheritdoc
@@ -203,13 +203,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->hasMany(Bill::className(), ['PeoNo' => 'userNo']);
     }
 
-    /**
-     * Gets query for [[ProductManages]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProductManages()
+    public function getManages()
     {
-        return $this->hasMany(ProductManage::className(), ['PeoNo' => 'userNo']);
+        return $this->hasMany(Manage::className(), ['PeoNo' => 'userNo']);
+    }
+
+    public function getCarts()
+    {
+        return $this->hasMany(Cart::className(), ['userNo' => 'userNo']);
     }
 }

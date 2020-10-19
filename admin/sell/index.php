@@ -4,51 +4,42 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\ProductSearch */
+/* @var $searchModel app\models\SellSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-//เพิ่มบรรทัดด้านล่าง
 use yii\bootstrap4\LinkPager;
-$this->title = 'Products';
+$this->title = 'Sells';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-index">
+<div class="sell-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Sell', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); 
-    ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel, 'summary' => '<i class="icon fa fa-file"></i> ข้อมูลตำแหน่งที่ {begin}-{end} (หน้า {page}/{pageCount}) <i class="icon fa fa-file"></i> ข้อมูลทั้งหมด {totalCount} รายการ',
-        'pager' => ['class' => LinkPager::className()],
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'PNo',
-            'Product_no',
-            [
-             'attribute'=>'category_id',
-             'value'=> function($model){
-                 return $model->category->category_name;
-             }
-            
-            ],
-            'brand_id',
-            'Product_code',
-            'Product_name',
-            'Product_desc',
-            'Product_price',
-            'Product_cost',
-            'Product_quantity',
-            'Product_unit',
-            'Product_exp',
-            
+            'SellNo',
+
+           // [ 'attribute' =>'PNo',
+            //'value'=>function($model){
+
+           // return $model->pNo->;
+          //  }
+               
+        //],
+        
+            'BillNo',
+            'SellAmount',
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'options' => ['style' => 'width:180px;'],
