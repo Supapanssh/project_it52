@@ -4,7 +4,7 @@ use yii\helpers\Html;
 ?>
 <div class="card">
     <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">ร้านบำรุงชูการไฟฟ้า</p>
 
         <?php $form = \yii\bootstrap4\ActiveForm::begin(['id' => 'login-form']) ?>
 
@@ -29,13 +29,20 @@ use yii\helpers\Html;
         <div class="row">
             <div class="col-8">
                 <div class="icheck-primary">
-                    <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                    <div class="form-group field-loginform-rememberme validating">
+                        <div class="custom-control custom-checkbox">
+                            <input type="hidden" name="LoginForm[rememberMe]" value="0"><input type="checkbox" id="loginform-rememberme" class="custom-control-input is-valid" name="LoginForm[rememberMe]" value="1" checked="" aria-invalid="false">
+                            <label class="custom-control-label" for="loginform-rememberme">จำฉันไว้</label>
+                            <div class="invalid-feedback"></div>
+
+                        </div>
+                    </div>
                 </div>
-                If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+                คุณลืมรหัสผ่านใช่ไหม? <?= Html::a('รีเซ็ต', ['site/request-password-reset']) ?>.
                 <br>
             </div>
             <div class="col-4">
-                <?= Html::submitButton('Sign In', ['class' => 'btn btn-primary btn-block']) ?>
+                <?= Html::submitButton('เข้าสู่ระบบ', ['class' => 'btn btn-primary btn-block']) ?>
             </div>
         </div>
 

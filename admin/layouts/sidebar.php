@@ -34,7 +34,7 @@
                     // ],
                     ['label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index']],
                     ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
-                    ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/cart']],
+                    ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
                     ['label' => 'รายการสินค้า', 'icon' => 'warehouse', 'url' => ['/product']],
                     ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
                     ['label' => 'ข้อมูลการซื้อขาย', 'icon' => 'users', 'url' => ['/bill']],

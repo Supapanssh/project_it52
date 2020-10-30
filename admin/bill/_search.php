@@ -24,9 +24,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'PeoNo') ?>
 
-    <?= $form->field($model, 'Bill_detail') ?>
+    <!-- <?= $form->field($model, 'Bill_detail') ?> -->
 
-    <?= $form->field($model, 'BillDiscount') ?>
+    <!-- <?= $form->field($model, 'BillDiscount') ?> -->
 
     <?php // echo $form->field($model, 'BillTotal') ?>
 

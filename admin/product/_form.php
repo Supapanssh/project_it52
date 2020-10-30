@@ -9,25 +9,32 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="product-form">
+       
+
+      
+<div class="product-form" >
 
     <?php $form = ActiveForm::begin(); ?>
+    
+      <?= $form->field($model, 'Product_no')->textInput(['maxlength' => true]) ?> 
 
-    <?= $form->field($model, 'Product_no')->textInput(['maxlength' => true]) ?>
-
-    <?php
+     <?php
     $object = app\models\Category::find()->all();
     $array = ArrayHelper::map($object, 'category_id', 'category_name');
-    ?>
-    <?= $form->field($model, 'category_id')->dropDownList($array) ?>
+    ?> 
+    
+     <?= $form->field($model, 'category_id')->dropDownList($array) ?> 
+    
 
-    <?= $form->field($model, 'brand_id')->textInput() ?>
+  
+        <?= $form->field($model, 'brand_id')->textInput() ?> 
 
-    <?= $form->field($model, 'Product_code')->textInput(['maxlength' => true]) ?>
+         <?= $form->field($model, 'Product_code')->textInput(['maxlength' => true]) ?>
+
 
     <?= $form->field($model, 'Product_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Product_desc')->textInput(['maxlength' => true]) ?>
+   <?= $form->field($model, 'Product_desc')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Product_price')->textInput() ?>
 
@@ -35,7 +42,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Product_quantity')->textInput() ?>
 
-    <?= $form->field($model, 'Product_unit')->textInput(['maxlength' => true]) ?>
+   <?= $form->field($model, 'Product_unit')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Product_exp')->textInput() ?>
 

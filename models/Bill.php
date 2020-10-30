@@ -53,11 +53,12 @@ class Bill extends \yii\db\ActiveRecord
             'BillNo' => 'รหัสใบเสร็จ',
             'BillDate' => 'วันที่',
             'PeoNo' => 'ผู้รับผิดชอบ',
-            'Bill_detail' => 'รายละเอียด',
-            'BillDiscount' => 'ส่วนลด',
+            //'Bill_detail' => 'รายละเอียด',
+            //'BillDiscount' => 'ส่วนลด',
             'BillTotal' => 'ราคาทั้งหมด',
-            'BillCash' => 'เงินสด',
+            // 'BillCash' => 'เงินสด',
             'Billvat' => 'ภาษีมูลค่าเพิ่ม',
+            'bill_id' => 'รหัสใบเสร็จ'
         ];
     }
 
@@ -79,5 +80,10 @@ class Bill extends \yii\db\ActiveRecord
     public function getSells()
     {
         return $this->hasMany(Sell::className(), ['BillNo' => 'BillNo']);
+    }
+
+    public function getBillDetails()
+    {
+        return $this->hasMany(BillDetail::className(), ['bill_id' => 'BillNo']);
     }
 }

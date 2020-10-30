@@ -37,10 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
             return $model->peoNo->nickname;
             }
         ],
-            'Bill_detail',
-            'BillDiscount',
+            //'Bill_detail',
+            //'BillDiscount',
             'BillTotal',
-            'BillCash',
+           // 'BillCash',
             'Billvat',
 
             [
