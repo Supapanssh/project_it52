@@ -13,10 +13,10 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-8">
             <?= $form->field($model, 'Emp_ID')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-4">
             <?= $form->field($model, 'Emp_idcard')->textInput() ?>
         </div>
     </div>
@@ -63,7 +63,11 @@ use yii\helpers\Url;
         });
     </script>
     <?php
-    $amphures = app\models\Amphures::find()->where("province_id = $model->Emp_province")->all();
+    if ($model->Emp_province) {
+        $amphures = app\models\Amphures::find()->where("province_id = $model->Emp_province")->all();
+    } else {
+        $amphures = app\models\Amphures::find()->all();
+    }
     $arrayAmphures = ArrayHelper::map($amphures, 'id', 'name_th');
     ?>
     <?= $form->field($model, 'Emp_amphur')->dropDownList($arrayAmphures) ?>
@@ -87,7 +91,11 @@ use yii\helpers\Url;
         });
     </script>
     <?php
-    $tumbol = app\models\Districts::find()->where(['amphure_id' => $model->Emp_amphur])->all();
+    if ($model->Emp_amphur) {
+        $tumbol = app\models\Amphures::find()->where(['amphure_id' => $model->Emp_amphur])->all();
+    } else {
+        $tumbol = app\models\Amphures::find()->all();
+    }
     $arrayTumbol = ArrayHelper::map($tumbol, 'id', 'name_th');
     ?>
     <?= $form->field($model, 'Emp_tumbol')->dropDownList($arrayTumbol) ?>

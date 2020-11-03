@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use yii\helpers\Url;
 ?>
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -13,7 +13,10 @@ use yii\helpers\Html;
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
+            <form method="get" action="<?= Url::to(['site/signout']) ?>">
+                <button type="submit" class="btn btn-default btn-flat float-right">ออกจากระบบ</button>
+            </form>
+            <!-- <?= Html::a('<i class="fas fa-sign-out-alt"></i>', ['site/Logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?> -->
         </li>
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -26,12 +29,12 @@ use yii\helpers\Html;
 
                     <p>
                         <?= !Yii::$app->user->isGuest ? Yii::$app->user->identity->username : null ?>
-                        <small>Member since Nov. 2012</small>
+                        <!-- <small>Member since Nov. 2012</small> -->
                     </p>
                 </li>
                 <!-- Menu Body -->
                 <li class="user-body">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-4 text-center">
                             <a href="#">Followers</a>
                         </div>
@@ -41,13 +44,13 @@ use yii\helpers\Html;
                         <div class="col-4 text-center">
                             <a href="#">Friends</a>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- /.row -->
                 </li>
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    <?= Html::a('Sign out', ['site/logout'], ['data-method' => 'post', 'class' => 'btn btn-default btn-flat float-right']) ?>
+
                 </li>
             </ul>
         </li>

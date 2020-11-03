@@ -107,7 +107,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/twbs/bootstrap.git",
+            "url": "git@github.com:twbs/bootstrap.git",
             "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
         },
         "dist": {
@@ -130,7 +130,7 @@
         "version_normalized": "1.10.20.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/DataTables/DataTables.git",
+            "url": "git@github.com:DataTables/DataTables.git",
             "reference": "83657a29e33ce93ee940ce25684940eb3acb2913"
         },
         "dist": {
@@ -186,12 +186,32 @@
         "installation-source": "dist"
     },
     {
+        "name": "bower-asset/highcharts",
+        "version": "v8.2.0",
+        "version_normalized": "8.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:highcharts/highcharts-dist.git",
+            "reference": "865e21adb762c576dde8669f913838d84b2ade3e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/highcharts/highcharts-dist/zipball/865e21adb762c576dde8669f913838d84b2ade3e",
+            "reference": "865e21adb762c576dde8669f913838d84b2ade3e"
+        },
+        "type": "bower-asset",
+        "installation-source": "dist",
+        "license": [
+            "https://www.highcharts.com/license"
+        ]
+    },
+    {
         "name": "bower-asset/inputmask",
         "version": "3.3.11",
         "version_normalized": "3.3.11.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/RobinHerbots/Inputmask.git",
+            "url": "git@github.com:RobinHerbots/Inputmask.git",
             "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
         },
         "dist": {
@@ -214,7 +234,7 @@
         "version_normalized": "3.4.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/jquery/jquery-dist.git",
+            "url": "git@github.com:jquery/jquery-dist.git",
             "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
         },
         "dist": {
@@ -234,7 +254,7 @@
         "version_normalized": "1.3.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/bestiejs/punycode.js.git",
+            "url": "git@github.com:bestiejs/punycode.js.git",
             "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
         },
         "dist": {
@@ -251,7 +271,7 @@
         "version_normalized": "2.0.7.1",
         "source": {
             "type": "git",
-            "url": "https://github.com/yiisoft/jquery-pjax.git",
+            "url": "git@github.com:yiisoft/jquery-pjax.git",
             "reference": "aef7b953107264f00234902a3880eb50dafc48be"
         },
         "dist": {
@@ -1213,7 +1233,8 @@
             "data",
             "faker",
             "fixtures"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "guzzlehttp/psr7",
@@ -1331,6 +1352,57 @@
         "keywords": [
             "AdminLTE",
             "extension",
+            "yii2"
+        ]
+    },
+    {
+        "name": "miloschuman/yii2-highcharts-widget",
+        "version": "v8.0",
+        "version_normalized": "8.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/miloschuman/yii2-highcharts.git",
+            "reference": "c9715eea6a715456b38c78b7f4f4fc7e123b9d39"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/miloschuman/yii2-highcharts/zipball/c9715eea6a715456b38c78b7f4f4fc7e123b9d39",
+            "reference": "c9715eea6a715456b38c78b7f4f4fc7e123b9d39",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/highcharts": "^8.0",
+            "yiisoft/yii2": "*"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.4"
+        },
+        "time": "2020-04-21T19:23:16+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "miloschuman\\highcharts\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Milo Schuman",
+                "email": "miloschuman@gmail.com"
+            }
+        ],
+        "description": "Highcharts widget for Yii 2 Framework.",
+        "homepage": "https://github.com/miloschuman/yii2-highcharts",
+        "keywords": [
+            "extension",
+            "highcharts",
+            "highmaps",
+            "highstock",
+            "widget",
             "yii2"
         ]
     },
@@ -2086,7 +2158,8 @@
         "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
         "keywords": [
             "tokenizer"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "phpunit/phpunit",
