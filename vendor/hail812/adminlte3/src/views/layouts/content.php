@@ -1,3 +1,8 @@
+<?php
+/* @var $content string */
+
+use yii\bootstrap4\Breadcrumbs;
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -14,17 +19,16 @@
                         ?>
                     </h1>
                 </div><!-- /.col -->
-<<<<<<< HEAD
-=======
                 <div class="col-sm-6">
-                    <nav aria-label="breadcrumb">
-                        <ol id="w0" class="float-sm-right breadcrumb">
-                            <li class="breadcrumb-item"><a href="/admin-stock/web/">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><?= $this->title ?></li>
-                        </ol>
-                    </nav>
-                </div>
->>>>>>> 3c8b23862db54ab49d0660683353f8ff554edc96
+                    <?php
+                    echo Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        'options' => [
+                            'class' => 'float-sm-right'
+                        ]
+                    ]);
+                    ?>
+                </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -32,8 +36,7 @@
 
     <!-- Main content -->
     <div class="content">
-        <?= $content ?>
-        <!-- /.container-fluid -->
+        <?= $content ?><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
 </div>
