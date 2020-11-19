@@ -8,16 +8,15 @@ class AdminLteAsset extends AssetBundle
     public $sourcePath = '@vendor/almasaeed2010/adminlte/dist';
 
     public $css = [
-        'css/adminlte.css'
+        'css/adminlte.min.css'
     ];
 
     public $js = [
-        'js/adminlte.js' 
+        'js/adminlte.min.js'
     ];
 
     public $depends = [
-        // 'yii\web\YiiAsset',
-        // 'yii\bootstrap4\BootstrapAsset',
-        // 'yii\bootstrap4\BootstrapPluginAsset'
+        'hail812\adminlte3\assets\BaseAsset',
+        'hail812\adminlte3\assets\PluginAsset'
     ];
 }

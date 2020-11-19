@@ -45,10 +45,8 @@ class SellproductController extends Controller
             $cart = Cart::find()->where("userNo=$uid AND PNo=$prod_id")->one();
             $cart->quantity = $cart->quantity + $quantity; //เพิ่มจำนวน
             $cart->save();
-            // return $this->asJson($cart);
         } else {
             $cart = new Cart();
-
             $cart->PNo = $prod_id;
             $cart->quantity = $quantity;
             $cart->userNo = Yii::$app->user->identity->userNo;
@@ -56,7 +54,18 @@ class SellproductController extends Controller
         }
 
         return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl); //ย้อนกลับ
-        // return $this->asJson($cart);
+    }
+
+    public function actionRemoveCart($prod_id)
+    {
+        $uid = Yii::$app->user->identity->userNo;
+        if (Cart::find()->where("userNo=$uid AND PNo=$prod_id")->one()) //ค้นหาสินค้าอันแรกและผู้ใช้งาน ณ ตอนนี้
+        {
+            $cart = Cart::find()->where("userNo=$uid AND PNo=$prod_id")->one();
+            $cart->delete();
+            // ลบสินค้าออกจากตะกร้า
+        }
+        return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl); //ย้อนกลับ
     }
 
     public function actionMakeOrder()
@@ -87,6 +96,9 @@ class SellproductController extends Controller
             //กำหนดค่ารายละเอียดบิล
             $bill_detail->save();
             //บันทึกรายละเอียดบิล
+            $product = Product::findOne($cart->pNo->PNo); //ค้นหาโปรดัก 
+            $product->Product_quantity = $product->Product_quantity - $cart->quantity; //ตัดตามจำนวนในตะกร้า เอาโปรดักจำนวนมาลบตะกร้าสินค้า
+            $product->save(); //บันทึก
         }
         // return $this->asJson($bill->billDetails);
         Cart::deleteAll("userNo = " . Yii::$app->user->identity->id); //คำสั่ง delete สำหรับเคลียร์ตะกร้าสินค้าที่ cart ที่ยูเซอปัจจุบันล้อกอินอยู่

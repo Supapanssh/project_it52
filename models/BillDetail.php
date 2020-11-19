@@ -55,7 +55,7 @@ class BillDetail extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getPno0()
+    public function getProduct()
     {
         return $this->hasOne(Product::className(), ['PNo' => 'pno']);
     }

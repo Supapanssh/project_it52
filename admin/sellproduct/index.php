@@ -12,6 +12,7 @@ use yii\helpers\Url;
                     <th>ชื่อสินค้า</th>
                     <th>จำนวน</th>
                     <th>ราคา</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,8 @@ use yii\helpers\Url;
                         <td><?= $cart->pNo->Product_name ?></td>
                         <td><?= $cart->quantity ?> (<?= $cart->pNo->Product_price ?> บาท/ชิ้น)</td>
                         <td><?= $cart->pNo->Product_price * $cart->quantity ?></td>
+                        <!-- ทำปุ่มลบสินค้า โดยลิงค์ไปที่ฟังชั่นลบตะกร้าใน SellproductController @ actionRemoveCart โดยระบุรหัสสินค้า (?prod_id=) -->
+                        <td><a class="btn btn-danger" href="<?= Url::to('sellproduct/remove-cart?prod_id=' . $cart->pNo->PNo) ?>">ลบออก</a></td>
                         <?php $sum += $cart->pNo->Product_price * $cart->quantity; ?>
                     </tr>
                 <?php endforeach; ?>
@@ -35,7 +38,7 @@ use yii\helpers\Url;
         </table>
     </div>
     <div class="card-footer text-right">
-        <a href="#" data-toggle="modal" data-target="#modelId" class="btn btn-primary active" role="button">สั่งซื้อสินค้า</a>
+        <a data-toggle="modal" data-target="#modelId" class="btn btn-primary active" role="button">ขายสินค้า</a>
     </div>
 
     <!-- Modal -->
@@ -87,20 +90,11 @@ use yii\helpers\Url;
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <!-- ทำการสั่งซื้อสินค้าโดยลิงค์ไปที่หน้า sellproduct/make-order ซึ่งเป็นฟังชั่นสร้างคำสั่งซื้อจากสินค้าในตะกร้า -->
-                        <a href="<?= Url::to('sellproduct/make-order') ?>" class="btn btn-primary">ทำรายการสั่งซื้อ</a>
+                        <a href="<?= Url::to('sellproduct/make-order') ?>" class="btn btn-primary">ทำรายการขาย</a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <script>
-            $('#exampleModal').on('show.bs.modal', event => {
-                var button = $(event.relatedTarget);
-                var modal = $(this);
-                // Use above variables to manipulate the DOM
-
-            });
-        </script>
     </div>
 
     <div class="card">
@@ -111,13 +105,16 @@ use yii\helpers\Url;
                 <col width="30%">
                 <col width="30%">
                 <col width="10%">
+                <col width="10%">
                 <col width="30%">
                 <thead>
                     <tr>
                         <th>บาร์โค้ด</th>
                         <th>ชื่อสินค้า</th>
                         <th>รายละเอียดสินค้า</th>
+                        <th>คงเหลือ</th>
                         <th>หน่วยสินค้า</th>
+                        <th>ราคาต่อชิ้น (บาท)</th>
                         <th>จัดการ</th>
                     </tr>
                 </thead>
@@ -128,7 +125,9 @@ use yii\helpers\Url;
                             <td><?= $product->Product_code ?></td>
                             <td><?= $product->Product_name ?></td>
                             <td><?= $product->Product_desc ?></td>
+                            <td style="vertical-align:middle;text-align:right;color:<?= $product->Product_quantity < 20 ? 'red' : 'green' ?>"><?= $product->Product_quantity ?></td>
                             <td><?= $product->Product_unit ?></td>
+                            <td><?= $product->Product_price ?></td>
                             <td>
                                 <form action="<?= Url::to('sellproduct/add-to-cart') ?>" method="GET">
                                     <input type="number" name="quantity" id="quantity" class="form-control">
@@ -142,3 +141,4 @@ use yii\helpers\Url;
             </table>
         </div>
     </div>
+</div>

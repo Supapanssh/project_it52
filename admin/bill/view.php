@@ -41,3 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+<?php foreach ($model->billDetails as $billdetail) : ?>
+    <?= $billdetail->product->Product_name ?> <?= $billdetail->quantity ?> <?= $billdetail->amount ?><br>
+<?php endforeach; ?>

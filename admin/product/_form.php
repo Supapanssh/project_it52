@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Product_cost')->textInput() ?>
 
-    <?= $form->field($model, 'Product_quantity')->textInput() ?>
+    <?=  $form->field($model, 'Product_quantity')->textInput() ?> 
 
    <?= $form->field($model, 'Product_unit')->textInput(['maxlength' => true]) ?>
 
