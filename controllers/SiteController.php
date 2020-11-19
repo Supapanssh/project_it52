@@ -86,7 +86,19 @@ class SiteController extends Controller
     {
         $this->layout = '../../admin/layouts/main-login';
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            //เมื่อล็อคอินสำเร็จ
+            switch (Yii::$app->user->roles) {
+                    //เช็คสถานะ
+                case User::ROLE_ADMIN: //ถ้าเป็น แอดมิน
+                    return $this->redirect(['/site']);
+                    break;
+                case User::ROLE_CHASIER: //ถ้าเป็นแคชเชีย
+                    return $this->redirect(['/sellproduct']);
+                    break;
+                case User::ROLE_MANAGER: //ถ้าเป็น ผจก.
+                    return $this->redirect(['/bill']);
+                    break;
+            }
         }
 
         $model = new LoginForm();

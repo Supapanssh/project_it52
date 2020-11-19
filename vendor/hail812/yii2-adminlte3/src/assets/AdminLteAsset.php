@@ -1,4 +1,5 @@
 <?php
+
 namespace hail812\adminlte3\assets;
 
 use yii\web\AssetBundle;
@@ -8,15 +9,16 @@ class AdminLteAsset extends AssetBundle
     public $sourcePath = '@vendor/almasaeed2010/adminlte/dist';
 
     public $css = [
-        'css/adminlte.min.css'
+        'css/adminlte.css'
     ];
 
     public $js = [
-        'js/adminlte.min.js'
+        'js/adminlte.js'
     ];
 
     public $depends = [
-        'hail812\adminlte3\assets\BaseAsset',
-        'hail812\adminlte3\assets\PluginAsset'
+        // 'yii\web\YiiAsset',
+        // 'yii\bootstrap4\BootstrapAsset',
+        // 'yii\bootstrap4\BootstrapPluginAsset'
     ];
 }

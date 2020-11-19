@@ -32,6 +32,7 @@ use yii\helpers\Url;
                 <tr>
                     <td>ราคารวม</td>
                     <td></td>
+                    <td></td>
                     <td><?= $sum ?></td>
                 </tr>
             </tbody>
