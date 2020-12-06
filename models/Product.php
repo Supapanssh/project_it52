@@ -41,7 +41,7 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             [['Product_no', 'Product_desc', 'Product_cost', 'Product_quantity', 'Product_unit', 'Product_exp'], 'required'],
-            [['category_id', 'brand_id', 'Product_quantity'], 'integer'],
+            [['category_id', 'brand_id', 'Product_quantity' , 're_orderpoint'], 'integer'],
             [['Product_price', 'Product_cost'], 'number'],
             [['Product_exp'], 'safe'],
             [['Product_no', 'Product_code'], 'string', 'max' => 11],
@@ -57,10 +57,10 @@ class Product extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'PNo' => 'P No',
+            'PNo' => 'ลำดับที่',
             'Product_no' => 'รหัสสินค้า',
-            'category_id' => 'รหัสหมวดหมู่สินค้า',
-            'brand_id' => 'รหัสยี่ห้อสินค้า',
+            'category_id' => 'หมวดหมู่สินค้า',
+            'brand_id' => 'ยี่ห้อสินค้า',
             'Product_code' => 'บาร์โค้ด',
             'Product_name' => 'ชื่อสินค้า',
             'Product_desc' => 'รายละเอียดสินค้า',
@@ -69,6 +69,7 @@ class Product extends \yii\db\ActiveRecord
             'Product_quantity' => 'จำนวนสินค้า',
             'Product_unit' => 'หน่วยสินค้า',
             'Product_exp' => 'รับประกันสินค้า',
+            're_orderpoint'=> 'จุดสั่งซื้อ',
         ];
     }
 

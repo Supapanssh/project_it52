@@ -10,26 +10,39 @@ use yii\helpers\ArrayHelper;
 
 <div class="user-form">
 
+
     <?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-sm-3">
+            <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'status')->dropDownList(['Admin' => 'Admin', "Manager" => 'Manager', "Cashier" => "Cashier"], ['prompt' => '']) ?>
+        </div>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'roles')->textInput() ?>
+        </div>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->dropDownList(['Admin' => 'Admin', "Manager" => 'Manager', "Cashier" => "Cashier"]) ?>
-
-    <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'roles')->textInput() ?>
-
-    <?= $form->field($model, 'password_reset_token')->textInput(['maxlength' => true]) ?>
+    </div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

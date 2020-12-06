@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Manage */
 
-$this->title = 'Update Manage: ' . $model->Manage_No;
+$this->title = 'แก้ไขข้อมูลสินค้า: ' . $model->Manage_No;
 $this->params['breadcrumbs'][] = ['label' => 'Manages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->Manage_No, 'url' => ['view', 'id' => $model->Manage_No]];
 $this->params['breadcrumbs'][] = 'Update';

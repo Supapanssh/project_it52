@@ -3,28 +3,19 @@ $this->title = 'หน้าหลักของระบบ';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>
 
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <i class="glyphicon glyphicon-signal"></i>
-            ข้อมูลของยอดขายในแต่ละเดือน</h3>
-    </div>
 
-    <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ChartJs</title>
- 
-  </head>
-  
-  <body>
-  
+<?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_CHASIER) : ?>
+    <h4>แคชเชียร์</h4>
+<?php endif; ?>
+
+<?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_MANAGER) : ?>
+    <h5>ผจก</h5>
+    <h3 class="panel-title">
+        <i class="glyphicon glyphicon-signal"></i>
+        ข้อมูลของยอดขายในแต่ละเดือน</h3>
+
     <canvas id="myChart" width="400" height="400"></canvas>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
- 
     <script>
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
@@ -57,15 +48,15 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true
                         }
                     }]
                 }
             }
         });
-        </script>    
-    
-    
-  </body>
-</html>
-</div>
+    </script>
+<?php endif; ?>
+
+<?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_ADMIN) : ?>
+  
+<?php endif; ?>

@@ -61,7 +61,7 @@ class ProductSearch extends Product
         $query->andFilterWhere([
             'PNo' => $this->PNo,
             'category_id' => $this->category_id,
-            'brand_id' => $this->brand_id,
+            //'brand_id' => $this->brand_id,
             'Product_price' => $this->Product_price,
             'Product_cost' => $this->Product_cost,
             'Product_quantity' => $this->Product_quantity,

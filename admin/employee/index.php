@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 //เพิ่มบรรทัดด้านล่าง
 use yii\bootstrap4\LinkPager;
 
-$this->title = 'Employees';
+$this->title = 'ข้อมูลพนักงาน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="employee-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Employee', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มพนักงาน', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -33,12 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
+           // 'ID',
             'Emp_ID',
             'Emp_idcard',
             'Emp_name',
             'Emp_lname',
-            //'Emp_sex',
+            'Emp_sex',
             //'Emp_birth',
             //'Emp_tel',
             //'Emp_address:ntext',
@@ -50,8 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Emp_zipcode',
             //'Emp_mail',
             //'Emp_start',
-            //'Emp_quit',
-            //'Emp_status',
+            'Emp_quit',
+            'Emp_status',
 
             [
                 'class' => 'yii\grid\ActionColumn',

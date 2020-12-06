@@ -8,15 +8,16 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 //เพิ่มบรรทัดด้านล่าง
 use yii\bootstrap4\LinkPager;
-$this->title = 'Products';
+$this->title = 'รายการสินค้า';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="product-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มสินค้าใหม่', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -32,23 +33,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'PNo',
             'Product_no',
-            [
-             'attribute'=>'category_id',
-             'value'=> function($model){
-                 return $model->category->category_name;
-             }
             
-            ],
-            'brand_id',
+           'brand_id',
             'Product_code',
+             
             'Product_name',
+            [
+                'attribute'=>'category_id',
+                'value'=> function($model){
+                    return $model->category->category_name;
+                }
+               
+               ],
             'Product_desc',
             'Product_price',
             'Product_cost',
             'Product_quantity',
             'Product_unit',
             'Product_exp',
-            
+            're_orderpoint', 
+              
             [
                 'class' => 'yii\grid\ActionColumn',
                 'options' => ['style' => 'width:180px;'],
@@ -71,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('app', 'delete'),
                             'class' => 'btn btn-danger',
                             'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
+                                'confirm' => 'คุณแน่ใจใช่ไหมที่ต้องการลบ?',
                                 'method' => 'post',
                             ],
                         ]);

@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Supplier */
 /* @var $form yii\widgets\ActiveForm */
@@ -17,14 +18,86 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'sup_username')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'sup_address')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'sup_moo')->textInput() ?>
 
-    <?= $form->field($model, 'sup_tumbol')->textInput() ?>
+    <?php
+    $provinces = app\models\Provinces::find()->all();
+    $arrayProvinces = ArrayHelper::map($provinces, 'id', 'name_th');
+    ?>
+     <?= $form->field($model, 'Sup_province')->dropDownList($arrayProvinces,[]) ?>
 
-    <?= $form->field($model, 'sup_amphur')->textInput() ?>
+     <script>
+        $("#supplier-sup_province").change(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url: "<?= Url::to(["site/get-amphures?province="]) ?>" + $("#supplier-sup_province").val(),
+                dataType: "json",
+                success: function(response) {
+                    $("#supplier-sup_amphur").html("");
+                    console.log(response);
+                    for (let index = 0; index < response.length; index++) {
+                        const element = response[index];
+                        var text = "<option value='" + element.id + "'>" + element.name_th + "</option>";
+                        $("#supplier-sup_amphur").append(text);
+                    }
+                }
+            });
+        });
+    </script>
 
-    <?= $form->field($model, 'sup_province')->textInput() ?>
+<?php
+    if ($model->Sup_province) {
+        $amphures = app\models\Amphures::find()->where("province_id = $model->Sup_province")->all();
+    } else {
+        $amphures = app\models\Amphures::find()->all();
+    }
+    $arrayAmphures = ArrayHelper::map($amphures, 'id', 'name_th');
+    ?>
+    <?= $form->field($model, 'Sup_amphur')->dropDownList($arrayAmphures) ?>
+    <script>
+        $("#supplier-sup_amphur").change(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url: "<?= Url::to(["site/get-districts?amphures="]) ?>" + $("#supplier-sup_amphur").val(),
+                dataType: "json",
+                success: function(response) {
+                    $("#supplier-sup_tumbol").html("");
+                    console.log(response);
+                    for (let index = 0; index < response.length; index++) {
+                        const element = response[index];
+                        var text = "<option value='" + element.id + "'>" + element.name_th + "</option>";
+                        $("#supplier-sup_tumbol").append(text);
+                    }
+                }
+            });
+        });
+    </script>
+    <?php
+    if ($model->Sup_amphur) {
+        $tumbol = app\models\Amphures::find()->where(['amphure_id' => $model->Sup_amphur])->all();
+    } else {
+        $tumbol = app\models\Amphures::find()->all();
+    }
+    $arrayTumbol = ArrayHelper::map($tumbol, 'id', 'name_th');
+    ?>
+    <?= $form->field($model, 'Sup_tumbol')->dropDownList($arrayTumbol) ?>
+
+    <script>
+        $("#supplier-sup_tumbol").change(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "get",
+                url: "<?= Url::to(["site/get-zip?district="]) ?>" + $("#supplier-sup_tumbol").val(),
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    $("#supplier-sup_zipcode").prop("value", response.zip_code);
+                }
+            });
+        });
+    </script>
 
     <?= $form->field($model, 'sup_zipcode')->textInput() ?>
 

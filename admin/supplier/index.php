@@ -9,7 +9,7 @@ use yii\widgets\Pjax;
 //เพิ่มบรรทัดด้านล่าง
 use yii\bootstrap4\LinkPager;
 
-$this->title = 'Suppliers';
+$this->title = 'ข้อมูลบริษัทคู่ค้า';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="supplier-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Supplier', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มบริษัทคู่ค้า', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

@@ -8,16 +8,14 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 use yii\bootstrap4\LinkPager;
 
-$this->title = 'Manages';
+$this->title = 'ข้อมูลคลังสินค้า';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="manage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Manage', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+   
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); 

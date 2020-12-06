@@ -56,7 +56,7 @@ class Bill extends \yii\db\ActiveRecord
             //'Bill_detail' => 'รายละเอียด',
             //'BillDiscount' => 'ส่วนลด',
             'BillTotal' => 'ราคาทั้งหมด',
-            // 'BillCash' => 'เงินสด',
+             'BillCash' => 'เงินสด',
             'Billvat' => 'ภาษีมูลค่าเพิ่ม',
             'bill_id' => 'รหัสใบเสร็จ'
         ];

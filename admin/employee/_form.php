@@ -13,35 +13,50 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class="col-md-6 col-8">
+    <div class="col-sm-3">
             <?= $form->field($model, 'Emp_ID')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-md-6 col-4">
-            <?= $form->field($model, 'Emp_idcard')->textInput() ?>
+        <div class="col-sm-3">
+            <?= $form->field($model, 'Emp_idcard')->textInput(['maxlength' =>'13']) ?>
         </div>
-    </div>
+    
 
 
     <!-- //kigigigigi -->
-
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_name')->textInput(['maxlength' => true]) ?>
-
+    </div>
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_lname')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Emp_sex')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'Emp_birth')->textInput() ?>
-
-    <?= $form->field($model, 'Emp_tel')->textInput() ?>
-
-    <?= $form->field($model, 'Emp_address')->textarea(['rows' => 6]) ?>
+    </div>
+    <div class="col-sm-3">
+    <?= $form->field($model, 'Emp_sex')->dropDownList(['Female' => 'หญิง', 'Male' => 'ชาย'], ['prompt' => '']) ?>
+    </div>
+    <div class="col-sm-3">
+    <?= $form->field($model, 'Emp_birth')->textInput(['type' => 'date']) ?>
+    </div>
+    <div class="col-6">
+    <?= $form->field($model, 'Emp_address')->textarea() ?>
+    </div>
+    <div class="col-sm-3">
+    <?= $form->field($model, 'Emp_tel')->textInput(['maxlength' => '10']) ?>
+    </div>
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_road')->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_moo')->textInput() ?>
+    </div>
+
+
+    
     <?php
     $provinces = app\models\Provinces::find()->all();
     $arrayProvinces = ArrayHelper::map($provinces, 'id', 'name_th');
     ?>
+     <div class="col-sm-3">
     <?= $form->field($model, 'Emp_province')->dropDownList($arrayProvinces, []) ?>
+     </div>
 
     <script>
         $("#employee-emp_province").change(function(e) {
@@ -70,7 +85,10 @@ use yii\helpers\Url;
     }
     $arrayAmphures = ArrayHelper::map($amphures, 'id', 'name_th');
     ?>
+
+<div class="col-sm-3">
     <?= $form->field($model, 'Emp_amphur')->dropDownList($arrayAmphures) ?>
+</div>
     <script>
         $("#employee-emp_amphur").change(function(e) {
             e.preventDefault();
@@ -98,8 +116,9 @@ use yii\helpers\Url;
     }
     $arrayTumbol = ArrayHelper::map($tumbol, 'id', 'name_th');
     ?>
+     <div class="col-sm-3">
     <?= $form->field($model, 'Emp_tumbol')->dropDownList($arrayTumbol) ?>
-
+     </div>
     <script>
         $("#employee-emp_tumbol").change(function(e) {
             e.preventDefault();
@@ -114,18 +133,28 @@ use yii\helpers\Url;
             });
         });
     </script>
-    <?= $form->field($model, 'Emp_zipcode')->textInput() ?>
 
+<div class="col-sm-3">
+    <?= $form->field($model, 'Emp_zipcode')->textInput(['maxlength' =>'5']) ?>
+</div>
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_mail')->textInput(['maxlength' => true]) ?>
-
+    </div>
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_start')->textInput(['type' => 'date']) ?>
-
+    </div>
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_quit')->textInput(['type' => 'date']) ?>
-
+    </div>
+    <div class="col-sm-3">
     <?= $form->field($model, 'Emp_status')->dropDownList(['ทำงาน' => 'ทำงาน', 'ลาออก' => 'ลาออก',], ['prompt' => '']) ?>
+    </div>
+    </div>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="form-group" >
+    <div class="col-auto">
+        <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
+    </div>
     </div>
 
     <?php ActiveForm::end(); ?>

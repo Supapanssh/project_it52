@@ -21,61 +21,78 @@
         <nav class="mt-2">
 
             <?php
-            echo \hail812\adminlte3\widgets\Menu::widget([
-                'items' => [
-                    // [
-                    //     'label' => 'Starter Pages',
-                    //     'icon' => 'tachometer-alt',
-                    //     'badge' => '<span class="right badge badge-info">2</span>',
-                    //     'items' => [
-                    //         ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                    //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                    //     ]
-                    // ],
-                    ['label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index']],
-                    ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
-                    ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
-                    ['label' => 'รายการสินค้า', 'icon' => 'warehouse', 'url' => ['/product']],
-                    ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
-                    ['label' => 'ข้อมูลการซื้อขาย', 'icon' => 'users', 'url' => ['/bill']],
-                    ['label' => 'จัดการคลังสินค้า', 'icon' => 'tasks', 'url' => ['/manage']],
-                    ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
-                    ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
+            switch (Yii::$app->user->identity->roles) {
+                case 0:
+                    echo \hail812\adminlte3\widgets\Menu::widget([
+                        'items' => [
+                            [
+                                'label' => 'Starter Pages',
+                                'icon' => 'tachometer-alt',
+                                'badge' => '<span class="right badge badge-info">2</span>',
+                                'items' => [
+                                    ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
+                                    ['label' => 'Inactive Page', 'iconStyle' => 'far'],
+                                ]
+                            ],
+                            ['label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index']],
+                            ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
+                            ['label' => 'ข้อมูลการซื้อขาย', 'icon' => 'users', 'url' => ['/bill']],
+                        ],
+                    ]);
+                    break;
+                case 10:
+                    echo \hail812\adminlte3\widgets\Menu::widget([
+                        'items' => [
+                            ['label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index'],
+                            'badge' => '<span class="right badge badge-info">2</span>',
+                            'items' => [
+                                ['label' => 'ข้อมูลยอดขายสินค้า', 'url' => ['site/line'], 'icon' => 'chart-line'],
+                                ['label' => 'ข้อมูลพยากรณ์กำไร', 'url' => ['site/index'], 'icon' => 'chart-bar'],
+                            ]            
+                        
+                        ],
+                            ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
+                            ['label' => 'รายการสินค้า', 'icon' => 'warehouse', 'url' => ['/product']],
+                            ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
+                            ['label' => 'จัดการคลังสินค้า', 'icon' => 'tasks', 'url' => ['/manage']],
+                            ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
+                            ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
+                            ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
+                        ],
+                    ]);
+                    break;
+                case 30:
+                    echo \hail812\adminlte3\widgets\Menu::widget([
+                        'items' => [
+                            ['label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index'],
+                            'badge' => '<span class="right badge badge-info">2</span>',
+                            'items' => [
+                                ['label' => 'ข้อมูลยอดขายสินค้า', 'url' => ['site/index'], 'icon' => 'chart-line'],
+                                ['label' => 'ข้อมูลวิเคราะห์กำไร', 'url' => ['site/index'], 'icon' => 'chart-bar'],
+                            ]            
+                        
+                        ],
+                            ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
+                            ['label' => 'รายการสินค้า', 'icon' => 'warehouse', 'url' => ['/product']],
+                            ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
+                            ['label' => 'ข้อมูลการซื้อขาย', 'icon' => 'users', 'url' => ['/bill']],
+                            ['label' => 'จัดการคลังสินค้า', 'icon' => 'tasks', 'url' => ['/manage']],
+                            ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
+                            ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
+                            ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
 
 
-                    ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Signup', 'url' => ['site/signup'], 'icon' => 'plus', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-                    // ['label' => 'MULTI LEVEL EXAMPLE', 'header' => true],
-                    // ['label' => 'Level1'],
-                    // [
-                    //     'label' => 'Level1',
-                    //     'items' => [
-                    //         ['label' => 'Level2', 'iconStyle' => 'far'],
-                    //         [
-                    //             'label' => 'Level2',
-                    //             'iconStyle' => 'far',
-                    //             'items' => [
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                    //             ]
-                    //         ],
-                    //         ['label' => 'Level2', 'iconStyle' => 'far']
-                    //     ]
-                    // ],
-                    // ['label' => 'Level1'],
-                    // ['label' => 'LABELS', 'header' => true],
-                    // ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    // ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    // ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
-                ],
-            ]);
+                            ['label' => 'Yii2 PROVIDED', 'header' => true],
+                            ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
+                            ['label' => 'Signup', 'url' => ['site/signup'], 'icon' => 'plus', 'visible' => Yii::$app->user->isGuest],
+                            ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+                            ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+
+                        ],
+                    ]);
+                    break;
+            }
             ?>
         </nav>
-        <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
 </aside>

@@ -8,23 +8,21 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 use yii\bootstrap4\LinkPager;
 
-$this->title = 'Bills';
+$this->title = 'ข้อมูลการซื้อ-ขาย';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bill-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Bill', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
+    
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => $searchModel, 'summary' => '<i class="icon fa fa-file"></i> ข้อมูลตำแหน่งที่ {begin}-{end} (หน้า {page}/{pageCount}) <i class="icon fa fa-file"></i> ข้อมูลทั้งหมด {totalCount} รายการ',
+        'pager' => ['class' => LinkPager::className()],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -42,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'BillTotal',
            // 'BillCash',
             'Billvat',
-
+            
             [
                 'class' => 'yii\grid\ActionColumn',
                 'options' => ['style' => 'width:180px;'],
@@ -63,11 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'delete' => function ($url, $model) {
                         return Html::a('<i class="fas fa-trash"></i>', $url, [
                             'title' => Yii::t('app', 'delete'),
-                            'class' => 'btn btn-danger',
-                            'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
-                                'method' => 'post',
-                            ],
+                          'class' => 'btn btn-danger',
+                           'data' => [
+                              'confirm' => 'Are you sure you want to delete this item?',
+                               'method' => 'post', 
+                          ],
                         ]);
                     }
                 ]
