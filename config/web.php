@@ -15,7 +15,7 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@app/views' => '@app/admin'
+                    '@app/views' => '@app/views'
                 ],
             ],
         ],

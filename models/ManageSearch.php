@@ -17,8 +17,8 @@ class ManageSearch extends Manage
     public function rules()
     {
         return [
-            [['Manage_No', 'PNo', 'PeoNo', 'Manage_Amount'], 'integer'],
-            [['Manage_date'], 'safe'],
+            [['Manage_No'], 'integer'],
+            [['PNo', 'Manage_date', 'Manage_Amount', 'PeoNo'], 'safe'],
         ];
     }
 
@@ -40,9 +40,11 @@ class ManageSearch extends Manage
      */
     public function search($params)
     {
-        $query = Manage::find();
+        // จอยตาราง manage เข้ากับ product กับ user ดูได้ที่โมเดล Manage ตรง getPNo() กับ getPeoNo() 
+        // คำว่า pNo ได้มาจาก getPNo()==> get->PNo() => pNo
+        // คำว่า peoNo ได้มาจาก getPeoNo() ==> get->PeoNo() => peoNo
 
-        // add conditions that should always apply here
+        $query = Manage::find()->joinWith("pNo")->joinWith("peoNo");
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -51,26 +53,18 @@ class ManageSearch extends Manage
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
-
-        // grid filtering conditions
         $query->andFilterWhere([
-            
-
-            'Manage_No' => $this->Manage_No,
-            'Manage_date' => $this->Manage_date,
-            'PNo' => $this->PNo,
-            'PeoNo' => $this->PeoNo,
-            'Manage_Amount' => $this->Manage_Amount,
+            'Manage_No' => $this->Manage_No
         ]);
+        $query->andFilterWhere(['like', "user.username", $this->PeoNo]); //พอเอาไปต่อกับตาราง user จากการจอยข้างบนเราสามารถใช้ filter ได้แล้วเป็น user. อะไรก็ว่าไปของ user หากจำไม่ได้ว่ามี attributes อะไรบ้างก็เปิด Model User ดูเอา
+        // ปล. $this->PeoNo คือช่องค้นหาด้านบนในหน้า manage index ตรงผู้รับผิดชอบ
 
-        $query->andFilterWhere(['like', 'Manage_date', $this->Manage_date]);
-       
+        $query->andFilterWhere(['like', "product.Product_name", $this->PNo]); //กรณีเดียวกับตาราง user
+        $query->andFilterWhere(['like', "Manage_date", $this->Manage_date]);
+        $query->andFilterWhere(['like', "Manage_Amount", $this->Manage_Amount]);
 
         return $dataProvider;
     }
 }
-
