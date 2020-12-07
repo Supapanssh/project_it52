@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         //
         'filterModel' => $searchModel, 'summary' => '<i class="icon fa fa-file"></i> ข้อมูลตำแหน่งที่ {begin}-{end} (หน้า {page}/{pageCount}) <i class="icon fa fa-file"></i> ข้อมูลทั้งหมด {totalCount} รายการ',
-        'pager' => ['class' => LinkPager::className()],
+        'pager' => ['class' => LinkPager::class],
         //
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -50,19 +50,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['style' => 'width:180px;'],
                 'buttonOptions' => ['class' => 'btn btn-info'],
                 'buttons' => [
-                    'update' =>  function ($url, $model) {
+                    'update' =>  function ($url) {
                         return Html::a('<i class="fas fa-edit"></i>', $url, [
                             'class' => 'btn btn-info',
                             'title' => Yii::t('app', 'update')
                         ]);
                     },
-                    'view' =>  function ($url, $model) {
+                    'view' =>  function ($url) {
                         return Html::a('<i class="fas fa-eye"></i>', $url, [
                             'class' => 'btn btn-success',
                             'title' => Yii::t('app', 'view')
                         ]);
                     },
-                    'delete' => function ($url, $model) {
+                    'delete' => function ($url) {
                         return Html::a('<i class="fas fa-trash"></i>', $url, [
                             'title' => Yii::t('app', 'delete'),
                             'class' => 'btn btn-danger',
