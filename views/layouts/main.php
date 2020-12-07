@@ -54,30 +54,6 @@ $this->beginPage() ?>
             font-family: 'Kanit', sans-serif;
         }
     </style>
-</head>
-
-<body class="hold-transition sidebar-mini">
-    <?php $this->beginBody() ?>
-
-    <div class="wrapper">
-        <!-- Navbar -->
-        <?= $this->render('navbar') ?>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <?= $this->render('sidebar') ?>
-
-        <!-- Content Wrapper. Contains page content -->
-        <?= $this->render('content', ['content' => $content]) ?>
-        <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <?= $this->render('control-sidebar') ?>
-        <!-- /.control-sidebar -->
-
-        <!-- Main Footer -->
-        <?= $this->render('footer') ?>
-    </div>
 
     <!-- jQuery -->
     <script src="<?= SiteInfo::web() ?>plugins/jquery/jquery.min.js"></script>
@@ -109,10 +85,7 @@ $this->beginPage() ?>
     <script src="<?= SiteInfo::web() ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= SiteInfo::web() ?>dist/js/adminlte.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?= SiteInfo::web() ?>dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?= SiteInfo::web() ?>dist/js/pages/dashboard.js"></script>
+
     <!-- DataTables  & Plugins -->
     <script src="<?= SiteInfo::web() ?>plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= SiteInfo::web() ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -126,6 +99,31 @@ $this->beginPage() ?>
     <script src="<?= SiteInfo::web() ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="<?= SiteInfo::web() ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="<?= SiteInfo::web() ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <?php $this->beginBody() ?>
+
+    <div class="wrapper">
+        <!-- Navbar -->
+        <?= $this->render('navbar') ?>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <?= $this->render('sidebar') ?>
+
+        <!-- Content Wrapper. Contains page content -->
+        <?= $this->render('content', ['content' => $content]) ?>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <?= $this->render('control-sidebar') ?>
+        <!-- /.control-sidebar -->
+
+        <!-- Main Footer -->
+        <?= $this->render('footer') ?>
+    </div>
+
     <script>
         $(document).ready(function() {
             $(".data-table").DataTable();

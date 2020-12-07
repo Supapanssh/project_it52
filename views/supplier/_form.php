@@ -4,29 +4,22 @@ use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
-/* @var $this yii\web\View */
-/* @var $model app\models\Supplier */
-/* @var $form yii\widgets\ActiveForm */
+// ใส่ชื่อ attribute ผิดต้องเป็น s เล็กให้หมด
 ?>
 
 <div class="supplier-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
     <?= $form->field($model, 'sup_company')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'sup_username')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'sup_address')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'sup_moo')->textInput() ?>
-
     <?php
     $provinces = app\models\Provinces::find()->all();
     $arrayProvinces = ArrayHelper::map($provinces, 'id', 'name_th');
     ?>
-     <?= $form->field($model, 'Sup_province')->dropDownList($arrayProvinces,[]) ?>
-
-     <script>
+    <?= $form->field($model, 'sup_province')->dropDownList($arrayProvinces, []) ?>
+    <script>
         $("#supplier-sup_province").change(function(e) {
             e.preventDefault();
             $.ajax({
@@ -45,16 +38,15 @@ use yii\helpers\Url;
             });
         });
     </script>
-
-<?php
-    if ($model->Sup_province) {
-        $amphures = app\models\Amphures::find()->where("province_id = $model->Sup_province")->all();
+    <?php
+    if ($model->sup_province) {
+        $amphures = app\models\Amphures::find()->where("province_id = $model->sup_province")->all();
     } else {
         $amphures = app\models\Amphures::find()->all();
     }
     $arrayAmphures = ArrayHelper::map($amphures, 'id', 'name_th');
     ?>
-    <?= $form->field($model, 'Sup_amphur')->dropDownList($arrayAmphures) ?>
+    <?= $form->field($model, 'sup_amphur')->dropDownList($arrayAmphures) ?>
     <script>
         $("#supplier-sup_amphur").change(function(e) {
             e.preventDefault();
@@ -75,14 +67,14 @@ use yii\helpers\Url;
         });
     </script>
     <?php
-    if ($model->Sup_amphur) {
-        $tumbol = app\models\Amphures::find()->where(['amphure_id' => $model->Sup_amphur])->all();
+    if ($model->sup_amphur) {
+        $tumbol = app\models\Districts::find()->where(['amphure_id' => $model->sup_amphur])->all();
     } else {
-        $tumbol = app\models\Amphures::find()->all();
+        $tumbol = app\models\Districts::find()->all();
     }
     $arrayTumbol = ArrayHelper::map($tumbol, 'id', 'name_th');
     ?>
-    <?= $form->field($model, 'Sup_tumbol')->dropDownList($arrayTumbol) ?>
+    <?= $form->field($model, 'sup_tumbol')->dropDownList($arrayTumbol) ?>
 
     <script>
         $("#supplier-sup_tumbol").change(function(e) {

@@ -14,6 +14,8 @@ use app\models\User;
 use app\models\Amphures;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
+use yii\base\InvalidArgumentException;
+use yii\web\BadRequestHttpException;
 
 class SiteController extends Controller
 {
@@ -139,10 +141,9 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
+            $user = $model->signup();
+            if (Yii::$app->getUser()->login($user)) {
+                return $this->goHome();
             }
         }
         return $this->render('signup', [
