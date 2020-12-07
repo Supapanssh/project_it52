@@ -13,6 +13,10 @@ class SiteInfo
 
     public static function getUserRole()
     {
-        return Yii::$app->user->identity->roles;
+        if (!Yii::$app->user->isGuest) {
+            return Yii::$app->user->identity->roles;
+        } else {
+            return null;
+        }
     }
 }

@@ -86,7 +86,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        $this->layout = '../../admin/layouts/main-login';
+        $this->layout = '../../views/layouts/main-login';
         if (!Yii::$app->user->isGuest) {
             //เมื่อล็อคอินสำเร็จ
             switch (Yii::$app->user->identity->roles) {
@@ -137,24 +137,20 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            $user = $model->signup();
-            if (Yii::$app->getUser()->login($user)) {
-                return $this->goHome();
-            }
-        }
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionTestRule()
-    {
-        return 'grant acess rule!' . Yii::$app->user->identity->roles;
-    }
+    // public function actionSignup()
+    // {
+    //     $this->layout = '../../views/layouts/main-login';
+    //     $model = new SignupForm();
+    //     if ($model->load(Yii::$app->request->post())) {
+    //         $user = $model->signup();
+    //         if (Yii::$app->getUser()->login($user)) {
+    //             return $this->goHome();
+    //         }
+    //     }
+    //     return $this->render('signup', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
     /**
      * Requests password reset.
@@ -163,6 +159,7 @@ class SiteController extends Controller
      */
     public function actionRequestPasswordReset()
     {
+        $this->layout = '../../views/layouts/main-login';
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
@@ -182,6 +179,7 @@ class SiteController extends Controller
     public function actionResetPassword($token)
     {
         // return $token;
+        $this->layout = '../../views/layouts/main-login';
         try {
             $model = new ResetPasswordForm($token);
         } catch (InvalidArgumentException $e) {
