@@ -15,31 +15,26 @@ $MANAGER_MENU = [
     'items' => [
         [
             'label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index'],
-            'badge' => '<span class="right badge badge-info">2</span>',
-            'items' => [
-                ['label' => 'ข้อมูลยอดขายสินค้า', 'url' => ['site/line'], 'icon' => 'chart-line'],
-                ['label' => 'ข้อมูลพยากรณ์กำไร', 'url' => ['site/index'], 'icon' => 'chart-bar'],
-            ]
 
         ],
         ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
         ['label' => 'รายการสินค้า', 'icon' => 'warehouse', 'url' => ['/product']],
         ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
         ['label' => 'จัดการคลังสินค้า', 'icon' => 'tasks', 'url' => ['/manage']],
-        ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
-        ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
-        ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
+        // ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
+        //  ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
+        //  ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
     ]
 ];
 
 $ADMIN_MENU = [
     'items' => [
         [
-            'label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index'],
-            'badge' => '<span class="right badge badge-info">2</span>',
+            'label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site'],
+            'badge' => '<span class="right badge badge-info">1</span>',
             'items' => [
-                ['label' => 'ข้อมูลยอดขายสินค้า', 'url' => ['site/index'], 'icon' => 'chart-line'],
-                ['label' => 'ข้อมูลวิเคราะห์กำไร', 'url' => ['site/index'], 'icon' => 'chart-bar'],
+                ['label' => 'ข้อมูลกราฟ', 'url' => ['site/index'], 'icon' => 'chart-line'],
+                //['label' => 'ข้อมูลการขายสินค้า', 'url' => ['site/index'], 'icon' => 'chart-bar'],
             ]
         ],
         ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
@@ -47,6 +42,7 @@ $ADMIN_MENU = [
         ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
         ['label' => 'ข้อมูลการซื้อขาย', 'icon' => 'users', 'url' => ['/bill']],
         ['label' => 'จัดการคลังสินค้า', 'icon' => 'tasks', 'url' => ['/manage']],
+        //['label' => 'สั่งซื้อสินค้า', 'icon' => 'shopping-basket', 'url' => ['/']],
         ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
         ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
         ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],

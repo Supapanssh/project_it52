@@ -31,11 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'Manage_No',
             'Manage_date',
             ['attribute' => 'PNo', 'value' => function ($model) {
-                return $model->pNo->Product_name ?? 'ไม่พบสินค้า';
+                return $model->pNo->Product_name;
             }],
-            ['attribute' => 'PeoNo', 'value' => function ($model) {
-                return $model->peoNo->nickname;
-            }],
+            'PeoNo', 
             'Manage_Amount',
 
             [

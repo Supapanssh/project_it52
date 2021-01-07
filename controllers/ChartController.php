@@ -21,17 +21,17 @@ class ChartController extends Controller
         ];
     }
 
-    public function actionGetChart()
+    public function actionGetStockChart()
     {
-        $request = Yii::$app->request->get();
-        $table = $request["table"];
+           $request = Yii::$app->request->get();
+        $product = $request["table"];
         $condition = $request["condition"];
-        $name = $request["name"];
+        $category = $request["category"];
         $y = $request["y"];
         try {
-            $fetch = Yii::$app->db->createCommand("SELECT $name as name,$y as y FROM `$table` $condition")->queryAll();
+            $fetch = Yii::$app->db->createCommand("SELECT $name as name,$y as y FROM `$product` $condition")->queryAll();
             if ($fetch) {
-                $data["status"] = true;
+                $data["category_id"] = true;
                 $data["data"] = [];
                 foreach ($fetch as $ftch) {
                     $ftch["y"] = (float)$ftch["y"];
@@ -40,7 +40,7 @@ class ChartController extends Controller
                 return $this->asJson($data);
             }
         } catch (\Throwable $th) {
-            $data = ["status" => false, "data" => $th];
+            $data = ["category_id" => false, "data" => $th];
             return $this->asJson($data);
         }
     }

@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
             // 'Bill_detail',
             // 'BillDiscount',
+            'Tax',
             'BillTotal',
             'BillCash',
             'Billvat',

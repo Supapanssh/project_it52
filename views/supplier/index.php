@@ -37,13 +37,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'sup_company',
             'sup_username',
             'sup_address',
-            'sup_moo',
+           // 'sup_moo',
             //'sup_tumbol',
             //'sup_amphur',
             //'sup_province',
             //'sup_zipcode',
-            //'sup_tel',
-            //'sup_detail',
+            'sup_tel',
+            'sup_detail',
 
             [
                 'class' => 'yii\grid\ActionColumn',

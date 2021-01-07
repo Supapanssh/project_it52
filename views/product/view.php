@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Product_price',
             'Product_cost',
             'Product_quantity',
+            're_orderpoint',
             'Product_unit',
             'Product_exp',
         ],

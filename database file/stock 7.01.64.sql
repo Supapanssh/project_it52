@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2020 at 05:17 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Generation Time: Jan 07, 2021 at 12:27 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,7 +33,7 @@ CREATE TABLE `amphures` (
   `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `province_id` int(5) NOT NULL DEFAULT 0
+  `province_id` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1050,19 +1051,19 @@ CREATE TABLE `bill` (
   `BillDate` date DEFAULT NULL COMMENT 'วันที่',
   `PeoNo` int(11) DEFAULT NULL COMMENT 'ผู้รับผิดชอบ',
   `Bill_detail` varchar(100) DEFAULT NULL COMMENT 'รายละเอียด',
-  `BillDiscount` int(11) NOT NULL DEFAULT 0 COMMENT 'ส่วนลด',
+  `BillDiscount` int(11) NOT NULL DEFAULT '0' COMMENT 'ส่วนลด',
   `BillTotal` int(11) NOT NULL COMMENT 'ราคาทั้งหมด',
   `BillCash` int(11) NOT NULL COMMENT 'เงินสด',
-  `Billvat` decimal(10,2) NOT NULL COMMENT 'ภาษีมูลค่าเพิ่ม'
+  `Billvat` decimal(10,2) NOT NULL COMMENT 'ภาษีมูลค่าเพิ่ม',
+  `Tax` int(11) NOT NULL COMMENT 'เลขที่กำกับใบภาษี'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `bill`
 --
 
-INSERT INTO `bill` (`BillNo`, `BillDate`, `PeoNo`, `Bill_detail`, `BillDiscount`, `BillTotal`, `BillCash`, `Billvat`) VALUES
-(18, '2020-10-26', 1, NULL, 0, 1999, 0, '68.25'),
-(19, '2020-11-10', 1, NULL, 0, 0, 0, '0.00');
+INSERT INTO `bill` (`BillNo`, `BillDate`, `PeoNo`, `Bill_detail`, `BillDiscount`, `BillTotal`, `BillCash`, `Billvat`, `Tax`) VALUES
+(18, '2020-10-26', 1, NULL, 0, 1999, 0, '68.25', 0);
 
 -- --------------------------------------------------------
 
@@ -1087,7 +1088,13 @@ INSERT INTO `bill_detail` (`id`, `quantity`, `pno`, `amount`, `bill_id`) VALUES
 (22, 1, 17, 195, 18),
 (23, 2, 18, 390, NULL),
 (24, 2, 1, 1380, NULL),
-(25, 3, 1, 2070, NULL);
+(25, 3, 1, 2070, NULL),
+(26, 1, 18, 195, NULL),
+(27, 1, 12, 199, NULL),
+(28, 2, 1, 1380, NULL),
+(29, 1, 1, 690, NULL),
+(30, 2, 12, 398, NULL),
+(31, 2, 27, 390, NULL);
 
 -- --------------------------------------------------------
 
@@ -1119,10 +1126,10 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `quantity`, `PNo`, `userNo`) VALUES
-(1, 2, 1, 2),
 (4, 1, 5, 4),
 (5, 1, 3, 4),
-(6, 1, 8, 4);
+(6, 1, 8, 4),
+(15, 1, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -1174,28 +1181,6 @@ INSERT INTO `category` (`category_id`, `category_name`, `category_desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chart`
---
-
-CREATE TABLE `chart` (
-  `ch_id` int(11) DEFAULT NULL,
-  `ch_name` varchar(20) NOT NULL,
-  `ch_price` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `chart`
---
-
-INSERT INTO `chart` (`ch_id`, `ch_name`, `ch_price`) VALUES
-(1, 'แบตเตอรี่', 'ุ63,000'),
-(2, 'กรองอากาศ', '45,000'),
-(3, 'สายพาน', '32,000'),
-(4, 'ผ้าเบรคหลัง', '28,000');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `districts`
 --
 
@@ -1204,7 +1189,7 @@ CREATE TABLE `districts` (
   `zip_code` int(11) NOT NULL,
   `name_th` varchar(150) COLLATE utf8_bin NOT NULL,
   `name_en` varchar(150) COLLATE utf8_bin NOT NULL,
-  `amphure_id` int(11) NOT NULL DEFAULT 0
+  `amphure_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='InnoDB free: 8192 kB';
 
 --
@@ -10147,7 +10132,7 @@ CREATE TABLE `manage` (
 --
 
 INSERT INTO `manage` (`Manage_No`, `Manage_date`, `PNo`, `PeoNo`, `Manage_Amount`) VALUES
-(18, '2020-09-21', 2, 1, 2),
+(18, '2020-09-21', 2, NULL, 2),
 (19, '2020-09-21', 3, 1, 3),
 (20, '2020-09-21', 4, 1, 2),
 (21, '2020-09-21', 5, 1, 2),
@@ -10207,7 +10192,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`PNo`, `Product_no`, `category_id`, `brand_id`, `Product_code`, `Product_name`, `Product_desc`, `Product_price`, `Product_cost`, `Product_quantity`, `Product_unit`, `Product_exp`, `re_orderpoint`) VALUES
-(1, '010-1', 2, NULL, '1266649479', 'กรอง Hurricane ', 'แบบผ้า', 690.00, 650.00, 25, 'ชิ้น', '2022-06-17', 5),
+(1, '010-1', 2, NULL, '1266649479', 'กรอง Hurricane ', 'แบบผ้า', 690.00, 650.00, 22, 'ชิ้น', '2022-06-17', 5),
 (2, '010-01', 1, NULL, '7072044490', 'ISUZU ROCKY,TX,JCM', 'มีกุญแจ/940221590', 690.00, 0.00, 22, 'อัน', '2022-06-17', 10),
 (3, '010-02', 1, NULL, '9388311416', 'HINO,KT', 'มีกุญแจ/773201010', 695.00, 0.00, 19, 'อัน', '2022-06-17', 10),
 (4, '010-03', 1, NULL, '3733372123', 'ISUZU', 'ใหญ่/หนา/777245-444', 199.00, 0.00, 10, 'อัน', '2022-06-17', 5),
@@ -10218,13 +10203,13 @@ INSERT INTO `product` (`PNo`, `Product_no`, `category_id`, `brand_id`, `Product_
 (9, '010-08', 1, NULL, '5588746664', 'ISUZU D-MAX แคป/SAK', 'SAD-04851', 295.00, 0.00, 23, 'อัน', '2022-06-17', 5),
 (10, '010-09', 1, NULL, '7791752736', 'NISSAN BIG-M/NV/SAK', 'SAK-04847', 399.00, 0.00, 23, 'อัน', '2022-06-17', 15),
 (11, '010-10', 1, NULL, '6484403514', 'TOYOTA LN40/KE70 ไดน่า/SAK', 'SAK-04873', 199.00, 0.00, 13, 'อัน', '2022-06-17', 10),
-(12, '010-11', 1, NULL, '0587726929', 'TOYOTA VIGO TIGER ALTIS /SAK', 'SAK-10239', 199.00, 0.00, 13, 'อัน', '2022-06-17', 10),
+(12, '010-11', 1, NULL, '0587726929', 'TOYOTA VIGO TIGER ALTIS /SAK', 'SAK-10239', 199.00, 0.00, 10, 'อัน', '2022-06-17', 10),
 (13, '010-12', 1, NULL, '6822109661', 'TOYOTA VIGO ALTIS D4D/SAK', 'SAK-13978', 199.00, 0.00, 13, 'อัน', '2022-06-17', 10),
 (14, '010-13', 1, NULL, '3369984658', 'TOYOTA TIGER-MIGHTY-X/SAK', 'SAK-04875', 195.00, 0.00, 12, 'อัน', '2022-06-17', 6),
 (15, '010-14', 1, NULL, '4519443017', 'MITSUBISHI L200/FN527/STRADA/SAK', 'SAK-04872', 195.00, 0.00, 12, 'อัน', '2022-06-17', 6),
 (16, '010-15', 1, NULL, '5082556086', 'NISSAN SUNNY RN/B11/E13-15/SAK', 'SAK-3058', 195.00, 0.00, 13, 'อัน', '2022-06-17', 8),
 (17, '010-16', 1, NULL, '5924840437', 'MITSUBISHI L200/FN527/STRADA/SAK', 'SAK-04872', 195.00, 0.00, 12, 'อัน', '2022-06-17', 8),
-(18, '010-17', 1, NULL, '0494688145', 'NISSAN SUNNY RN/B11/E13-15/SAK', 'SAK-3058', 195.00, 0.00, 10, 'อัน', '2022-06-17', 8),
+(18, '010-17', 1, NULL, '0494688145', 'NISSAN SUNNY RN/B11/E13-15/SAK', 'SAK-3058', 195.00, 0.00, 9, 'อัน', '2022-06-17', 8),
 (19, '010-18', 1, NULL, '6050199428', 'NISSAN FRONTIER BDI/SAK', 'SAK-04866', 295.00, 0.00, 3, 'อัน', '2022-06-17', 10),
 (20, '010-19', 1, NULL, '2922753293', 'ISUZU 250 KBZ NPR 6BB/SAK', 'SAK-04878', 195.00, 0.00, 3, 'อัน', '2022-06-17', 5),
 (21, '010-20', 1, NULL, '2644201473', 'NISSAN TD/SAK', '15255-40F00', 195.00, 0.00, 3, 'ชิ้น', '2022-06-17', 5),
@@ -10233,7 +10218,7 @@ INSERT INTO `product` (`PNo`, `Product_no`, `category_id`, `brand_id`, `Product_
 (24, '010-23', 1, NULL, '6627365919', 'ISUZU NPR NKR BUDDY/SAK', '9-99999-901-0', 195.00, 0.00, 3, 'ชิ้น', '2022-06-17', 7),
 (25, '010-24', 1, NULL, '4348532182', 'TOYOTA MIGHTY-X เหล็ก/SAK', 'SAK-7958', 195.00, 0.00, 3, 'ชิ้น', '2022-06-17', 7),
 (26, '011-001C2/3', 2, NULL, '9424736926', 'HONDA CR-V2.0,96-01/DENSO', '260300-11204W', 295.00, 0.00, 4, 'ชิ้น', '2022-06-17', 5),
-(27, '011-002C2/3', 2, NULL, '2487520828', 'HONDA ACCORD09-11/DENSO', '260300-12304W', 195.00, 0.00, 4, 'อัน', '2022-06-17', 5),
+(27, '011-002C2/3', 2, NULL, '2487520828', 'HONDA ACCORD09-11/DENSO', '260300-12304W', 195.00, 0.00, 2, 'อัน', '2022-06-17', 5),
 (28, '011-003C2/3', 2, NULL, '5625890406', 'HONDA CR-V2.4 13-17/DENSO', '260300-13304W', 395.00, 0.00, 4, 'ชิ้น', '2022-06-17', 5),
 (29, '011-004C2/3', 2, NULL, '3066677335', 'HONDA CR-V2.0 13-17/DENSO', '260300-13404W', 295.00, 0.00, 4, 'ชิ้น', '2022-06-17', 5),
 (30, '011-005C1/4', 2, NULL, '7708372083', 'NISSAN TIIDA06-10/DENSO', '260300-02904W', 295.00, 0.00, 4, 'อัน', '2022-06-17', 5),
@@ -10251,7 +10236,7 @@ CREATE TABLE `provinces` (
   `code` varchar(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `geography_id` int(5) NOT NULL DEFAULT 0
+  `geography_id` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -10340,6 +10325,28 @@ INSERT INTO `provinces` (`id`, `code`, `name_th`, `name_en`, `geography_id`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `report`
+--
+
+CREATE TABLE `report` (
+  `ch_id` int(11) NOT NULL,
+  `ch_name` varchar(20) NOT NULL,
+  `ch_price` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`ch_id`, `ch_name`, `ch_price`) VALUES
+(1, 'แบตเตอรี่', 'ุ63,000'),
+(2, 'กรองอากาศ', '45,000'),
+(3, 'สายพาน', '32,000'),
+(4, 'ผ้าเบรคหลัง', '28,000');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sell`
 --
 
@@ -10404,18 +10411,6 @@ INSERT INTO `user` (`userNo`, `username`, `nickname`, `password_hash`, `email`, 
 (2, 'chasier', 'shinee', '$2y$10$y/a8RSlQAjeZPDs/wfMeyuK/5CpJp6loJ964XG4i0uxqnTqc8zDA.', 'use_1@hotmail.com', NULL, 0, NULL, 0),
 (3, 'Sean ', 'Kings', '$2y$10$y/a8RSlQAjeZPDs/wfMeyuK/5CpJp6loJ964XG4i0uxqnTqc8zDA.', 'sean.k@gmail.com', '', 10, '', 0),
 (4, 'manager', 'ball', '$2y$10$y/a8RSlQAjeZPDs/wfMeyuK/5CpJp6loJ964XG4i0uxqnTqc8zDA.', 'supagonava@gmail.com', '', 10, '', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `web_config`
---
-
-CREATE TABLE `web_config` (
-  `id` int(11) NOT NULL,
-  `master_k` varchar(50) NOT NULL,
-  `avali` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -10506,6 +10501,12 @@ ALTER TABLE `provinces`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `report`
+--
+ALTER TABLE `report`
+  ADD PRIMARY KEY (`ch_id`);
+
+--
 -- Indexes for table `sell`
 --
 ALTER TABLE `sell`
@@ -10526,12 +10527,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`userNo`);
 
 --
--- Indexes for table `web_config`
---
-ALTER TABLE `web_config`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -10545,13 +10540,13 @@ ALTER TABLE `amphures`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `BillNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสใบเสร็จ', AUTO_INCREMENT=20;
+  MODIFY `BillNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสใบเสร็จ', AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `brand`
@@ -10563,7 +10558,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดีตะกร้าสินค้า', AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดีตะกร้าสินค้า', AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -10605,7 +10600,7 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `sell`
 --
 ALTER TABLE `sell`
-  MODIFY `SellNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการขาย', AUTO_INCREMENT=3;
+  MODIFY `SellNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสรายการขาย';
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -10618,12 +10613,6 @@ ALTER TABLE `supplier`
 --
 ALTER TABLE `user`
   MODIFY `userNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `web_config`
---
-ALTER TABLE `web_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

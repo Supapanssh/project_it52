@@ -14,22 +14,21 @@ use yii\helpers\ArrayHelper;
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class="col-sm-6">
-    <?= $form->field($model, 'Manage_date')->textInput(['type' => 'date']) ?>
+            <?= $form->field($model, 'Manage_date')->textInput(['type' => 'date']) ?>
         </div>
        
-        <?php
-    $proList = app\models\Product::find()->all();
-    $arrayproduct = ArrayHelper::map($proList, 'PNo', 'product_name');
-    ?>
-     <div class="col-sm-6">
-    <?= $form->field($model, 'PNo')->dropDownList($arrayproduct) ?>
-    </div>
-    <div class="col-sm-6">
-    <?= $form->field($model, 'PeoNo')->dropDownList(['Admin' => 'Admin', "Manager" => 'Manager', "Cashier" => "Cashier"]) ?>
-    </div>
-    <div class="col-sm-6">
-    <?= $form->field($model, 'Manage_Amount')->textInput() ?>
-    </div>
+        <div class="col-sm-6">
+            <?= $form->field($model, 'PNo')->dropDownList([]) ?>
+        </div>
+
+      
+        <div class="col-sm-6">
+            <?= $form->field($model, 'PeoNo')->dropDownList([]) ?>
+        </div>
+
+        <div class="col-sm-6">
+            <?= $form->field($model, 'Manage_Amount')->textInput() ?>
+        </div>
 
     </div>
 

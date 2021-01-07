@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'BillNo',
             'BillDate',
+            'Tax',
 
             [ 'attribute'=>'PeoNo',
             'value'=>function($model){

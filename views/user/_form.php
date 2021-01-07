@@ -31,6 +31,8 @@ use yii\helpers\ArrayHelper;
         <div class="col-sm-3">
             <?= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) ?>
         </div>
+
+      
         <div class="col-sm-3">
             <?= $form->field($model, 'roles')->textInput() ?>
         </div>
