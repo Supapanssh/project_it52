@@ -130,7 +130,8 @@ use yii\helpers\Url;
                         <td>
                             <!-- สั่งให้ออบเจ็คปริ้นท์บาร์โค้ด -->
                             <?= $generator->getBarcode($product->Product_code, $generator::TYPE_CODE_128, 2, 50) ?>
-                            <?= $product->Product_code ?></td>
+                            <?= $product->Product_code ?>
+                        </td>
                         <td><?= $product->Product_name ?></td>
                         <td><?= $product->Product_desc ?></td>
                         <td style="vertical-align:middle;text-align:right;color:

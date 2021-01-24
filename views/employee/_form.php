@@ -70,9 +70,9 @@ use yii\helpers\Url;
 
         <?php
         if ($model->Emp_amphur) {
-            $tumbol = app\models\Amphures::find()->where(['amphure_id' => $model->Emp_amphur])->all();
+            $tumbol = app\models\Districts::find()->where(['amphure_id' => $model->Emp_amphur])->all();
         } else {
-            $tumbol = app\models\Amphures::find()->all();
+            $tumbol = app\models\Districts::find()->all();
         }
         $arrayTumbol = ArrayHelper::map($tumbol, 'id', 'name_th');
         ?>

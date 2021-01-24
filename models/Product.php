@@ -83,15 +83,7 @@ class Product extends \yii\db\ActiveRecord
         return $this->hasOne(Category::className(), ['category_id' => 'category_id']);
     }
 
-    /**
-     * Gets query for [[ProductManages]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProductManages()
-    {
-        return $this->hasMany(ProductManage::className(), ['PNo' => 'PNo']);
-    }
+
 
     /**
      * Gets query for [[Sells]].

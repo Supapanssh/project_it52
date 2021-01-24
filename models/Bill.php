@@ -36,9 +36,9 @@ class Bill extends \yii\db\ActiveRecord
     {
         return [
             [['BillDate'], 'safe'],
-            [['PeoNo', 'BillDiscount', 'BillTotal', 'BillCash'], 'integer'],
+            [['PeoNo'], 'integer'],
             [['BillTotal', 'BillCash', 'Billvat'], 'required'],
-            [['Billvat'], 'number'],
+            [['Billvat', 'BillDiscount', 'BillTotal', 'BillCash'], 'number'],
             [['Bill_detail'], 'string', 'max' => 100],
             [['PeoNo'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['PeoNo' => 'userNo']],
         ];
@@ -56,7 +56,7 @@ class Bill extends \yii\db\ActiveRecord
             //'Bill_detail' => 'รายละเอียด',
             //'BillDiscount' => 'ส่วนลด',
             'BillTotal' => 'ราคาทั้งหมด',
-             'BillCash' => 'เงินสด',
+            'BillCash' => 'เงินสด',
             'Billvat' => 'ภาษีมูลค่าเพิ่ม',
             'bill_id' => 'รหัสใบเสร็จ'
         ];

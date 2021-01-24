@@ -3,9 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Employee */
-
 $this->title = $model->ID;
 $this->params['breadcrumbs'][] = ['label' => 'Employees', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -39,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Emp_tel',
             'Emp_address:ntext',
             'Emp_moo',
-            'Emp_tumbol',
+            ['label' => 'ตำบล', 'value' => $model->empTumbol->name_th],
             'Emp_amphur',
             'Emp_road',
             'empProvince.name_th',

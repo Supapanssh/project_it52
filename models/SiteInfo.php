@@ -6,6 +6,10 @@ use Yii;
 
 class SiteInfo
 {
+    public const COMMENT = [
+        "amount" => "ยอดขาย",
+        "quantity" => "จำนวน"
+    ];
     public static function web()
     {
         return Yii::getAlias("@web") . "/";

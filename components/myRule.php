@@ -4,7 +4,7 @@ namespace app\components;
 
 use yii\filters\AccessRule;
 
-class myRule extends AccessRule
+class MyRule extends AccessRule
 {
     protected function matchRole($user)
     {
