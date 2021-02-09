@@ -33,8 +33,13 @@ class SellproductController extends Controller
     }
     public function actionIndex()
     {
-        $products = Product::find()->all();
-        return $this->render('index', ['products' => $products]);
+        $products = Product::findBySql("select * from product")->all();
+        $test = "Supapan";
+        // $testArray = [["name" => "K.GIG"], ["name" => "K.pond"], ["name" => "K.Tle"]];
+        // foreach ($testArray as $item) :
+        //     echo $item['name'];
+        // endforeach;\
+        return $this->render('index', ['products' => $products, "name" => $test]);
     }
 
     public function actionAddToCart($prod_id, $quantity)

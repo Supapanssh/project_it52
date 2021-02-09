@@ -2,17 +2,18 @@
 
 namespace app\controllers;
 
+use app\models\Purchase;
 use Yii;
-use app\models\Sell;
-use app\models\SellSearch;
+use app\models\PurchaseBill;
+use app\models\PurchaseBillSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SellController implements the CRUD actions for Sell model.
+ * PurchaseBillController implements the CRUD actions for PurchaseBill model.
  */
-class SellController extends Controller
+class PurchaseBillController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +31,12 @@ class SellController extends Controller
     }
 
     /**
-     * Lists all Sell models.
+     * Lists all PurchaseBill models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SellSearch();
+        $searchModel = new PurchaseBillSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +46,7 @@ class SellController extends Controller
     }
 
     /**
-     * Displays a single Sell model.
+     * Displays a single PurchaseBill model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,16 +59,24 @@ class SellController extends Controller
     }
 
     /**
-     * Creates a new Sell model.
+     * Creates a new PurchaseBill model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Sell();
-
+        $model = new PurchaseBill();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->SellNo]);
+            for ($i = 0; $i < sizeOf($_POST["prod_id"]); $i++) {
+                $list = new Purchase();
+                $list->PNo = $_POST["prod_id"][$i];
+                $list->quantity = $_POST["prod_qty"][$i];
+                $list->bill_id = $model->id;
+                if (!$list->save()) {
+                    return $this->asJson($list->getErrors());
+                }
+            }
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -76,7 +85,7 @@ class SellController extends Controller
     }
 
     /**
-     * Updates an existing Sell model.
+     * Updates an existing PurchaseBill model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +96,17 @@ class SellController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->SellNo]);
+            Purchase::deleteAll(["bill_id" => $model->id]);
+            for ($i = 0; $i < sizeOf($_POST["prod_id"]); $i++) {
+                $list = new Purchase();
+                $list->PNo = $_POST["prod_id"][$i];
+                $list->quantity = $_POST["prod_qty"][$i];
+                $list->bill_id = $model->id;
+                if (!$list->save()) {
+                    return $this->asJson($list->getErrors());
+                }
+            }
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -96,7 +115,7 @@ class SellController extends Controller
     }
 
     /**
-     * Deletes an existing Sell model.
+     * Deletes an existing PurchaseBill model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +129,15 @@ class SellController extends Controller
     }
 
     /**
-     * Finds the Sell model based on its primary key value.
+     * Finds the PurchaseBill model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Sell the loaded model
+     * @return PurchaseBill the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Sell::findOne($id)) !== null) {
+        if (($model = PurchaseBill::findOne($id)) !== null) {
             return $model;
         }
 

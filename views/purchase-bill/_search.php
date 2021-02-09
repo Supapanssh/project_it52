@@ -1,14 +1,14 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\SellSearch */
+/* @var $model app\models\PurchaseBillSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sell-search">
+<div class="purchase-bill-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,13 +18,11 @@ use yii\bootstrap4\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'SellNo') ?>
+    <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'PNo') ?>
+    <?= $form->field($model, 'date') ?>
 
-    <?= $form->field($model, 'BillNo') ?>
-
-    <?= $form->field($model, 'SellAmount') ?>
+    <?= $form->field($model, 'sup_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

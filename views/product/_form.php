@@ -43,6 +43,13 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML(); //สร้าง ออ
         <div class="col-sm-4">
             <?= $form->field($model, 'category_id')->dropDownList($array) ?>
         </div>
+        <?php
+            $supobject = app\models\Supplier::find()->all();
+            $sup_array = ArrayHelper::map($supobject, 'sup_id', 'sup_company');
+            ?> 
+        <div class="col-sm-4">
+            <?= $form->field($model, 'sup_id')->dropDownList($sup_array) ?>  
+        </div>
         <div class="col-sm-4">
             <?= $form->field($model, 'brand_id')->textInput() ?>
         </div>

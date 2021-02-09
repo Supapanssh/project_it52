@@ -1,6 +1,13 @@
 <?php
 
 use yii\helpers\Url;
+
+// echo $name;
+// for ($i = 0; $i < sizeOf($products); $i++) {
+//     print_r($products[$i]->Product_name);
+//     echo "<br>";
+// }
+// exit();
 ?>
 
 <div class="card">

@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Sell;
+use app\models\Purchase;
 
 /**
- * SellSearch represents the model behind the search form of `app\models\Sell`.
+ * PurchaseSearch represents the model behind the search form of `app\models\Purchase`.
  */
-class SellSearch extends Sell
+class PurchaseSearch extends Purchase
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,8 @@ class SellSearch extends Sell
     public function rules()
     {
         return [
-            [['SellNo', 'PNo', 'BillNo', 'SellAmount'], 'integer'],
+            [['purchase_id', 'PNo', 'sup_id', 'category_id', 'Product_quantity'], 'integer'],
+            [['Product_cost'], 'number'],
         ];
     }
 
@@ -39,7 +40,7 @@ class SellSearch extends Sell
      */
     public function search($params)
     {
-        $query = Sell::find();
+        $query = Purchase::find();
 
         // add conditions that should always apply here
 
@@ -57,12 +58,15 @@ class SellSearch extends Sell
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'SellNo' => $this->SellNo,
+            'purchase_id' => $this->purchase_id,
             'PNo' => $this->PNo,
-            'BillNo' => $this->BillNo,
-            'SellAmount' => $this->SellAmount,
+            'sup_id' => $this->sup_id,
+            'category_id' => $this->category_id,
+            'Product_cost' => $this->Product_cost,
+            'Product_quantity' => $this->Product_quantity,
         ]);
 
+    
         return $dataProvider;
     }
 }

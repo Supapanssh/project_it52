@@ -8,6 +8,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 //เพิ่มบรรทัดด้านล่าง
 use yii\bootstrap4\LinkPager;
+
 $this->title = 'รายการสินค้า';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -34,7 +35,15 @@ $this->params['breadcrumbs'][] = $this->title;
             //'PNo',
             'Product_no',
             
-           'brand_id',
+           //'brand_id',
+           
+           [
+              'attribute' => 'sup_id',
+              'value' => function ($model) {
+                  return $model->supplier->sup_company;
+              }
+           ],
+
             'Product_code',
              
             'Product_name',

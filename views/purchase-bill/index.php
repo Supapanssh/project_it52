@@ -3,42 +3,35 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\SellSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 use yii\bootstrap4\LinkPager;
-$this->title = 'Sells';
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\PurchaseBillSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Purchase Bills';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sell-index">
+<div class="purchase-bill-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Sell', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Purchase Bill', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'filterModel' => $searchModel, 'summary' => '<i class="icon fa fa-file"></i> ข้อมูลตำแหน่งที่ {begin}-{end} (หน้า {page}/{pageCount}) <i class="icon fa fa-file"></i> ข้อมูลทั้งหมด {totalCount} รายการ',
+        'pager' => ['class' => LinkPager::className()],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'SellNo',
-
-           // [ 'attribute' =>'PNo',
-            //'value'=>function($model){
-
-           // return $model->pNo->;
-          //  }
-               
-        //],
-        
-            'BillNo',
-            'SellAmount',
+            // 'id',
+            'date',
+            'sup.sup_company',
 
             [
                 'class' => 'yii\grid\ActionColumn',
@@ -62,14 +55,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('app', 'delete'),
                             'class' => 'btn btn-danger',
                             'data' => [
-                                'confirm' => 'Are you sure you want to delete this item?',
+                                'confirm' => 'คุณแน่ใจใช่ไหมที่ต้องการลบ?',
                                 'method' => 'post',
                             ],
                         ]);
                     }
                 ]
             ],
-
         ],
     ]); ?>
 

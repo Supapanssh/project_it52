@@ -3,19 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Product;
-use app\models\ProductSearch;
+use app\models\Purchase;
+use app\models\PurchaseSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ProductController implements the CRUD actions for Product model.
+ * PurchaseController implements the CRUD actions for Purchase model.
  */
-class ProductController extends Controller
+class PurchaseController extends Controller
 {
-
-
     /**
      * {@inheritdoc}
      */
@@ -24,20 +22,18 @@ class ProductController extends Controller
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+                'actions' => [],
             ],
         ];
     }
 
     /**
-     * Lists all Product models.
+     * Lists all Purchase models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new PurchaseSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +43,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Displays a single Product model.
+     * Displays a single Purchase model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,16 +56,16 @@ class ProductController extends Controller
     }
 
     /**
-     * Creates a new Product model.
+     * Creates a new Purchase model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Product();
+        $model = new Purchase();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->PNo]);
+            return $this->redirect(['view', 'id' => $model->purchase_id]);
         }
 
         return $this->render('create', [
@@ -78,7 +74,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Updates an existing Product model.
+     * Updates an existing Purchase model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -89,7 +85,7 @@ class ProductController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->PNo]);
+            return $this->redirect(['view', 'id' => $model->purchase_id]);
         }
 
         return $this->render('update', [
@@ -97,12 +93,8 @@ class ProductController extends Controller
         ]);
     }
 
-    public function actionCompare($prod_id)
-    {
-        return $this->render('compare', ["prod_id" => $prod_id]);
-    }
     /**
-     * Deletes an existing Product model.
+     * Deletes an existing Purchase model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -112,19 +104,19 @@ class ProductController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
 
     /**
-     * Finds the Product model based on its primary key value.
+     * Finds the Purchase model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Product the loaded model
+     * @return Purchase the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = Purchase::findOne($id)) !== null) {
             return $model;
         }
 

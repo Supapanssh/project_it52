@@ -4,20 +4,26 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\BillSearch */
+/* @var $searchModel app\models\PurchaseSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 use yii\bootstrap4\LinkPager;
 
-$this->title = 'ข้อมูลการซื้อ-ขาย';
+$this->title = 'สั่งซื้อ';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="bill-index">
+
+
+<div class="purchase-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    
+    <p>
+        <?= Html::a('Create Purchase', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); 
+    ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -26,22 +32,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'BillNo',
-            'BillDate',
-            //'Tax',
+            'purchase_id',
+            'PNo',
+            [
+                'attribute' => 'sup_id',
+                'value' => function ($model) {
+                    return $model->supplier->sup_company;
+                }
+            ],
+            [
+                'attribute' => 'category_id',
+                'value' => function ($model) {
+                    return $model->category->category_name;
+                }
 
-            [ 'attribute'=>'PeoNo',
-            'value'=>function($model){
-
-            return $model->peoNo->nickname;
-            }
-        ],
-            //'Bill_detail',
-            //'BillDiscount',
-            'BillTotal',
-           // 'BillCash',
-            'Billvat',
+            ],
+            'Product_cost',
+            'Product_quantity',
             
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'options' => ['style' => 'width:180px;'],
@@ -62,16 +71,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'delete' => function ($url, $model) {
                         return Html::a('<i class="fas fa-trash"></i>', $url, [
                             'title' => Yii::t('app', 'delete'),
-                          'class' => 'btn btn-danger',
-                           'data' => [
-                              'confirm' => 'Are you sure you want to delete this item?',
-                               'method' => 'post', 
-                          ],
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => 'คุณแน่ใจใช่ไหมที่ต้องการลบ?',
+                                'method' => 'post',
+                            ],
                         ]);
                     }
                 ]
-            ],
 
+
+
+            ],
         ],
     ]); ?>
 

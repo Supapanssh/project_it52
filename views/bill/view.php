@@ -51,6 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <th>ชื่อสินค้า</th>
                     <th>รายละเอียดสินค้า</th>
                     <th>จำนวน</th>
+                    <th>หน่วยนับ</th>
+                    <th>รับประกันสินค้า</th>
                     <th>ราคารวม</th>
                     <th></th>
                 </tr>
@@ -62,6 +64,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= $billdetail->product->Product_name ?></td>
                         <td><?= $billdetail->product->Product_desc ?></td>
                         <td><?= $billdetail->quantity ?></td>
+                        <td><?= $billdetail->product->Product_unit ?></td>
+                        <td><?= $billdetail->product->Product_exp ?></td>
                         <td><?= $billdetail->amount ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -87,12 +91,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 alignment: "center",
             }, {
                 table: {
-                    widths: [100, 100, 100, 100],
+                    widths: [100, 100, 100, 100, 100],
                     body: [
-                        ["สินค้า", "จำนวน", "ราคาต่อชิ้น", "ราคารวม"],
+                        ["สินค้า", "จำนวน", "ราคาต่อหน่วย", "หน่วยนับ", "ราคารวม"],
                         <?php foreach ($model->billDetails as $billdetail) : ?>[
                                 "<?= $billdetail->product->Product_name ?>",
                                 "<?= $billdetail->quantity ?>",
+                                "<?= $billdetail->product->Product_unit ?>",
                                 "<?= $billdetail->product->Product_price ?>",
                                 "<?= $billdetail->amount ?>"
                             ],
@@ -123,7 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     stack: [{
                             columns: [{
-                                    text: 'Invoice #',
+                                    text: 'บิลที่',
                                     style: 'invoiceSubTitle',
                                     width: '*'
 
@@ -137,7 +142,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         },
                         {
                             columns: [{
-                                    text: 'Date Issued',
+                                    text: 'วันที่ออกบิล',
                                     style: 'invoiceSubTitle',
                                     width: '*'
                                 },
@@ -152,7 +157,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 {
                     columns: [{
-                            text: 'Billing From',
+                            text: 'บิลจาก',
                             style: 'invoiceBillingTitle',
 
                         },
@@ -162,7 +167,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // Billing Details
                 {
                     columns: [{
-                            text: 'Your Name \n Your Company Inc.',
+                            text: 'N/F Bumrungchu',
                             style: 'invoiceBillingDetails'
                         },
 
@@ -171,7 +176,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // Billing Address Title
                 {
                     columns: [{
-                            text: 'Address',
+                            text: 'ที่อยู่',
                             style: 'invoiceBillingAddressTitle'
                         },
 
@@ -180,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // Billing Address
                 {
                     columns: [{
-                            text: '9999 Street name 1A \n KhonKaen 00000 \n   TH',
+                            text: ' ถนนมิตรภาพ โคราช 30170 ',
                             style: 'invoiceBillingAddress'
                         },
 
@@ -193,35 +198,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     table: {
                         // headers are automatically repeated if the table spans over multiple pages
                         // you can declare how many rows should be treated as headers
-                        widths: ['*', 120, 30, 60, 60, 60, '*'],
+                        widths: ['*', 120, 30, 60, 60, 60,'*'],
                         body: [
                             // Table Header
                             [{
-                                    text: 'code',
+                                    text: 'บาร์โค้ด',
                                     style: 'itemsHeader'
                                 },
                                 {
-                                    text: 'Product',
+                                    text: 'สินค้า',
                                     style: 'itemsHeader'
                                 },
                                 {
-                                    text: 'Qty',
+                                    text: 'จำนวน',
                                     style: ['itemsHeader', 'center']
                                 },
                                 {
-                                    text: 'Price',
+                                    text: 'ราคา/ชิ้น',
                                     style: ['itemsHeader', 'center']
                                 },
                                 {
-                                    text: 'Tax',
+                                    text: 'VAT7%',
                                     style: ['itemsHeader', 'center']
                                 },
                                 {
-                                    text: 'Amount',
+                                    text: 'ราคารวม',
                                     style: ['itemsHeader', 'center']
                                 },
                                 {
-                                    text: 'Total',
+                                    text: 'คิดเป็นทั้งหมด',
                                     style: ['itemsHeader', 'center']
                                 }
                             ],
@@ -233,7 +238,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $amount =  $vat + $billdetail->amount;
                                 $sum += $amount;
                                 $sumNoTax += $billdetail->amount;  ?>[{
-                                    text: '<?= $billdetail->product->Product_no ?>',
+                                    text: '<?= $billdetail->product->Product_code ?>',
                                     style: 'itemTitle'
                                 }, {
                                     text: '<?= $billdetail->product->Product_name ?>',
@@ -244,7 +249,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }, {
                                     text: '<?= $billdetail->product->Product_price ?>',
                                     style: 'itemNumber'
-                                }, {
+                                },{
                                     text: '<?= $vat ?>',
                                     style: 'itemNumber'
                                 }, {
@@ -260,7 +265,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [{
                                 colSpan: 6,
                                 alignment: 'left',
-                                text: 'Sum Price no tax',
+                                text: 'ราคาไม่รวม VAT',
                                 style: ['itemsFooterSubTitle']
                             }, {}, {}, {}, {}, {}, {
                                 text: '<?= $sumNoTax ?>',
@@ -269,7 +274,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [{
                                     colSpan: 6,
                                     alignment: 'left',
-                                    text: 'TOTAL',
+                                    text: 'ราคาทั้งหมด',
                                     style: 'itemsFooterTotalTitle'
                                 },
                                 {}, {}, {}, {}, {},

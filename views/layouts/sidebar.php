@@ -42,7 +42,7 @@ $ADMIN_MENU = [
         ['label' => 'หมวดหมู่สินค้า', 'icon' => 'archive', 'url' => ['/category']],
         ['label' => 'ข้อมูลการซื้อขาย', 'icon' => 'users', 'url' => ['/bill']],
         ['label' => 'จัดการคลังสินค้า', 'icon' => 'tasks', 'url' => ['/manage']],
-        //['label' => 'สั่งซื้อสินค้า', 'icon' => 'shopping-basket', 'url' => ['/']],
+        ['label' => 'สั่งซื้อสินค้า', 'icon' => 'shopping-basket', 'url' => ['/purchase-bill']],
         ['label' => 'บริษัทคู่ค้า', 'icon' => 'parachute-box', 'url' => ['/supplier']],
         ['label' => 'พนักงาน', 'icon' => 'users', 'url' => ['/employee']],
         ['label' => 'ผู้ใช้งาน', 'icon' => 'users-cog', 'url' => ['/user']],
