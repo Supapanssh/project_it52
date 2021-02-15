@@ -34,34 +34,34 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'PNo',
             'Product_no',
-            
-           //'brand_id',
-           
-           [
-              'attribute' => 'sup_id',
-              'value' => function ($model) {
-                  return $model->supplier->sup_company;
-              }
-           ],
+
+            //'brand_id',
+
+            [
+                'attribute' => 'sup_id',
+                'value' => function ($model) {
+                    return $model->sup->sup_company;
+                }
+            ],
 
             'Product_code',
-             
+
             'Product_name',
             [
-                'attribute'=>'category_id',
-                'value'=> function($model){
+                'attribute' => 'category_id',
+                'value' => function ($model) {
                     return $model->category->category_name;
                 }
-               
-               ],
+
+            ],
             'Product_desc',
             'Product_price',
             'Product_cost',
             'Product_quantity',
             'Product_unit',
             'Product_exp',
-            're_orderpoint', 
-              
+            're_orderpoint',
+
             [
                 'class' => 'yii\grid\ActionColumn',
                 'options' => ['style' => 'width:180px;'],

@@ -2,20 +2,20 @@
 
 namespace app\controllers;
 
-use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\SignupForm;
 use app\components\myRule;
-use app\models\User;
 use app\models\Amphures;
+use app\models\LoginForm;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
+use app\models\SumaryBill;
+use app\models\User;
+use Yii;
 use yii\base\InvalidArgumentException;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
+use yii\web\Controller;
+use yii\web\Response;
 
 class SiteController extends Controller
 {
@@ -29,7 +29,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'test-rule', 'index'],
                 'ruleConfig' => [
-                    'class' => myRule::className() // เรียกใช้งาน accessRule (component) ที่เราสร้างขึ้นใหม่
+                    'class' => myRule::className(), // เรียกใช้งาน accessRule (component) ที่เราสร้างขึ้นใหม่
                 ],
                 'rules' => [
                     [
@@ -40,8 +40,8 @@ class SiteController extends Controller
                     [
                         'actions' => ['test-rule'],
                         'allow' => true,
-                        'roles' => [USER::ROLE_ADMIN]
-                    ]
+                        'roles' => [USER::ROLE_ADMIN],
+                    ],
                 ],
             ],
             'verbs' => [
@@ -76,7 +76,29 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $profit = SumaryBill::find();
+        $request = Yii::$app->request;
+        $profit = $profit->select("sum(cost) as cost,sum(profit) as profit,sum(vat) as vat,BillDate");
+        if (!empty($request->get("start_date"))) {
+            $profit = $profit->andFilterWhere([">=", "BillDate", $request->get("start_date")]);
+        }
+        if (!empty($request->get("final_date"))) {
+            $profit = $profit->andFilterWhere(["<=", "BillDate", $request->get("final_date")]);
+        }
+        if (!empty($request->get("start_month"))) {
+            $profit = $profit->andFilterWhere([">=", "BillDate", $request->get("start_month") . "-01"]); //2021-02-01
+        }
+        if (!empty($request->get("final_month"))) {
+            $profit = $profit->andFilterWhere(["<=", "BillDate", $request->get("final_month") . "-31"]); //2021-02-31
+        }
+        if (!empty($request->get("start_year"))) {
+            $profit = $profit->andFilterWhere([">=", "BillDate", $request->get("start_year") . "-01-01"]);
+        }
+        if (!empty($request->get("final_year"))) {
+            $profit = $profit->andFilterWhere(["<=", "BillDate", $request->get("final_year") . "-12-31"]);
+        }
+        // return $profit->createCommand()->getRawSql();
+        return $this->render('index', ["profit" => $profit]);
     }
 
     /**
@@ -90,7 +112,7 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             //เมื่อล็อคอินสำเร็จ
             switch (Yii::$app->user->identity->roles) {
-                    //เช็คสถานะ
+                //เช็คสถานะ
                 case User::ROLE_ADMIN: //ถ้าเป็น แอดมิน
                     return $this->redirect(['/site']);
                     break;
@@ -106,7 +128,7 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             switch (Yii::$app->user->identity->roles) {
-                    //เช็คสถานะ
+                //เช็คสถานะ
                 case User::ROLE_ADMIN: //ถ้าเป็น แอดมิน
                     return $this->redirect(['/site']);
                     break;
