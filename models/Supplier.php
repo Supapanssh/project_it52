@@ -63,4 +63,37 @@ class Supplier extends \yii\db\ActiveRecord
             'sup_detail' => 'รายละเอียด',
         ];
     }
+
+/**
+     * Gets query for [[EmpProvince]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSupProvince()
+    {
+        return $this->hasOne(Provinces::className(), ['id' => 'sup_province']);
+    }
+
+    /**
+     * Gets query for [[EmpTumbol]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSupTumbol()
+    {
+        return $this->hasOne(Districts::className(), ['id' => 'sup_tumbol']);
+    }
+
+    /**
+     * Gets query for [[EmpAmphur]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSupAmphur()
+    {
+        return $this->hasOne(Amphures::className(), ['id' => 'sup_amphur']);
+    }
+
+
+    
 }
