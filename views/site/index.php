@@ -9,14 +9,19 @@ use yii\helpers\Url;
 
 $this->title = 'หน้าหลักของระบบ';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
+
+// $rows = Yii::$app->db->createCommand("select * from product")->queryAll();
+// for ($i = 0; $i < sizeOf($rows); $i++) {
+//     echo $rows[$i]["PNo"];
+// }
 ?>
 
 
-<?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_CHASIER) : ?>
+<?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_CHASIER): ?>
 <h4> Welcome Chashier</h4>
-<?php endif; ?>
+<?php endif;?>
 
-<?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_MANAGER) : ?>
+<?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_MANAGER): ?>
 <h5>Welcome Manager</h5>
 
 <figure class="highcharts-figure">
@@ -242,20 +247,20 @@ chart = new Highcharts.Chart({
     }
 });
 </script>
-<?php endif; ?>
+<?php endif;?>
 <!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-6">
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3><?= Bill::find()->count() ?></h3>
+                <h3><?=Bill::find()->count()?></h3>
                 <p>รายการขาย</p>
             </div>
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="<?= Url::to(["bill/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
+            <a href="<?=Url::to(["bill/index"])?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
                     class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
@@ -264,14 +269,14 @@ chart = new Highcharts.Chart({
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3><?= Product::find()->count() ?><sup style="font-size: 20px"></sup></h3>
+                <h3><?=Product::find()->count()?><sup style="font-size: 20px"></sup></h3>
 
                 <p>รายการสินค้า</p>
             </div>
             <div class="icon">
                 <i class="fa fa-product-hunt" aria-hidden="true"></i>
             </div>
-            <a href="<?= Url::to(["products/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
+            <a href="<?=Url::to(["products/index"])?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
                     class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
@@ -280,14 +285,14 @@ chart = new Highcharts.Chart({
         <!-- small box -->
         <div class="small-box bg-warning">
             <div class="inner">
-                <h3><?= User::find()->count() ?></h3>
+                <h3><?=User::find()->count()?></h3>
 
                 <p>ผู้ใช้งาน</p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?= Url::to(["user/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
+            <a href="<?=Url::to(["user/index"])?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
                     class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
@@ -296,14 +301,14 @@ chart = new Highcharts.Chart({
         <!-- small box -->
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3><?= Supplier::find()->count() ?></h3>
+                <h3><?=Supplier::find()->count()?></h3>
 
                 <p>บริษัทคู่ค้า</p>
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="<?= Url::to(["supplier/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
+            <a href="<?=Url::to(["supplier/index"])?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
                     class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
@@ -324,79 +329,77 @@ chart = new Highcharts.Chart({
                         <!-- Nav tabs -->
                         <ul class="nav md-tabs nav-justified">
                             <li class="nav-item waves-effect waves-light ">
-                                <a class="nav-link <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active' : '' ?>"
+                                <a class="nav-link <?=!empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active' : ''?>"
                                     data-toggle="tab" href="#panel1" role="tab">วัน</a>
                             </li>
                             <li class="nav-item waves-effect waves-light ">
-                                <a class="nav-link <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active' : '' ?>"
+                                <a class="nav-link <?=!empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active' : ''?>"
                                     data-toggle="tab" href="#panel2" role="tab">เดือน</a>
                             </li>
                             <li class="nav-item waves-effect waves-light ">
-                                <a class="nav-link <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active' : '' ?>"
+                                <a class="nav-link <?=!empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active' : ''?>"
                                     data-toggle="tab" href="#panel3" role="tab">ปี</a>
                             </li>
                         </ul>
                         <!-- Tab panels -->
                         <div class="tab-content card">
                             <!-- Panel 1 -->
-                            <div class="tab-pane fade p-3 <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active show' : '' ?>"
+                            <div class="tab-pane fade p-3 <?=!empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active show' : ''?>"
                                 id="panel1" role="tabpanel">
                                 <form action="">
                                     <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงวัน</span></p>
                                     <div class="form-group">
                                         <label for="date">ตั้งแต่</label>
                                         <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
-                                            value="<?= $_GET["start_date"] ?? '' ?>" id="from" name="start_date"
+                                            value="<?=$_GET["start_date"] ?? ''?>" id="from" name="start_date"
                                             class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="date">ไม่เกิน</label>
                                         <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
-                                            value="<?= $_GET["final_date"] ?? '' ?>" id="to" name="final_date"
+                                            value="<?=$_GET["final_date"] ?? ''?>" id="to" name="final_date"
                                             class="form-control">
                                     </div>
-                                    <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
+                                    <?=Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"])?>
                                 </form>
                             </div>
                             <!-- Panel 1 -->
                             <!-- Panel 2 -->
-                            <div class="tab-pane fade p-3 <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active show' : '' ?>"
+                            <div class="tab-pane fade p-3 <?=!empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active show' : ''?>"
                                 id="panel2" role="tabpanel">
                                 <form action="">
                                     <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงเดือน</span>
                                     </p>
                                     <div class="form-group">
                                         <label>ตั้งแต่</label>
-                                        <input placeholder="คลิกเพื่อเลือกวัน.."
-                                            value="<?= $_GET["start_month"] ?? '' ?>" type="month" id="from"
-                                            name="start_month" class="form-control">
+                                        <input placeholder="คลิกเพื่อเลือกวัน.." value="<?=$_GET["start_month"] ?? ''?>"
+                                            type="month" id="from" name="start_month" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>ไม่เกิน</label>
-                                        <input placeholder="คลิกเพื่อเลือกวัน.."
-                                            value="<?= $_GET["final_month"] ?? '' ?>" type="month" id="to"
-                                            name="final_month" class="form-control">
+                                        <input placeholder="คลิกเพื่อเลือกวัน.." value="<?=$_GET["final_month"] ?? ''?>"
+                                            type="month" id="to" name="final_month" class="form-control">
                                     </div>
-                                    <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
+                                    <?=Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"])?>
                                 </form>
                             </div>
                             <!-- Panel 2 -->
                             <!-- Panel 3 -->
-                            <div class="tab-pane fade p-3 <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active show' : '' ?>"
+                            <div class="tab-pane fade p-3 <?=!empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active show' : ''?>"
                                 id="panel3" role="tabpanel">
                                 <form action="" method="get">
                                     <p class="lead pt-3 pb-4"><span class="badge info-color p-2">ระบุช่วงปี</span></p>
                                     <div class="form-group">
                                         <label for="from">ตั้งแต่</label>
-                                        <input placeholder="ปี ค.ศ." value="<?= $_GET["start_year"] ?? '' ?>"
+                                        <input placeholder="ปี ค.ศ." value="<?=$_GET["start_year"] ?? ''?>"
                                             type="number" id="from" name="start_year" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="to">ไม่เกิน</label>
-                                        <input placeholder="ปี ค.ศ." value="<?= $_GET["final_year"] ?? '' ?>"
+                                        <input placeholder="ปี ค.ศ." value="<?=$_GET["final_year"] ?? ''?>"
                                             type="number" id="to" name="final_year" class="form-control">
                                     </div>
-                                    <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
+                                    <?=Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"])?>
                                 </form>
                             </div>
                             <!-- Panel 3 -->
@@ -414,12 +417,12 @@ chart = new Highcharts.Chart({
     </div>
 </section>
 
-<?php $this->beginBlock("scripts"); ?>
+<?php $this->beginBlock("scripts");?>
 <?php
 $unit = ["text" => "วันที่ (ป/ด/ว)", "type" => 1, "format" => "Y-m-d"];
-if (!empty($_GET["start_date"]) || !empty($_GET["final_date"])) {
-    $profit = $profit->groupBy("BillDate");
-} elseif (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {
+$profit = $profit->orderBy("BillDate");
+$profit = $profit->groupBy("day(BillDate),month(BillDate),year(BillDate)");
+if (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {
     $unit = ["text" => "เดือนที่ (ป/ด)", "type" => 2, "format" => "Y-m"];
     $profit = $profit->groupBy("month(BillDate),year(BillDate)");
 } elseif (!empty($_GET["start_year"]) || !empty($_GET["final_year"])) {
@@ -429,6 +432,7 @@ if (!empty($_GET["start_date"]) || !empty($_GET["final_date"])) {
 ?>
 
 <script>
+//scripts
 var profitChart = Highcharts.chart('profit-chart', {
     chart: {
         type: 'column'
@@ -438,21 +442,21 @@ var profitChart = Highcharts.chart('profit-chart', {
     },
     xAxis: {
         categories: [
-            <?php foreach ($profit->all() as $category) :
-                    if ($unit["type"] == 1) {
-                        $format = "Y-m-d";
-                    } elseif ($unit["type"] == 2) {
-                        $format = "Y-m";
-                    } else {
-                        $format = "Y";
-                    }
-                    $showCate = new DateTime($category->BillDate);
-                    $showCate = $showCate->format($format);
-                    echo "\"$showCate\",";
-                endforeach; ?>
+            <?php foreach ($profit->all() as $category):
+    if ($unit["type"] == 1) {
+        $format = "Y-m-d";
+    } elseif ($unit["type"] == 2) {
+    $format = "Y-m";
+} else {
+    $format = "Y";
+}
+$showCate = new DateTime($category->BillDate);
+$showCate = $showCate->format($format);
+echo "\"$showCate\",";
+endforeach;?>
         ],
         title: {
-            text: "<?= $unit["text"] ?>"
+            text: "<?=$unit["text"]?>"
         }
     },
     yAxis: {
@@ -496,18 +500,18 @@ var profitChart = Highcharts.chart('profit-chart', {
     },
     series: [{
         name: 'ค้นทุน',
-        data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->cost ?>,
-            <?php endforeach; ?>
+        data: [<?php foreach ($profit->all() as $value): ?> <?=$value->cost?>,
+            <?php endforeach;?>
         ],
     }, {
         name: 'กำไร',
-        data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->profit ?>,
-            <?php endforeach; ?>
+        data: [<?php foreach ($profit->all() as $value): ?> <?=$value->profit?>,
+            <?php endforeach;?>
         ],
     }, {
         name: 'ภาษี',
-        data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->vat ?>, <?php endforeach; ?>],
+        data: [<?php foreach ($profit->all() as $value): ?> <?=$value->vat?>, <?php endforeach;?>],
     }]
 });
 </script>
-<?php $this->endBlock(); ?>
+<?php $this->endBlock();?>
