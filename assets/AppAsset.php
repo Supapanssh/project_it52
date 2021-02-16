@@ -33,11 +33,9 @@ class AppAsset extends AssetBundle
         "plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
         "plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
         "plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
-        "css/custom.css",
         'css/site.css',
     ];
     public $js = [
-        "plugins/jquery/jquery.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js",
         "plugins/jquery-ui/jquery-ui.min.js",
         "plugins/bootstrap/js/bootstrap.bundle.min.js",
@@ -69,7 +67,8 @@ class AppAsset extends AssetBundle
         "https://code.highcharts.com/highcharts.js",
         "https://code.highcharts.com/modules/exporting.js",
         "https://code.highcharts.com/modules/export-data.js",
-        "https://code.highcharts.com/modules/accessibility.js"
+        "https://code.highcharts.com/modules/accessibility.js",
+        "js/init.js"
     ];
     public $depends = [
         'yii\web\YiiAsset',
