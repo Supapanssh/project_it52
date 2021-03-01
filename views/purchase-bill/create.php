@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\PurchaseBill */
 
-$this->title = 'Create Purchase Bill';
+$this->title = 'สร้างใบสั่งซื้อ';
 $this->params['breadcrumbs'][] = ['label' => 'Purchase Bills', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

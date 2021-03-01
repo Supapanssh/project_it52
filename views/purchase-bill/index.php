@@ -8,7 +8,7 @@ use yii\bootstrap4\LinkPager;
 /* @var $searchModel app\models\PurchaseBillSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Purchase Bills';
+$this->title = 'ใบสั่งซื้อสินค้า';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="purchase-bill-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Purchase Bill', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('สร้างใบสั่งซื้อ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

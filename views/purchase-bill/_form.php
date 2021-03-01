@@ -64,11 +64,12 @@ $sarray = ArrayHelper::map($sobject, 'sup_id', 'sup_company');
 </div>
 
 <tr>
-    <th>ชื่อสินค้า</th>
+    <th></th>
     <?php if ($form_mode == "edit"): ?>
     <hr>
     <table class="table table-striped table-inverse data-table mt-5">
         <thead class="thead-inverse">
+            <th>ชื่อสินค้า</th>
             <th>จำนวนคงเหลือ</th>
             <th>ราคาต้นทุน</th>
             <th></th>
@@ -89,7 +90,7 @@ $sarray = ArrayHelper::map($sobject, 'sup_id', 'sup_company');
         <td>
             <div class="row">
                 <div class="col-6">
-                    <?=Html::textInput("", 1, ["id" => "productInput$product->PNo", "type" => "number", "class" => "form-control"])?>
+                    <?=Html::textInput("", 1, ["id" => "productInput$product->PNo", "type" => "number" , "min" =>"0","class" => "form-control"])?>
                 </div>
                 <div class="col-6">
                     <?=Html::button('สั่งซื้อ', ["class" => "btn btn-info", "onclick" => "addToList($product->PNo,'$product->Product_name',$product->Product_cost)"])?>
@@ -124,7 +125,8 @@ $("#purchasebill-sup_id").change(function(e) {
     window.open("<?=Url::to(["purchase-bill/create?sup_id="])?>" + $("#purchasebill-sup_id").val(),
         "_self");
     <?php else: ?>
-    window.open("<?=Url::to(["purchase-bill/update?id=$model->id&sup_id="])?>" + $("#purchasebill-sup_id")
+    window.open("<?=Url::to(["purchase-bill/update?id=$model->id&sup_id="])?>" + $(
+            "#purchasebill-sup_id")
         .val(), "_self");
     <?php endif;?>
 });

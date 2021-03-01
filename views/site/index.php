@@ -7,6 +7,8 @@ use app\models\User;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 
+
+
 $this->title = 'หน้าหลักของระบบ';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 
@@ -24,231 +26,9 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 <?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_MANAGER): ?>
 <h5>Welcome Manager</h5>
 
-<figure class="highcharts-figure">
-    <div id="container"></div>
-</figure>
-<div id="container"></div>
-<table id="datatable">
-    <thead>
-        <tr>
-            <th></th>
-            <th>ยอดขาย</th>
-            <th>กำไร</th>
-            <th>ต้นทุน</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>เดือนกันยายน</th>
-            <td>216.4 K</td>
-            <td>91.2 K</td>
-            <td>47.6 K</td>
-        </tr>
-        <tr>
-            <th>เดือนตุลาคม</th>
-            <td>194.1 K</td>
-            <td>83.5 K</td>
-            <td>39.1 K</td>
-        </tr>
-        <tr>
-            <th>เดือนมิถุนายน</th>
-            <td>176.0 K</td>
-            <td>84.5 K</td>
-            <td>75.5 K</td>
-        </tr>
-    </tbody>
-</table>
-</figure>
-
-<script>
-Highcharts.chart('container', {
-    chart: {
-        renderTo: 'exm',
-        type: 'column'
-    },
-    title: {
-        text: 'สถิติการขายสินค้า'
-    },
-    subtitle: {
-        text: 'ประจำปี2020'
-    },
-    xAxis: {
-        categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-        ],
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'จำนวนสินค้า (ชิ้น)'
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f} K</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
-        name: 'ยอดขาย',
-        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-
-    }, {
-        name: 'กำไร',
-        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
-
-    }, {
-        name: 'ต้นทุน',
-        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
-
-    }]
-});
-
-chart = new Highcharts.Chart({
-    chart: {
-        renderTo: 'exb',
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false
-    },
-    title: {
-        text: 'กราฟแสดงยอดขายในแต่ละปี'
-    },
-
-    subtitle: {
-        text: 'ยอดขายสินค้าย้อนหลัง 5 ปี'
-    },
-
-    yAxis: {
-        title: {
-            text: 'ยอดขาย'
-        }
-    },
-
-    xAxis: {
-        accessibility: {
-            rangeDescription: 'Range: 2015 to 2020'
-        }
-    },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle'
-    },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false
-            },
-            pointStart: 2015
-        }
-    },
-
-    series: [{
-        name: 'แบตเตอรี่',
-        data: [43934, 52503, 57177, 69658, 97031, 99931, 107133, 109175]
-    }, {
-        name: 'กรองอากาศ',
-        data: [24744, 27722, 36005, 29771, 40185, 54377, 57147, 69387]
-    }, {
-        name: 'คอยล์เย็น',
-        data: [11744, 17722, 16005, 19771, 20185, 24377, 45147, 39387]
-    }, {
-        name: 'สายพาน',
-        data: [10744, 19722, 16505, 13571, 11185, 22377, 31147, 46387]
-    }, {
-        name: 'โช๊คอัพ',
-        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-    }],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
-
-});
-// Next career move for Canadian digital media practitioners
-chart = new Highcharts.Chart({
-    chart: {
-        renderTo: 'exo',
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false
-    },
-    title: {
-        text: 'ยอดขายอะไหล่รถยนต์ประจำเดือนพฤศจิกายน',
-        style: {
-            Color: '#666'
-        }
-    },
-    tooltip: {
-        formatter: function() {
-            return '<strong>' + this.point.name + '</strong>: ' + this.y + ' %';
-        }
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true
-            },
-            showInLegend: true
-        }
-    },
-    series: [{
-        type: 'pie',
-        name: 'ยอดขายอะไหล่รถยนต์ คิดเป็นเปอร์เซ็นต์',
-        data: [
-            ['แบตเตอรี่', 37.4],
-            ['ฝาถังน้ำมัน', 25.5],
-            ['กรองอากาศ', 13.8],
-
-            ['มู่เล่', 8.5],
-            ['สายพาน', 10.2],
-            ['คอยล์เย็น', 2.0],
-            ['คอมแอร์', 2.6]
-        ]
-    }],
-    legend: {
-        borderColor: '#666'
-    }
-});
-</script>
 <?php endif;?>
 <!-- Small boxes (Stat box) -->
+
 <div class="row">
     <div class="col-lg-3 col-6">
         <!-- small box -->
@@ -347,7 +127,8 @@ chart = new Highcharts.Chart({
                             <div class="tab-pane fade p-3 <?=!empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active show' : ''?>"
                                 id="panel1" role="tabpanel">
                                 <form action="">
-                                    <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงวัน</span></p>
+                                    <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงวัน</span>
+                                    </p>
                                     <div class="form-group">
                                         <label for="date">ตั้งแต่</label>
                                         <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
@@ -388,7 +169,8 @@ chart = new Highcharts.Chart({
                             <div class="tab-pane fade p-3 <?=!empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active show' : ''?>"
                                 id="panel3" role="tabpanel">
                                 <form action="" method="get">
-                                    <p class="lead pt-3 pb-4"><span class="badge info-color p-2">ระบุช่วงปี</span></p>
+                                    <p class="lead pt-3 pb-4"><span class="badge info-color p-2">ระบุช่วงปี</span>
+                                    </p>
                                     <div class="form-group">
                                         <label for="from">ตั้งแต่</label>
                                         <input placeholder="ปี ค.ศ." value="<?=$_GET["start_year"] ?? ''?>"
@@ -435,7 +217,7 @@ if (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {
 //scripts
 var profitChart = Highcharts.chart('profit-chart', {
     chart: {
-        type: 'column'
+        type: 'line'
     },
     title: {
         text: 'กำไรจากยอดขาย'
@@ -499,7 +281,7 @@ endforeach;?>
         }
     },
     series: [{
-        name: 'ค้นทุน',
+        name: 'ต้นทุน',
         data: [<?php foreach ($profit->all() as $value): ?> <?=$value->cost?>,
             <?php endforeach;?>
         ],
@@ -509,9 +291,74 @@ endforeach;?>
             <?php endforeach;?>
         ],
     }, {
-        name: 'ภาษี',
-        data: [<?php foreach ($profit->all() as $value): ?> <?=$value->vat?>, <?php endforeach;?>],
+        name: 'ยอดขาย',
+        data: [<?php foreach ($profit->all() as $value): ?> <?=$value->price ?>, <?php endforeach;?>],
     }]
 });
 </script>
+
+
+<div class="col-md-6 col-sm-12" style="margin-top: 1rem;margin-bottom: 1rem;">
+    <div id="low-sale">
+    </div>
+    <script>
+    Highcharts.chart('low-sale', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'สินค้าที่ยอดขายต่ำประจำเดือน'
+        },
+        accessibility: {
+            announceNewData: {
+                enabled: true
+            }
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'ยอดรวม'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} บาท'
+        },
+
+        series: [{
+            name: "สินค้า",
+            colorByPoint: true,
+            data: [{
+                    name: "ว้อท",
+                    y: 30,
+                },
+                {
+                    name: "อิส",
+                    y: 30,
+                }, {
+                    name: "แด๊ด",
+                    y: 40,
+                },
+            ]
+        }]
+    });
+    </script>
+</div>
+
 <?php $this->endBlock();?>

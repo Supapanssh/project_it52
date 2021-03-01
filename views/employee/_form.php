@@ -27,7 +27,7 @@ use yii\helpers\Url;
             <?= $form->field($model, 'Emp_lname')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-sm-3">
-            <?= $form->field($model, 'Emp_sex')->dropDownList(['Female' => 'หญิง', 'Male' => 'ชาย'], ['prompt' => '']) ?>
+            <?= $form->field($model, 'Emp_sex')->label('เพศ')->radioList(array('ชาย' =>'ชาย', 'หญิง' =>'หญิง')) ?>
         </div>
         <div class="col-sm-3">
             <?= $form->field($model, 'Emp_birth')->textInput(['type' => 'date']) ?>
