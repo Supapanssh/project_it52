@@ -1,38 +1,93 @@
 <?php
 
 use app\models\Product;
-use yii\helpers\Url;
 
-$thisProd = Product::findOne($prod_id);
-$compareProd = Product::find()->where(["category_id" => $thisProd->category_id])->all();
-
+$products = Product::find()->orderBy("sup_id,category_id,Product_name")->join("join", "supplier", "supplier.sup_id = product.sup_id")->all();
 ?>
 
+<div class="card mt-3">
+    <div class="card-header bg-primary">
+        <h1 class="card-title">รายการเปรียบเทียบ</h1>
+    </div>
 
-<h4>
-    <?= $thisProd->Product_name ?> ราคาทุน : <?= $thisProd->Product_cost ?>
-</h4>
-
-
-<div class="card-body p-2">
-    <table class="table table-striped table-inverse data-table table-hover">
-        <thead class="thead-inverse">
+    <h3 v-if="compareList.length <= 0" class="text-center p-3">เพิ่มสินค้าเพื่อเปรียบเทียบ</h3>
+    <table v-else class="table data-table table-borderless table-inverse table-bordered">
+        <thead class="thead-light">
             <tr>
                 <th>ชื่อสินค้า</th>
+                <th>หมวดหมู่สินค้า</th>
                 <th>ราคาทุน</th>
-                <th>เปรียบเทียบราคา</th>
                 <th>ซัพพลายเออร์</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($compareProd as $prod) : ?>
-                <tr>
-                    <td scope="row"><a href="<?= Url::to(["product/view?id=$prod->PNo"]) ?>"><?= $prod->Product_name ?></a></td>
-                    <td><?= $prod->Product_cost ?></td>
-                    <td class="bg-<?= $thisProd->Product_cost < $prod->Product_cost ? 'danger' : 'success' ?>"><?= $thisProd->Product_cost < $prod->Product_cost ? 'แพงกว่า' : 'ถูกกว่า' ?> / <?= number_format($thisProd->Product_cost - $prod->Product_cost > 0 ? $thisProd->Product_cost - $prod->Product_cost : ($thisProd->Product_cost - $prod->Product_cost) * -1)  ?> บาท</td>
-                    <td><?= $prod->sup->sup_company ?></td>
-                </tr>
-            <?php endforeach; ?>
+            <tr v-for="(item,index) in compareList">
+                <th>{{ item.Product_name }}</th>
+                <th>{{ item.category.category_name }}</th>
+                <th>{{ item.Product_cost }}</th>
+                <th>{{ item.sup.sup_company }}</th>
+                <th><a class="btn btn-danger" v-on:click="removeItem(index)">ลบออก</a></th>
+            </tr>
         </tbody>
     </table>
 </div>
+
+<div class="card">
+    <div class="card-header bg-primary">
+        <h1 class="card-title">
+            รายการสินค้า</h1>
+    </div>
+    <div class="card-body p-2">
+        <table class="table table-striped table-inverse data-table table-hover">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>ชื่อสินค้า</th>
+                    <th>หมวดหมู่สินค้า</th>
+                    <th>ราคาทุน</th>
+                    <th>ซัพพลายเออร์</th>
+                    <th>เปรียบเทียบราคา</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(product,index) in products">
+                    <td>{{product.Product_name }}</td>
+                    <td>{{product.category.category_name }}</td>
+                    <td>{{product.Product_cost }}</td>
+                    <td>{{product.sup.sup_company }}</td>
+                    <td>
+                        <a class="btn btn-success" v-on:click="addToList(product)">
+                            <i class="fa fa-plus-square" aria-hidden="true"></i> เปรียบเทียบ
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<?php $this->beginBlock("scripts"); ?>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            compareList: [],
+            products: [
+                <?php foreach ($products as $product) : ?>
+                    <?= json_encode($product->getAttributes() + ["sup" => $product->sup->getAttributes()] + ["category" => $product->category->getAttributes()]) ?>,
+                <?php endforeach; ?>
+            ],
+        },
+        methods: {
+            addToList: function(object) {
+                this.compareList.push(object);
+            },
+            removeItem: function(index) {
+                this.compareList.splice(index, 1);
+            }
+        }
+    })
+
+
+</script>
+<?php $this->endBlock(); ?>

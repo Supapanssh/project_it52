@@ -78,7 +78,7 @@ class SiteController extends Controller
     {
         $profit = SumaryBill::find();
         $request = Yii::$app->request;
-        $profit = $profit->select("sum(cost) as cost,sum(profit) as profit,sum(vat) as vat,BillDate");
+        $profit = $profit->select("sum(cost) as cost,sum(profit) as profit,sum(vat) as vat,BillDate,sum(price) as price");
         if (!empty($request->get("start_date"))) {
             $profit = $profit->andFilterWhere([">=", "BillDate", $request->get("start_date")]);
         }
@@ -112,7 +112,7 @@ class SiteController extends Controller
         if (!Yii::$app->user->isGuest) {
             //เมื่อล็อคอินสำเร็จ
             switch (Yii::$app->user->identity->roles) {
-                //เช็คสถานะ
+                    //เช็คสถานะ
                 case User::ROLE_ADMIN: //ถ้าเป็น แอดมิน
                     return $this->redirect(['/site']);
                     break;
@@ -128,7 +128,7 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             switch (Yii::$app->user->identity->roles) {
-                //เช็คสถานะ
+                    //เช็คสถานะ
                 case User::ROLE_ADMIN: //ถ้าเป็น แอดมิน
                     return $this->redirect(['/site']);
                     break;

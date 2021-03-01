@@ -68,6 +68,7 @@ class AppAsset extends AssetBundle
         "https://code.highcharts.com/modules/exporting.js",
         "https://code.highcharts.com/modules/export-data.js",
         "https://code.highcharts.com/modules/accessibility.js",
+        "https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js",
         "js/init.js"
     ];
     public $depends = [

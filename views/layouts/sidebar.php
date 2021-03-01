@@ -15,7 +15,6 @@ $MANAGER_MENU = [
     'items' => [
         [
             'label' => 'หนัาหลัก', 'icon' => 'home', 'url' => ['/site/index'],
-
         ],
         ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],
         ['label' => 'รายการสินค้า', 'icon' => 'warehouse', 'url' => ['/product']],
@@ -34,7 +33,7 @@ $ADMIN_MENU = [
             'badge' => '<span class="right badge badge-info">1</span>',
             'items' => [
                 ['label' => 'ข้อมูลกราฟ', 'url' => ['site/index'], 'icon' => 'chart-line'],
-                //['label' => 'ข้อมูลการขายสินค้า', 'url' => ['site/index'], 'icon' => 'chart-bar'],
+                ['label' => 'เปรียบเทียบสินค้า', 'url' => ['product/compare'], 'icon' => 'industry'],
             ]
         ],
         ['label' => 'ขายสินค้า', 'icon' => 'shopping-cart', 'url' => ['/sellproduct']],

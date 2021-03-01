@@ -97,9 +97,9 @@ class ProductController extends Controller
         ]);
     }
 
-    public function actionCompare($prod_id)
+    public function actionCompare()
     {
-        return $this->render('compare', ["prod_id" => $prod_id]);
+        return $this->render('compare');
     }
     /**
      * Deletes an existing Product model.

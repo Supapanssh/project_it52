@@ -1,37 +1,37 @@
-pageMargins = [35, 35, 35, 35];
+var pageMargins = [35, 35, 35, 35];
 
-defaultStyle = {
+var defaultStyle = {
   font: "THSarabun",
   fontSize: 16,
   margin: [0, 5, 0, 5], //left,top,right,bottom
 };
 
-header = {
+var header = {
   fontSize: 18,
   bold: true,
   margin: [0, 5, 0, 5], //left,top,right,bottom
 };
 
-bigHeader = {
+var bigHeader = {
   fontSize: 20,
   bold: true,
   alignment: "justify",
 };
 
-sub = {
+var subheader = {
   fontSize: 16,
   bold: true,
   margin: [0, 5, 0, 5], //left,top,right,bottom
 };
 
-dotUnderL = {
+var dotUnderLine = {
   fontSize: 16,
   // decoration: 'underline',
   // decorationStyle: 'dashed',
   decorationColor: "black",
 };
 
-subheaderNoMarg = {
+var subheaderNoMargin = {
   fontSize: 16,
   bold: true,
   margin: [0, 0, 0, 0], //left,top,right,bottom
@@ -54,7 +54,7 @@ $(document).ready(function () {
     );
   });
 
-  var table = $(".data-table").DataTable({
+  $(".data-table").DataTable({
     dom: "Bfrtip",
     buttons: ["excel"],
     language: {

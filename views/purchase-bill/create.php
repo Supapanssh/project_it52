@@ -9,12 +9,10 @@ $this->title = 'สร้างใบสั่งซื้อ';
 $this->params['breadcrumbs'][] = ['label' => 'Purchase Bills', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="purchase-bill-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model, 'form_mode' => "edit"
-    ]) ?>
+<h1><?= Html::encode($this->title) ?></h1>
 
-</div>
+<?= $this->render('_form', [
+    'model' => $model, 'form_mode' => "edit"
+]) ?>

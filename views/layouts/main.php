@@ -21,14 +21,14 @@ AppAsset::register($this);
 
 <body class="sidebar-mini sidebar-collapse">
     <?php $this->beginBody() ?>
-    <div class="wrapper">
+    <div class="wrapper" id="app">
         <?= $this->render('navbar') ?>
         <?= $this->render('sidebar') ?>
         <?= $this->render('content', ['content' => $content]) ?>
         <?= $this->render('footer') ?>
     </div><?php $this->endBody() ?>
     <?php if (isset($this->blocks['scripts'])) : ?>
-    <?= $this->blocks['scripts'] ?>
+        <?= $this->blocks['scripts'] ?>
     <?php endif; ?>
 </body>
 
