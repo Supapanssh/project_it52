@@ -16,6 +16,8 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 // for ($i = 0; $i < sizeOf($rows); $i++) {
 //     echo $rows[$i]["PNo"];
 // }
+
+
 ?>
 
 
@@ -288,7 +290,7 @@ if (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {
     });
 </script>
 
-
+<?php $list = [["n" => "test1", "v" => 1], ["n" => "test2", "v" => 2], ["n" => "test3", "v" => 3]]; ?>
 
 <script>
     Highcharts.chart('low-sale', {
@@ -333,17 +335,12 @@ if (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {
         series: [{
             name: "สินค้า",
             colorByPoint: true,
-            data: [{
-                    name: "ว้อท",
-                    y: 30,
-                },
-                {
-                    name: "อิส",
-                    y: 30,
-                }, {
-                    name: "แด๊ด",
-                    y: 40,
-                },
+            data: [
+                <?php foreach ($list as $item) : ?> {
+                        name: "<?= $item['n'] ?>",
+                        y: <?= $item['v'] ?>,
+                    },
+                <?php endforeach; ?>
             ]
         }]
     });
