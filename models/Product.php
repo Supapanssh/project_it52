@@ -76,7 +76,8 @@ class Product extends \yii\db\ActiveRecord
             'Product_quantity' => 'จำนวนสินค้า',
             'Product_unit' => 'หน่วยสินค้า',
             'Product_exp' => 'รับประกันสินค้า',
-            're_orderpoint' => 'Re Orderpoint',
+            're_orderpoint' => 'จุดสั่งซื้อซ้ำ',
+            
         ];
     }
 

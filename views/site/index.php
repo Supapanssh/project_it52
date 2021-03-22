@@ -201,12 +201,38 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             </div>
         </div>
         <div class="col-12">
-            <div class="col-md-6 col-sm-12" style="margin-top: 1rem;margin-bottom: 1rem;">
+            <div class="col-md-12" style="margin-top: 1rem;margin-bottom: 1rem;">
                 <div id="low-sale">
                 </div>
             </div>
+            <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
+                <div id="product-category">
+                </div>
+            </div>
+            <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
+                <div id="container1">
+                </div>
+            </div>
+
         </div>
+        <div class="col-12">
+            <div class="col-md-8 " style="margin-top: 1rem;margin-bottom: 1rem;">
+                <div id="container4">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
 </section>
+
+
+
+
 <?php $this->beginBlock("scripts"); ?>
 <?php
 $unit = ["text" => "วันที่ (ป/ด/ว)", "type" => 1, "format" => "Y-m-d"];
@@ -289,7 +315,7 @@ var profitChart = Highcharts.chart('profit-chart', {
     //     }
     // },
     series: [{
-            name: 'ค้นทุน',
+            name: 'ต้นทุน',
             data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->cost ?>,
                 <?php endforeach; ?>
             ],
@@ -300,7 +326,9 @@ var profitChart = Highcharts.chart('profit-chart', {
             ],
         }, {
             name: 'ภาษี',
-            data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->vat ?>, <?php endforeach; ?>],
+            data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->vat ?>,
+                <?php endforeach; ?>
+            ],
         },
         {
             name: 'ยอดสุทธิ',
@@ -313,119 +341,430 @@ var profitChart = Highcharts.chart('profit-chart', {
 </script>
 
 
-<?php $topList = [["category_name" => "product_name", "sum" => 9], ["category_name" => "product_name", "sum" => 10], ["category_name" => "product_name", "sum" =>11]]; ?>
-
-<script>
-Highcharts.chart('top-sale', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'สินค้าที่ขายดีประจำเดือน'
-    },
-    accessibility: {
-        announceNewData: {
-            enabled: true
-        }
-    },
-    xAxis: {
-        type: 'ประเภทสินค้า'
-    },
-    yAxis: {
+<div class="col-md-6 col-sm-12" style="margin-top: 1rem;margin-bottom: 1rem;">
+    <div id="low-sale">
+    </div>
+    <script>
+    Highcharts.chart('low-sale', {
+        chart: {
+            type: 'column'
+        },
         title: {
-            text: 'ยอดรวม'
-        }
-
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y}'
+            text: 'สินค้าที่ยอดขายต่ำ'
+        },
+        accessibility: {
+            announceNewData: {
+                enabled: true
             }
-        }
-    },
+        },
+        xAxis: {
+            categories: [
+                'ISUZU ROCKY',
+                'NISSAN FRONTIER BDI',
+                'NISSAN TD',
+                'ISUZU TFR NPR120 D-MAX',
+                'TOYOTA TIGER-MIGHTY-X',
+                'NISSAN SUNNY RN/B11',
+                'HONDA CR-V2.0 13-17',
+                'HINO KT/FN527',
+            ],
 
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} บาท'
-    },
+            type: 'ชื่อสินค้า'
 
-    series: [{
-        name: "สินค้า",
-        colorByPoint: true,
-        data: [
-            <?php foreach ($topList as $itemtop) : ?> {
-                name: "<?= $itemtop['category_name'] ?>",
-                y: <?= $itemtop['sum'] ?>,
-            },
-            <?php endforeach; ?>
-        ]
-    }]
-});
-</script>
 
-<?php $list = [["n" => "test0", "v" => 9], ["n" => "test2", "v" => 10], ["n" => "test3", "v" =>11], ["n" => "test2", "v" => 10], ["n" => "test3", "v" =>11]]; ?>
-
-<script>
-Highcharts.chart('low-sale', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'สินค้าที่ยอดขายต่ำประจำเดือน'
-    },
-    accessibility: {
-        announceNewData: {
-            enabled: true
-        }
-    },
-    xAxis: {
-        type: 'ประเภทสินค้า'
-    },
-    yAxis: {
-        title: {
-            text: 'ยอดรวม'
-        }
-
-    },
-    legend: {
-        enabled: false
-    },
-    plotOptions: {
-        series: {
-            borderWidth: 0,
-            dataLabels: {
-                enabled: true,
-                format: '{point.y}'
+        },
+        yAxis: {
+            title: {
+                text: 'ยอดรวม'
             }
-        }
-    },
 
-    tooltip: {
-        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} บาท'
-    },
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}'
+                }
+            }
+        },
 
-    series: [{
-        name: "สินค้า",
-        colorByPoint: true,
-        data: [
-            <?php foreach ($list as $item) : ?> {
-                name: "<?= $item['n'] ?>",
-                y: <?= $item['v'] ?>,
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} บาท'
+        },
+
+        series: [{
+            name: "ยอดขายทั้งหมด",
+            colorByPoint: true,
+            data: [{
+                    name: "ISUZU ROCKY",
+                    y: 1150,
+                },
+                {
+                    name: "NISSAN FRONTIER BDI",
+                    y: 795,
+                },
+                {
+                    name: "NISSAN TD",
+                    y: 890,
+                },
+                {
+                    name: "ISUZU TFR NPR120 D-MAX",
+                    y: 970,
+                },
+                {
+                    name: "TOYOTA TIGER-MIGHTY-X",
+                    y: 940,
+                },
+                {
+                    name: "NISSAN SUNNY RN/B11",
+                    y: 820,
+                },
+                {
+                    name: "HONDA CR-V2.0 13-17",
+                    y: 695,
+                },
+                {
+                    name: "HINO KT/FN527",
+                    y: 550,
+                },
+            ]
+        }]
+    });
+    </script>
+
+
+    <div class="col-md-8" style="margin-top: 1rem;margin-bottom: 1rem;">
+        <div id="product-category"></div>
+        <script>
+        Highcharts.chart('product-category', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
             },
-            <?php endforeach; ?>
-        ]
-    }]
-});
-</script>
+            title: {
+                text: 'ประเภทสินค้าที่ขายดี'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: {point.y} รายการ <br><b>{point.percentage:.1f}%</br>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'จำนวนที่ขายทั้งหมด',
+                colorByPoint: true,
+                data: [{
+                        name: 'กรองอากาศ',
+                        y: 47
+                    },
+                    {
+                        name: 'ฝาถังน้ำมัน',
+                        y: 35
+                    },
+                    {
+                        name: 'โช๊คอัพ',
+                        y: 31
+                    },
+                    {
+                        name: 'ผ้าเบรคหลัง',
+                        y: 28
+                    },
+                    {
+                        name: 'บล็อกวาล์ว',
+                        y: 25
+                    },
+                    {
+                        name: 'แบตเตอรี่',
+                        y: 24
+                    },
+                    {
+                        name: 'เบ็ดเตล็ด',
+                        y: 19
+                    },
+                    {
+                        name: 'สายพาน',
+                        y: 16
+                    },
+                    {
+                        name: 'จานคลัช',
+                        y: 11
+                    },
+                ]
+            }]
+        });
+        </script>
+
+
+        <div class="col-md-8" style="margin-top: 1rem;margin-bottom: 1rem;">
+            <div id="container1"></div>
+            <script>
+            Highcharts.chart('container1', {
+                title: {
+                    text: 'Sale Vs Margin(%) '
+                },
+                xAxis: {
+                    categories: ['Jan', 'Feb', 'March', 'April', 'May']
+                },
+                labels: {
+                    items: [{
+                        html: 'Total consumption',
+                        style: {
+                            left: '50px',
+                            top: '18px',
+                            color: ( // theme
+                                Highcharts.defaultOptions.title.style &&
+                                Highcharts.defaultOptions.title.style.color
+                            ) || 'black'
+                        }
+                    }]
+                },
+                series: [{
+                    type: 'column',
+                    name: 'Sale',
+                    data: [50, 75, 60, 80, 90]
+                }, {
+                    type: 'spline',
+                    name: 'Margin(%)',
+                    data: [15, 18, 19, 20, 18],
+                    marker: {
+                        lineWidth: 2,
+                        lineColor: Highcharts.getOptions().colors[3],
+                        fillColor: 'white'
+                    }
+                }, ]
+            });
+            </script>
+
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/highcharts-more.js"></script>
+            <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+            <script src="https://code.highcharts.com/modules/export-data.js"></script>
+            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+            <figure class="highcharts-figure">
+
+            </figure>
 
 
 
 
-<?php $this->endBlock(); ?>
+
+            <div class="col-md-6 col-sm-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
+                <div id="container4" style="max-width: 440px;height: 400px;margin: 0px auto">
+                </div>
+                <script>
+                // Uncomment to style it like Apple Watch
+                /*
+                if (!Highcharts.theme) {
+                  Highcharts.setOptions({
+                    chart: {
+                      backgroundColor: 'black'
+                    },
+                    colors: ['#F62366', '#9DFF02', '#0CCDD6'],
+                    title: {
+                      style: {
+                        color: 'silver'
+                      }
+                    },
+                    tooltip: {
+                      style: {
+                        color: 'silver'
+                      }
+                    }
+                  });
+                }
+                // */
+
+                /**
+                 * In the chart render event, add icons on top of the circular shapes
+                 */
+                function renderIcons() {
+
+                    // Move icon
+                    if (!this.series[0].icon) {
+                        this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+                            .attr({
+                                stroke: '#303030',
+                                'stroke-linecap': 'round',
+                                'stroke-linejoin': 'round',
+                                'stroke-width': 2,
+                                zIndex: 10
+                            })
+                            .add(this.series[2].group);
+                    }
+                    this.series[0].icon.translate(
+                        this.chartWidth / 2 - 10,
+                        this.plotHeight / 2 - this.series[0].points[0].shapeArgs.innerR -
+                        (this.series[0].points[0].shapeArgs.r - this.series[0].points[0].shapeArgs.innerR) / 2
+                    );
+
+                    // Exercise icon
+                    if (!this.series[1].icon) {
+                        this.series[1].icon = this.renderer.path(
+                                ['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8,
+                                    'M', 8, -8, 'L', 16, 0, 8, 8
+                                ]
+                            )
+                            .attr({
+                                stroke: '#ffffff',
+                                'stroke-linecap': 'round',
+                                'stroke-linejoin': 'round',
+                                'stroke-width': 2,
+                                zIndex: 10
+                            })
+                            .add(this.series[2].group);
+                    }
+                    this.series[1].icon.translate(
+                        this.chartWidth / 2 - 10,
+                        this.plotHeight / 2 - this.series[1].points[0].shapeArgs.innerR -
+                        (this.series[1].points[0].shapeArgs.r - this.series[1].points[0].shapeArgs.innerR) / 2
+                    );
+
+                    // Stand icon
+                    if (!this.series[2].icon) {
+                        this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+                            .attr({
+                                stroke: '#303030',
+                                'stroke-linecap': 'round',
+                                'stroke-linejoin': 'round',
+                                'stroke-width': 2,
+                                zIndex: 10
+                            })
+                            .add(this.series[2].group);
+                    }
+
+                    this.series[2].icon.translate(
+                        this.chartWidth / 2 - 10,
+                        this.plotHeight / 2 - this.series[2].points[0].shapeArgs.innerR -
+                        (this.series[2].points[0].shapeArgs.r - this.series[2].points[0].shapeArgs.innerR) / 2
+                    );
+                }
+
+                Highcharts.chart('container4', {
+
+                    chart: {
+                        type: 'solidgauge',
+                        height: '110%',
+                        events: {
+                            render: renderIcons
+                        }
+                    },
+
+                    title: {
+                        text: 'Activity',
+                        style: {
+                            fontSize: '24px'
+                        }
+                    },
+
+                    tooltip: {
+                        borderWidth: 0,
+                        backgroundColor: 'none',
+                        shadow: false,
+                        style: {
+                            fontSize: '16px'
+                        },
+                        valueSuffix: '%',
+                        pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
+                        positioner: function(labelWidth) {
+                            return {
+                                x: (this.chart.chartWidth - labelWidth) / 2,
+                                y: (this.chart.plotHeight / 2) + 15
+                            };
+                        }
+                    },
+
+                    pane: {
+                        startAngle: 0,
+                        endAngle: 360,
+                        background: [{ // Track for Move
+                            outerRadius: '112%',
+                            innerRadius: '88%',
+                            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[0])
+                                .setOpacity(0.3)
+                                .get(),
+                            borderWidth: 0
+                        }, { // Track for Exercise
+                            outerRadius: '87%',
+                            innerRadius: '63%',
+                            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[1])
+                                .setOpacity(0.3)
+                                .get(),
+                            borderWidth: 0
+                        }, { // Track for Stand
+                            outerRadius: '62%',
+                            innerRadius: '38%',
+                            backgroundColor: Highcharts.color(Highcharts.getOptions().colors[2])
+                                .setOpacity(0.3)
+                                .get(),
+                            borderWidth: 0
+                        }]
+                    },
+
+                    yAxis: {
+                        min: 0,
+                        max: 100,
+                        lineWidth: 0,
+                        tickPositions: []
+                    },
+
+                    plotOptions: {
+                        solidgauge: {
+                            dataLabels: {
+                                enabled: false
+                            },
+                            linecap: 'round',
+                            stickyTracking: false,
+                            rounded: true
+                        }
+                    },
+
+                    series: [{
+                        name: 'Move',
+                        data: [{
+                            color: Highcharts.getOptions().colors[0],
+                            radius: '112%',
+                            innerRadius: '88%',
+                            y: 80
+                        }]
+                    }, {
+                        name: 'Exercise',
+                        data: [{
+                            color: Highcharts.getOptions().colors[1],
+                            radius: '87%',
+                            innerRadius: '63%',
+                            y: 65
+                        }]
+                    }, {
+                        name: 'Stand',
+                        data: [{
+                            color: Highcharts.getOptions().colors[2],
+                            radius: '62%',
+                            innerRadius: '38%',
+                            y: 50
+                        }]
+                    }]
+                });
+                </script>
+
+                <?php $this->endBlock(); ?>
