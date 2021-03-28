@@ -8,7 +8,7 @@ if (!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
         'class' => 'yii\db\Connection',
         'dsn' => 'mysql:host=localhost;dbname=stock',
         'username' => 'root',
-        'password' => 'password',
+        'password' => 'Supanvm01',
         'charset' => 'utf8',
 
         // Schema cache options (for production environment)
