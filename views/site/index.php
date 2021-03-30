@@ -213,22 +213,17 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                 <div id="container1">
                 </div>
             </div>
+            <figure class="highcharts-figure">
+                <div id="container00"></div>
+                <div id="container02"></div>
+                <div id="container03"></div>
+
+            </figure>
+
+
+
 
         </div>
-        <div class="row ">
-            <div class="col" style="margin-top: 1rem;margin-bottom: 1rem;">
-                <div id="container4"></div>
-                <div id="container5"></div>
-                <div id="container6"></div>
-
-            </div>
-        </div>
-
-
-
-
-
-
 
 </section>
 
@@ -442,6 +437,7 @@ var profitChart = Highcharts.chart('profit-chart', {
 
     <div class="col-md-8" style="margin-top: 1rem;margin-bottom: 1rem;">
         <div id="product-category"></div>
+
         <script>
         Highcharts.chart('product-category', {
             chart: {
@@ -511,6 +507,7 @@ var profitChart = Highcharts.chart('profit-chart', {
                         y: 11
                     },
                 ]
+
             }]
         });
         </script>
@@ -564,163 +561,153 @@ var profitChart = Highcharts.chart('profit-chart', {
             <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
             <figure class="highcharts-figure">
-                <div id="container4"></div>
-                <div id="container5"></div>
-                <div id="container6"></div>
-                <p class="highcharts-description">
-                    A series of bullet charts showing Revenue, Profit, and New Customers.
-                    Bullet charts allow readers to quickly compare a single value to a
-                    target value. This demo is also using plot bands to separate different
-                    ranges on the axes. Bullet charts are popular in dashboards, as they
-                    typically take up less space than gauge charts.
-                </p>
+                <div id="container00"></div>
+                <div id="container02"></div>
+                <div id="container03"></div>
+
             </figure>
 
-
-            <div class="col-md-6 col-sm-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
-
-                <script>
-                Highcharts.setOptions({
-                    chart: {
-                        inverted: true,
-                        marginLeft: 135,
-                        type: 'bullet'
-                    },
-                    title: {
-                        text: null
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    yAxis: {
-                        gridLineWidth: 0
-                    },
-                    plotOptions: {
-                        series: {
-                            pointPadding: 0.25,
-                            borderWidth: 0,
-                            color: '#000',
-                            targetOptions: {
-                                width: '200%'
-                            }
+            <script>
+            Highcharts.setOptions({
+                chart: {
+                    inverted: true,
+                    marginLeft: 135,
+                    type: 'bullet'
+                },
+                title: {
+                    text: null
+                },
+                legend: {
+                    enabled: false
+                },
+                yAxis: {
+                    gridLineWidth: 0
+                },
+                plotOptions: {
+                    series: {
+                        pointPadding: 0.25,
+                        borderWidth: 0,
+                        color: '#000',
+                        targetOptions: {
+                            width: '200%'
                         }
-                    },
-                    credits: {
-                        enabled: false
-                    },
-                    exporting: {
-                        enabled: false
                     }
-                });
+                },
+                credits: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                }
+            });
 
-                Highcharts.chart('container4', {
-                    chart: {
-                        marginTop: 40
-                    },
-                    title: {
-                        text: '2017 YTD'
-                    },
-                    xAxis: {
-                        categories: ['<span class="hc-cat-title">Revenue</span><br/>U.S. $ (1,000s)']
-                    },
-                    yAxis: {
-                        plotBands: [{
-                            from: 0,
-                            to: 150,
-                            color: '#666'
-                        }, {
-                            from: 150,
-                            to: 225,
-                            color: '#999'
-                        }, {
-                            from: 225,
-                            to: 9e9,
-                            color: '#bbb'
-                        }],
-                        title: null
-                    },
-                    series: [{
-                        data: [{
-                            y: 275,
-                            target: 250
-                        }]
+            Highcharts.chart('container00', {
+                chart: {
+                    marginTop: 40
+                },
+                title: {
+                    text: '2020'
+                },
+                xAxis: {
+                    categories: ['<span class="hc-cat-title">ยอดขาย</span><br/>บาท']
+                },
+                yAxis: {
+                    plotBands: [{
+                        from: 0,
+                        to: 150000,
+                        color: '#666'
+                    }, {
+                        from: 150000,
+                        to: 225000,
+                        color: '#999'
+                    }, {
+                        from: 225000,
+                        to: 9e9,
+                        color: '#bbb'
                     }],
-                    tooltip: {
-                        pointFormat: '<b>{point.y}</b> (with target at {point.target})'
-                    }
-                });
+                    title: null
+                },
+                series: [{
+                    data: [{
+                        y: 275000,
+                        target: 250000
+                    }]
+                }],
+                tooltip: {
+                    pointFormat: '<b>{point.y}</b> (with target at {point.target})'
+                }
+            });
 
-                Highcharts.chart('container5', {
-                    xAxis: {
-                        categories: ['<span class="hc-cat-title">Profit</span><br/>%']
-                    },
-                    yAxis: {
-                        plotBands: [{
-                            from: 0,
-                            to: 20,
-                            color: '#666'
-                        }, {
-                            from: 20,
-                            to: 25,
-                            color: '#999'
-                        }, {
-                            from: 25,
-                            to: 100,
-                            color: '#bbb'
-                        }],
-                        labels: {
-                            format: '{value}%'
-                        },
-                        title: null
-                    },
-                    series: [{
-                        data: [{
-                            y: 22,
-                            target: 27
-                        }]
+            Highcharts.chart('container02', {
+                xAxis: {
+                    categories: ['<span class="hc-cat-title">กำไร</span><br/>%']
+                },
+                yAxis: {
+                    plotBands: [{
+                        from: 0,
+                        to: 20,
+                        color: '#666'
+                    }, {
+                        from: 20,
+                        to: 25,
+                        color: '#999'
+                    }, {
+                        from: 25,
+                        to: 100,
+                        color: '#bbb'
                     }],
-                    tooltip: {
-                        pointFormat: '<b>{point.y}</b> (with target at {point.target})'
-                    }
-                });
+                    labels: {
+                        format: '{value}%'
+                    },
+                    title: null
+                },
+                series: [{
+                    data: [{
+                        y: 22,
+                        target: 27
+                    }]
+                }],
+                tooltip: {
+                    pointFormat: '<b>{point.y}</b> (with target at {point.target})'
+                }
+            });
 
 
-                Highcharts.chart('container6', {
-                    xAxis: {
-                        categories: ['<span class="hc-cat-title">New Customers</span><br/>Count']
-                    },
-                    yAxis: {
-                        plotBands: [{
-                            from: 0,
-                            to: 1400,
-                            color: '#666'
-                        }, {
-                            from: 1400,
-                            to: 2000,
-                            color: '#999'
-                        }, {
-                            from: 2000,
-                            to: 9e9,
-                            color: '#bbb'
-                        }],
-                        labels: {
-                            format: '{value}'
-                        },
-                        title: null
-                    },
-                    series: [{
-                        data: [{
-                            y: 1650,
-                            target: 2100
-                        }]
+            Highcharts.chart('container03', {
+                xAxis: {
+                    categories: ['<span class="hc-cat-title">สินค้า(แบตเตอรี่)</span><br/>Count']
+                },
+                yAxis: {
+                    plotBands: [{
+                        from: 0,
+                        to: 14000,
+                        color: '#666'
+                    }, {
+                        from: 14000,
+                        to: 20000,
+                        color: '#999'
+                    }, {
+                        from: 20000,
+                        to: 9e9,
+                        color: '#bbb'
                     }],
-                    tooltip: {
-                        pointFormat: '<b>{point.y}</b> (with target at {point.target})'
+                    labels: {
+                        format: '{value}'
                     },
-                    credits: {
-                        enabled: true
-                    }
-                });
-                </script>
-
-                <?php $this->endBlock(); ?>
+                    title: null
+                },
+                series: [{
+                    data: [{
+                        y: 16500,
+                        target: 21000
+                    }]
+                }],
+                tooltip: {
+                    pointFormat: '<b>{point.y}</b> (with target at {point.target})'
+                },
+                credits: {
+                    enabled: true
+                }
+            });
+            </script>
+            <?php $this->endBlock(); ?>
