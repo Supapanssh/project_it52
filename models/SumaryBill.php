@@ -35,7 +35,7 @@ class SumaryBill extends \yii\db\ActiveRecord
         return [
             [['PNo', 'quantity'], 'integer'],
             [['quantity'], 'required'],
-            [['cost', 'price', 'profit', 'vat'], 'number'],
+            [['cost', 'price', 'profit', 'vat', 'target_sale'], 'number'],
             [['BillDate'], 'safe'],
             [['Product_name'], 'string', 'max' => 200],
             [['category_name'], 'string', 'max' => 250],
@@ -57,6 +57,7 @@ class SumaryBill extends \yii\db\ActiveRecord
             'profit' => 'Profit',
             'vat' => 'Vat',
             'BillDate' => 'วันที่',
+            'target_sale' => 'target_sale'
         ];
     }
 }

@@ -12,21 +12,18 @@ use yii\helpers\Url;
 $this->title = 'หน้าหลักของระบบ';
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 
-// $rows = Yii::$app->db->createCommand("select * from product")->queryAll();
-// for ($i = 0; $i < sizeOf($rows); $i++) {
-//     echo $rows[$i]["PNo"];
-// }
 
+$targetChart = clone ($chartObject);
 
 ?>
 
 
 <?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_CHASIER) : ?>
-<h4> Welcome Chashier</h4>
+    <h4> Welcome Chashier</h4>
 <?php endif; ?>
 
 <?php if (Yii::$app->user->identity->roles == \app\models\User::ROLE_MANAGER) : ?>
-<h5>Welcome Manager</h5>
+    <h5>Welcome Manager</h5>
 
 <?php endif; ?>
 <!-- Small boxes (Stat box) -->
@@ -42,8 +39,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="<?= Url::to(["bill/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
-                    class="fas fa-arrow-circle-right"></i></a>
+            <a href="<?= Url::to(["bill/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -58,8 +54,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             <div class="icon">
                 <i class="fa fa-product-hunt" aria-hidden="true"></i>
             </div>
-            <a href="<?= Url::to(["products/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
-                    class="fas fa-arrow-circle-right"></i></a>
+            <a href="<?= Url::to(["products/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -74,8 +69,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             <div class="icon">
                 <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?= Url::to(["user/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
-                    class="fas fa-arrow-circle-right"></i></a>
+            <a href="<?= Url::to(["user/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -90,8 +84,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="<?= Url::to(["supplier/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i
-                    class="fas fa-arrow-circle-right"></i></a>
+            <a href="<?= Url::to(["supplier/index"]) ?>" class="small-box-footer">ดูข้อมูลเพิ่มเติม <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -110,80 +103,63 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
                             <!-- Nav tabs -->
                             <ul class="nav md-tabs nav-justified">
                                 <li class="nav-item waves-effect waves-light">
-                                    <a class="nav-link <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active' : '' ?>"
-                                        data-toggle="tab" href="#panel1" role="tab">วัน</a>
+                                    <a class="nav-link <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active' : '' ?>" data-toggle="tab" href="#panel1" role="tab">วัน</a>
                                 </li>
                                 <li class="nav-item waves-effect waves-light ">
-                                    <a class="nav-link <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active' : '' ?>"
-                                        data-toggle="tab" href="#panel2" role="tab">เดือน</a>
+                                    <a class="nav-link <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active' : '' ?>" data-toggle="tab" href="#panel2" role="tab">เดือน</a>
                                 </li>
                                 <li class="nav-item waves-effect waves-light ">
-                                    <a class="nav-link <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active' : '' ?>"
-                                        data-toggle="tab" href="#panel3" role="tab">ปี</a>
+                                    <a class="nav-link <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active' : '' ?>" data-toggle="tab" href="#panel3" role="tab">ปี</a>
                                 </li>
                             </ul>
                             <!-- Tab panels -->
                             <div class="tab-content card">
                                 <!-- Panel 1 -->
-                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) || empty($_GET) ? 'active show' : '' ?>"
-                                    id="panel1" role="tabpanel">
+                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) || empty($_GET) ? 'active show' : '' ?>" id="panel1" role="tabpanel">
                                     <form action="">
                                         <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงวัน</span>
                                         </p>
                                         <div class="form-group">
                                             <label for="date">ตั้งแต่</label>
-                                            <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
-                                                value="<?= $_GET["start_date"] ?? '' ?>" id="from" name="start_date"
-                                                class="form-control">
+                                            <input placeholder="คลิกเพื่อเลือกวัน.." type="date" value="<?= $_GET["start_date"] ?? '' ?>" id="from" name="start_date" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="date">ไม่เกิน</label>
-                                            <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
-                                                value="<?= $_GET["final_date"] ?? '' ?>" id="to" name="final_date"
-                                                class="form-control">
+                                            <input placeholder="คลิกเพื่อเลือกวัน.." type="date" value="<?= $_GET["final_date"] ?? '' ?>" id="to" name="final_date" class="form-control">
                                         </div>
                                         <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
                                     </form>
                                 </div>
                                 <!-- Panel 1 -->
                                 <!-- Panel 2 -->
-                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active show' : '' ?>"
-                                    id="panel2" role="tabpanel">
+                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active show' : '' ?>" id="panel2" role="tabpanel">
                                     <form action="">
-                                        <p class="lead pt-3 pb-4"><span
-                                                class="badge info-color p-2">เลือกช่วงเดือน</span>
+                                        <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงเดือน</span>
                                         </p>
                                         <div class="form-group">
                                             <label>ตั้งแต่</label>
-                                            <input placeholder="คลิกเพื่อเลือกวัน.."
-                                                value="<?= $_GET["start_month"] ?? '' ?>" type="month" id="from"
-                                                name="start_month" class="form-control">
+                                            <input placeholder="คลิกเพื่อเลือกวัน.." value="<?= $_GET["start_month"] ?? '' ?>" type="month" id="from" name="start_month" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>ไม่เกิน</label>
-                                            <input placeholder="คลิกเพื่อเลือกวัน.."
-                                                value="<?= $_GET["final_month"] ?? '' ?>" type="month" id="to"
-                                                name="final_month" class="form-control">
+                                            <input placeholder="คลิกเพื่อเลือกวัน.." value="<?= $_GET["final_month"] ?? '' ?>" type="month" id="to" name="final_month" class="form-control">
                                         </div>
                                         <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
                                     </form>
                                 </div>
                                 <!-- Panel 2 -->
                                 <!-- Panel 3 -->
-                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active show' : '' ?>"
-                                    id="panel3" role="tabpanel">
+                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active show' : '' ?>" id="panel3" role="tabpanel">
                                     <form action="" method="get">
                                         <p class="lead pt-3 pb-4"><span class="badge info-color p-2">ระบุช่วงปี</span>
                                         </p>
                                         <div class="form-group">
                                             <label for="from">ตั้งแต่</label>
-                                            <input placeholder="ปี ค.ศ." value="<?= $_GET["start_year"] ?? '' ?>"
-                                                type="number" id="from" name="start_year" class="form-control">
+                                            <input placeholder="ปี ค.ศ." value="<?= $_GET["start_year"] ?? '' ?>" type="number" id="from" name="start_year" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="to">ไม่เกิน</label>
-                                            <input placeholder="ปี ค.ศ." value="<?= $_GET["final_year"] ?? '' ?>"
-                                                type="number" id="to" name="final_year" class="form-control">
+                                            <input placeholder="ปี ค.ศ." value="<?= $_GET["final_year"] ?? '' ?>" type="number" id="to" name="final_year" class="form-control">
                                         </div>
                                         <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
                                     </form>
@@ -208,36 +184,34 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
         </div>
     </div>
 
-    <div class="col-12">
-        <div class="col-md-12" style="margin-top: 1rem;margin-bottom: 1rem;">
+    <div class="row">
+        <div class="col-md-12 mt-2">
             <div id="low-sale">
             </div>
         </div>
-        <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
+        <div class="col-md-12 mt-2">
             <div id="product-category">
             </div>
         </div>
-        <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
+        <div class="col-md-12 mt-2">
             <div id="container1">
             </div>
         </div>
-        <figure class="highcharts-figure">
-            <div id="container00"></div>
-            <div id="container02"></div>
-            <div id="container03"></div>
+        <div class="col-md-12 mt-2">
 
-        </figure>
+            <div style="height:150px" id="bullet1"></div>
+            <?php $clone1 = clone ($chartObject);
+            ?>
+            <?php foreach ($clone1->groupBy("PNo")->andWhere("target_sale is not null")->all() as $target) : ?>
+                <div style="height:150px" id="bulletPO<?= $target->PNo ?>"></div>
+            <?php endforeach; ?>
+        </div>
     </div>
-
 </section>
-
-
-
 
 <?php $this->beginBlock("scripts"); ?>
 <?php
 $unit = ["text" => "วันที่ (ป/ด/ว)", "type" => 1, "format" => "Y-m-d"];
-
 $profit = $profit->orderBy("BillDate");
 $profit = $profit->groupBy("day(BillDate),month(BillDate),year(BillDate)");
 if (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {
@@ -247,20 +221,26 @@ if (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {
     $unit = ["text" => "ปี", "type" => 3, "format" => "Y"];
     $profit = $profit->groupBy("year(BillDate)");
 }
+
+$lowSale = clone ($chartObject);
+$lowSale = $lowSale->groupBy("Product_name")->select("Product_name,sum(price) as price")->orderBy("price asc")->limit(10)->all();
+$highChart = clone ($chartObject);
+$highChart = $highChart->groupBy("Product_name")->select("Product_name,sum(price) as price")->orderBy("price desc")->limit(10)->all();
+$monthSale = clone ($chartObject);
+$monthSale = $monthSale->groupBy("month(BillDate),year(BillDate)")->select("BillDate,sum(cost) as cost,sum(price) as price,sum(profit) as profit")->orderBy("year(BillDate) asc,month(BillDate) asc")->limit(10)->all();
 ?>
 
 <script>
-//scripts
-var profitChart = Highcharts.chart('profit-chart', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'กำไรจากยอดขาย'
-    },
-    xAxis: {
-        categories: [
-            <?php foreach ($profit->all() as $category) :
+    var profitChart = Highcharts.chart('profit-chart', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'กำไรจากยอดขาย'
+        },
+        xAxis: {
+            categories: [
+                <?php foreach ($profit->all() as $category) :
                     if ($unit["type"] == 1) {
                         $format = "D/d-M-Y";
                     } elseif ($unit["type"] == 2) {
@@ -272,81 +252,58 @@ var profitChart = Highcharts.chart('profit-chart', {
                     $showCate = $showCate->format($format);
                     echo "\"$showCate\",";
                 endforeach; ?>
-        ],
-        title: {
-            text: "<?= $unit["text"] ?>"
-        }
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'จำนวน (บาท)'
+            ],
+            title: {
+                text: "<?= $unit["text"] ?>"
+            }
         },
-        // stackLabels: {
-        //     enabled: true,
-        //     style: {
-        //         fontWeight: 'bold',
-        //         color: ( // theme
-        //             Highcharts.defaultOptions.title.style &&
-        //             Highcharts.defaultOptions.title.style.color
-        //         ) || 'gray'
-        //     }
-        // }
-    },
-    legend: {
-        align: 'right',
-        x: -30,
-        verticalAlign: 'top',
-        y: 25,
-        floating: true,
-        backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || 'white',
-        borderColor: '#CCC',
-        borderWidth: 1,
-        shadow: false
-    },
-    tooltip: {
-        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
-        shared: true
-    },
-    // plotOptions: {
-    //     column: {
-    //         stacking: 'normal',
-    //         dataLabels: {
-    //             enabled: true
-    //         }
-    //     }
-    // },
-    series: [{
-            name: 'ต้นทุน',
-            data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->cost ?>,
-                <?php endforeach; ?>
-            ],
-        }, {
-            name: 'กำไร',
-            data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->profit ?>,
-                <?php endforeach; ?>
-            ],
-        }, {
-            name: 'ภาษี',
-            data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->vat ?>,
-                <?php endforeach; ?>
-            ],
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'จำนวน (บาท)'
+            },
+
         },
-        {
-            name: 'ยอดสุทธิ',
-            data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->price ?>,
-                <?php endforeach; ?>
-            ],
-        }
-    ]
-});
-</script>
+        legend: {
+            align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: Highcharts.defaultOptions.legend.backgroundColor || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+            shared: true
+        },
+        series: [{
+                name: 'ต้นทุน',
+                data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->cost ?>,
+                    <?php endforeach; ?>
+                ],
+            }, {
+                name: 'กำไร',
+                data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->profit ?>,
+                    <?php endforeach; ?>
+                ],
+            }, {
+                name: 'ภาษี',
+                data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->vat ?>,
+                    <?php endforeach; ?>
+                ],
+            },
+            {
+                name: 'ยอดสุทธิ',
+                data: [<?php foreach ($profit->all() as $value) : ?> <?= $value->price ?>,
+                    <?php endforeach; ?>
+                ],
+            }
+        ]
+    });
 
-
-<div class="col-md-6 col-sm-12" style="margin-top: 1rem;margin-bottom: 1rem;">
-    <div id="low-sale">
-    </div>
-    <script>
     Highcharts.chart('low-sale', {
         chart: {
             type: 'column'
@@ -361,19 +318,10 @@ var profitChart = Highcharts.chart('profit-chart', {
         },
         xAxis: {
             categories: [
-                'ISUZU ROCKY',
-                'NISSAN FRONTIER BDI',
-                'NISSAN TD',
-                'ISUZU TFR NPR120 D-MAX',
-                'TOYOTA TIGER-MIGHTY-X',
-                'NISSAN SUNNY RN/B11',
-                'HONDA CR-V2.0 13-17',
-                'HINO KT/FN527',
+                <?php foreach ($lowSale as $sale) : ?> "<?= $sale->Product_name ?>",
+                <?php endforeach; ?>
             ],
-
             type: 'ชื่อสินค้า'
-
-
         },
         yAxis: {
             title: {
@@ -402,317 +350,226 @@ var profitChart = Highcharts.chart('profit-chart', {
         series: [{
             name: "ยอดขายทั้งหมด",
             colorByPoint: true,
-            data: [{
-                    name: "ISUZU ROCKY",
-                    y: 1150,
-                },
-                {
-                    name: "NISSAN FRONTIER BDI",
-                    y: 795,
-                },
-                {
-                    name: "NISSAN TD",
-                    y: 890,
-                },
-                {
-                    name: "ISUZU TFR NPR120 D-MAX",
-                    y: 970,
-                },
-                {
-                    name: "TOYOTA TIGER-MIGHTY-X",
-                    y: 940,
-                },
-                {
-                    name: "NISSAN SUNNY RN/B11",
-                    y: 820,
-                },
-                {
-                    name: "HONDA CR-V2.0 13-17",
-                    y: 695,
-                },
-                {
-                    name: "HINO KT/FN527",
-                    y: 550,
-                },
+            data: [<?php foreach ($lowSale as $sale) : ?> {
+                        name: "<?= $sale->Product_name ?>",
+                        y: <?= $sale->price ?>
+                    },
+                <?php endforeach; ?>
             ]
         }]
     });
-    </script>
 
-
-    <div class="col-md-8" style="margin-top: 1rem;margin-bottom: 1rem;">
-        <div id="product-category"></div>
-
-        <script>
-        Highcharts.chart('product-category', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
+    Highcharts.chart('low-sale', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'สินค้าที่ยอดขายต่ำ'
+        },
+        accessibility: {
+            announceNewData: {
+                enabled: true
+            }
+        },
+        xAxis: {
+            categories: [
+                <?php foreach ($lowSale as $sale) : ?> "<?= $sale->Product_name ?>",
+                <?php endforeach; ?>
+            ],
+            type: 'ชื่อสินค้า'
+        },
+        yAxis: {
             title: {
-                text: 'ประเภทสินค้าที่ขายดี'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: {point.y} รายการ <br><b>{point.percentage:.1f}%</br>'
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
+                text: 'ยอดรวม'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.y}'
                 }
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                    }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y} บาท'
+        },
+
+        series: [{
+            name: "ยอดขายทั้งหมด",
+            colorByPoint: true,
+            data: [<?php foreach ($lowSale as $sale) : ?> {
+                        name: "<?= $sale->Product_name ?>",
+                        y: <?= $sale->price ?>
+                    },
+                <?php endforeach; ?>
+            ]
+        }]
+    });
+
+    Highcharts.chart('container1', {
+        title: {
+            text: 'Sale Vs Margin(%) '
+        },
+        xAxis: {
+            categories: [<?php foreach ($monthSale as $sale) : ?> "<?php
+                                                                    $showCate = new DateTime($sale->BillDate);
+                                                                    $showCate = $showCate->format("M-Y");
+                                                                    echo "$showCate"; ?>",
+                <?php endforeach; ?>
+            ]
+        },
+        labels: {
+            items: [{
+                html: 'Total consumption',
+                style: {
+                    left: '50px',
+                    top: '18px',
+                    color: ( // theme
+                        Highcharts.defaultOptions.title.style &&
+                        Highcharts.defaultOptions.title.style.color
+                    ) || 'black'
                 }
+            }]
+        },
+        series: [{
+            type: 'column',
+            name: 'Sale',
+            data: [<?php foreach ($monthSale as $sale) : ?> <?= $sale->cost ?>,
+                <?php endforeach; ?>
+            ]
+        }, {
+            type: 'spline',
+            name: 'Margin(%)',
+            data: [<?php foreach ($monthSale as $sale) : ?> <?= $sale->profit  ?>,
+                <?php endforeach; ?>
+            ],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }, ]
+    });
+
+    Highcharts.chart('product-category', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'ประเภทสินค้าที่ขายดี'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: {point.y} บาท <br><b>{point.percentage:.1f}%</br>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'จำนวนที่ขายทั้งหมด',
+            colorByPoint: true,
+            data: [<?php foreach ($lowSale as $sale) : ?> {
+                        name: "<?= $sale->Product_name ?>",
+                        y: <?= $sale->price ?>
+                    },
+                <?php endforeach; ?>
+            ]
+
+        }]
+    });
+
+    Highcharts.setOptions({
+        chart: {
+            inverted: true,
+            marginLeft: 135,
+            type: 'bullet'
+        },
+        title: {
+            text: null
+        },
+        legend: false
+    });
+
+    Highcharts.chart('bullet1', {
+        chart: {
+            inverted: true,
+            marginLeft: 135,
+            type: 'bullet'
+        },
+        chart: {
+            marginTop: 40
+        },
+        title: {
+            text: 'เป้าหมายและยอดขาย'
+        },
+        xAxis: {
+            categories: ['<span class="hc-cat-title">ยอดขาย</span><br/>บาท']
+        },
+        yAxis: {
+            title: null
+        },
+        series: [{
+            data: [{
+                y: <?= $chartObject->sum('price') ?? 0 ?>,
+                target: <?= Product::find()->sum("target_sale") ?>,
+                color: "rgba(30,87,237,1)"
+            }]
+        }],
+        tooltip: {
+            pointFormat: '<b>{point.y}</b> (เป้าหมาย {point.target} บาท)'
+        }
+    });
+
+    <?php
+    $clone = clone ($chartObject);
+    foreach ($clone->select("Product_name,PNo,sum(price) as price")->andWhere("target_sale is not null")->groupBy("PNo")->all() as $target) : ?>
+        Highcharts.chart('bulletPO<?= $target->PNo ?>', {
+            chart: {
+                inverted: true,
+                marginLeft: 135,
+                type: 'bullet'
+            },
+            chart: {
+                marginTop: 40
+            },
+            xAxis: {
+                categories: ['<span class="hc-cat-title"><?= $target->Product_name ?></span><br/>บาท']
+            },
+            yAxis: {
+                title: null
             },
             series: [{
-                name: 'จำนวนที่ขายทั้งหมด',
-                colorByPoint: true,
                 data: [{
-                        name: 'กรองอากาศ',
-                        y: 47
-                    },
-                    {
-                        name: 'ฝาถังน้ำมัน',
-                        y: 35
-                    },
-                    {
-                        name: 'โช๊คอัพ',
-                        y: 31
-                    },
-                    {
-                        name: 'ผ้าเบรคหลัง',
-                        y: 28
-                    },
-                    {
-                        name: 'บล็อกวาล์ว',
-                        y: 25
-                    },
-                    {
-                        name: 'แบตเตอรี่',
-                        y: 24
-                    },
-                    {
-                        name: 'เบ็ดเตล็ด',
-                        y: 19
-                    },
-                    {
-                        name: 'สายพาน',
-                        y: 16
-                    },
-                    {
-                        name: 'จานคลัช',
-                        y: 11
-                    },
-                ]
-
-            }]
+                    y: <?= $target->price ?>,
+                    target: <?= Product::findOne($target->PNo)->target_sale ?>,
+                }]
+            }],
+            tooltip: {
+                pointFormat: '<b>{point.y}</b> (เป้าหมาย {point.target} บาท)'
+            }
         });
-        </script>
-
-
-        <div class="col-md-8" style="margin-top: 1rem;margin-bottom: 1rem;">
-            <div id="container1"></div>
-            <script>
-            Highcharts.chart('container1', {
-                title: {
-                    text: 'Sale Vs Margin(%) '
-                },
-                xAxis: {
-                    categories: ['Jan', 'Feb', 'March', 'April', 'May']
-                },
-                labels: {
-                    items: [{
-                        html: 'Total consumption',
-                        style: {
-                            left: '50px',
-                            top: '18px',
-                            color: ( // theme
-                                Highcharts.defaultOptions.title.style &&
-                                Highcharts.defaultOptions.title.style.color
-                            ) || 'black'
-                        }
-                    }]
-                },
-                series: [{
-                    type: 'column',
-                    name: 'Sale',
-                    data: [50, 75, 60, 80, 90]
-                }, {
-                    type: 'spline',
-                    name: 'Margin(%)',
-                    data: [15, 18, 19, 20, 18],
-                    marker: {
-                        lineWidth: 2,
-                        lineColor: Highcharts.getOptions().colors[3],
-                        fillColor: 'white'
-                    }
-                }, ]
-            });
-            </script>
-
-
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/bullet.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
-            <script src="https://code.highcharts.com/modules/export-data.js"></script>
-            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-            <figure class="highcharts-figure">
-                <div id="container00"></div>
-                <div id="container02"></div>
-                <div id="container03"></div>
-
-            </figure>
-
-            <script>
-            Highcharts.setOptions({
-                chart: {
-                    inverted: true,
-                    marginLeft: 135,
-                    type: 'bullet'
-                },
-                title: {
-                    text: null
-                },
-                legend: {
-                    enabled: false
-                },
-                yAxis: {
-                    gridLineWidth: 0
-                },
-                plotOptions: {
-                    series: {
-                        pointPadding: 0.25,
-                        borderWidth: 0,
-                        color: '#000',
-                        targetOptions: {
-                            width: '200%'
-                        }
-                    }
-                },
-                credits: {
-                    enabled: false
-                },
-                exporting: {
-                    enabled: false
-                }
-            });
-
-            Highcharts.chart('container00', {
-                chart: {
-                    marginTop: 40
-                },
-                title: {
-                    text: '2020'
-                },
-                xAxis: {
-                    categories: ['<span class="hc-cat-title">ยอดขาย</span><br/>บาท']
-                },
-                yAxis: {
-                    plotBands: [{
-                        from: 0,
-                        to: 150000,
-                        color: '#666'
-                    }, {
-                        from: 150000,
-                        to: 225000,
-                        color: '#999'
-                    }, {
-                        from: 225000,
-                        to: 9e9,
-                        color: '#bbb'
-                    }],
-                    title: null
-                },
-                series: [{
-                    data: [{
-                        y: 275000,
-                        target: 250000
-                    }]
-                }],
-                tooltip: {
-                    pointFormat: '<b>{point.y}</b> (with target at {point.target})'
-                }
-            });
-
-            Highcharts.chart('container02', {
-                xAxis: {
-                    categories: ['<span class="hc-cat-title">กำไร</span><br/>%']
-                },
-                yAxis: {
-                    plotBands: [{
-                        from: 0,
-                        to: 20,
-                        color: '#666'
-                    }, {
-                        from: 20,
-                        to: 25,
-                        color: '#999'
-                    }, {
-                        from: 25,
-                        to: 100,
-                        color: '#bbb'
-                    }],
-                    labels: {
-                        format: '{value}%'
-                    },
-                    title: null
-                },
-                series: [{
-                    data: [{
-                        y: 22,
-                        target: 27
-                    }]
-                }],
-                tooltip: {
-                    pointFormat: '<b>{point.y}</b> (with target at {point.target})'
-                }
-            });
-
-
-            Highcharts.chart('container03', {
-                xAxis: {
-                    categories: ['<span class="hc-cat-title">สินค้า(แบตเตอรี่)</span><br/>Count']
-                },
-                yAxis: {
-                    plotBands: [{
-                        from: 0,
-                        to: 14000,
-                        color: '#666'
-                    }, {
-                        from: 14000,
-                        to: 20000,
-                        color: '#999'
-                    }, {
-                        from: 20000,
-                        to: 9e9,
-                        color: '#bbb'
-                    }],
-                    labels: {
-                        format: '{value}'
-                    },
-                    title: null
-                },
-                series: [{
-                    data: [{
-                        y: 16500,
-                        target: 21000
-                    }]
-                }],
-                tooltip: {
-                    pointFormat: '<b>{point.y}</b> (with target at {point.target})'
-                },
-                credits: {
-                    enabled: true
-                }
-            });
-            </script>
-            <?php $this->endBlock(); ?>
+    <?php endforeach; ?>
+</script>
+<?php $this->endBlock(); ?>

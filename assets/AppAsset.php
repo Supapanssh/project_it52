@@ -65,6 +65,7 @@ class AppAsset extends AssetBundle
         "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68bi/pdfmake.js",
         "js/pdfmake.js",
         "https://code.highcharts.com/highcharts.js",
+        "https://code.highcharts.com/modules/bullet.js",
         "https://code.highcharts.com/modules/exporting.js",
         "https://code.highcharts.com/modules/export-data.js",
         "https://code.highcharts.com/modules/accessibility.js",

@@ -31,7 +31,7 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML(); //สร้าง ออ
         </div>
         <div class="col-sm-4">
             <!-- กำหนดค่าให้ช่องฟิลด์บาร์โค้ด ['value' => $code]-->
-            <?= $form->field($model, 'Product_code')->textInput(['value' => $code]) ?> 
+            <?= $form->field($model, 'Product_code')->textInput(['value' => $code]) ?>
             <?php
             $object = app\models\Category::find()->all();
             $array = ArrayHelper::map($object, 'category_id', 'category_name');
@@ -44,11 +44,11 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML(); //สร้าง ออ
             <?= $form->field($model, 'category_id')->dropDownList($array) ?>
         </div>
         <?php
-            $supobject = app\models\Supplier::find()->all();
-            $sup_array = ArrayHelper::map($supobject, 'sup_id', 'sup_company');
-            ?> 
+        $supobject = app\models\Supplier::find()->all();
+        $sup_array = ArrayHelper::map($supobject, 'sup_id', 'sup_company');
+        ?>
         <div class="col-sm-4">
-            <?= $form->field($model, 'sup_id')->dropDownList($sup_array) ?>  
+            <?= $form->field($model, 'sup_id')->dropDownList($sup_array) ?>
         </div>
         <div class="col-sm-4">
             <?= $form->field($model, 'brand_id')->textInput() ?>
@@ -77,7 +77,9 @@ $generator = new Picqer\Barcode\BarcodeGeneratorHTML(); //สร้าง ออ
         <div class="col-sm-4">
             <?= $form->field($model, 'Product_exp')->textInput(['type' => 'date']) ?>
         </div>
-
+        <div class="col-sm-4">
+            <?= $form->field($model, 'target_sale')->textInput(['type' => 'number']) ?>
+        </div>
     </div>
 
     <div class="form-group">

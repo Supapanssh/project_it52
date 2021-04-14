@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2021 at 05:37 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Generation Time: Apr 14, 2021 at 08:36 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,7 +32,7 @@ CREATE TABLE `amphures` (
   `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `province_id` int(5) NOT NULL DEFAULT '0'
+  `province_id` int(5) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1051,7 +1050,7 @@ CREATE TABLE `bill` (
   `BillDate` datetime DEFAULT NULL COMMENT 'วันที่',
   `PeoNo` int(11) DEFAULT NULL COMMENT 'ผู้รับผิดชอบ',
   `Bill_detail` varchar(100) DEFAULT NULL COMMENT 'รายละเอียด',
-  `BillDiscount` int(11) NOT NULL DEFAULT '0' COMMENT 'ส่วนลด',
+  `BillDiscount` int(11) NOT NULL DEFAULT 0 COMMENT 'ส่วนลด',
   `BillTotal` decimal(11,2) NOT NULL COMMENT 'ราคาทั้งหมด',
   `BillCash` decimal(11,2) NOT NULL COMMENT 'เงินสด',
   `Billvat` decimal(11,2) NOT NULL COMMENT 'ภาษีมูลค่าเพิ่ม',
@@ -1073,7 +1072,8 @@ INSERT INTO `bill` (`BillNo`, `BillDate`, `PeoNo`, `Bill_detail`, `BillDiscount`
 (31, '2021-02-15 21:14:19', 1, NULL, 0, '208.65', '208.65', '13.65', 0),
 (32, '2021-02-15 21:14:33', 1, NULL, 0, '1155.60', '1155.60', '75.60', 0),
 (33, '2021-02-17 11:52:43', 1, NULL, 0, '208.65', '208.65', '13.65', 0),
-(34, '2021-03-11 13:56:56', 1, NULL, 0, '208.65', '208.65', '13.65', 0);
+(34, '2021-03-11 13:56:56', 1, NULL, 0, '208.65', '208.65', '13.65', 0),
+(35, '2021-04-14 23:44:50', 1, NULL, 0, '634.51', '634.51', '41.51', 0);
 
 -- --------------------------------------------------------
 
@@ -1097,7 +1097,7 @@ INSERT INTO `bill_detail` (`id`, `quantity`, `pno`, `amount`, `bill_id`) VALUES
 (45, 3, 12, 597, 24),
 (46, 1, 29, 295, 24),
 (47, 1, 4, 199, 24),
-(48, 4, 1, 2760, 25),
+(48, 4, 1, 2000, 25),
 (49, 2, 5, 398, 26),
 (50, 1, 2, 690, 26),
 (51, 1, 14, 195, 26),
@@ -1112,7 +1112,10 @@ INSERT INTO `bill_detail` (`id`, `quantity`, `pno`, `amount`, `bill_id`) VALUES
 (60, 1, 1, 690, 32),
 (61, 2, 23, 390, 32),
 (62, 1, 18, 195, 33),
-(63, 1, 18, 195, 34);
+(63, 1, 18, 195, 34),
+(64, 1, 12, 199, 35),
+(65, 1, 4, 199, 35),
+(66, 1, 23, 195, 35);
 
 -- --------------------------------------------------------
 
@@ -1206,7 +1209,7 @@ CREATE TABLE `districts` (
   `zip_code` int(11) NOT NULL,
   `name_th` varchar(150) COLLATE utf8_bin NOT NULL,
   `name_en` varchar(150) COLLATE utf8_bin NOT NULL,
-  `amphure_id` int(11) NOT NULL DEFAULT '0'
+  `amphure_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='InnoDB free: 8192 kB';
 
 --
@@ -10202,46 +10205,47 @@ CREATE TABLE `product` (
   `Product_quantity` int(11) NOT NULL COMMENT 'จำนวนสินค้า',
   `Product_unit` varchar(150) NOT NULL COMMENT 'หน่วยสินค้า',
   `Product_exp` date NOT NULL COMMENT 'รับประกันสินค้า',
-  `re_orderpoint` int(11) NOT NULL
+  `re_orderpoint` int(11) NOT NULL,
+  `target_sale` int(11) DEFAULT NULL COMMENT 'เป้าหมายยอดขาย'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`PNo`, `Product_no`, `category_id`, `sup_id`, `brand_id`, `Product_code`, `Product_name`, `Product_desc`, `Product_price`, `Product_cost`, `Product_quantity`, `Product_unit`, `Product_exp`, `re_orderpoint`) VALUES
-(1, '010-1', 2, 5, NULL, '0595076828', 'กรอง Hurricane ', 'แบบผ้า', 690.00, 621.00, 13, 'ชิ้น', '2022-06-17', 5),
-(2, '010-01', 1, 5, NULL, '7072044490', 'ISUZU ROCKY,TX,JCM', 'มีกุญแจ/940221590', 690.00, 621.00, 22, 'อัน', '2022-06-17', 10),
-(3, '010-02', 1, 5, NULL, '9388311416', 'HINO,KT', 'มีกุญแจ/773201010', 695.00, 625.50, 17, 'อัน', '2022-06-17', 10),
-(4, '010-03', 1, 5, NULL, '3733372123', 'ISUZU', 'ใหญ่/หนา/777245-444', 199.00, 179.10, 8, 'อัน', '2022-06-17', 5),
-(5, '010-04', 1, 5, NULL, '6285277958', 'ISUZU ROCKY', '9-55524-0844', 199.00, 179.10, 22, 'อัน', '2022-06-17', 15),
-(6, '010-05', 1, 5, NULL, '9089832490', 'HINO KT/FN527', 'ไม่มีกุญแจ /SAK/77320-1362', 199.00, 179.10, 22, 'อัน', '2022-06-17', 10),
-(7, '010-06', 1, 5, NULL, '5082980210', 'ISUZU TFR D-MAX', 'SAK-04858', 295.00, 265.50, 23, 'อัน', '2022-06-17', 15),
-(8, '010-07', 1, 5, NULL, '8139604152', 'MITSUBISHI STRADA/SAK', 'SAK-3039', 295.00, 265.50, 23, 'อัน', '2022-06-17', 5),
-(9, '010-08', 1, 5, NULL, '5588746664', 'ISUZU D-MAX แคป/SAK', 'SAD-04851', 295.00, 265.50, 23, 'อัน', '2022-06-17', 5),
-(10, '010-09', 1, 5, NULL, '7791752736', 'NISSAN BIG-M/NV/SAK', 'SAK-04847', 399.00, 359.10, 23, 'อัน', '2022-06-17', 15),
-(11, '010-10', 1, 5, NULL, '6484403514', 'TOYOTA LN40/KE70 ไดน่า/SAK', 'SAK-04873', 199.00, 179.10, 13, 'อัน', '2022-06-17', 10),
-(12, '010-11', 1, 5, NULL, '0587726929', 'TOYOTA VIGO TIGER ALTIS /SAK', 'SAK-10239', 199.00, 179.10, 7, 'อัน', '2022-06-17', 10),
-(13, '010-12', 1, 5, NULL, '6822109661', 'TOYOTA VIGO ALTIS D4D/SAK', 'SAK-13978', 199.00, 179.10, 13, 'อัน', '2022-06-17', 10),
-(14, '010-13', 1, 5, NULL, '3369984658', 'TOYOTA TIGER-MIGHTY-X/SAK', 'SAK-04875', 195.00, 175.50, 10, 'อัน', '2022-06-17', 6),
-(15, '010-14', 1, 5, NULL, '4519443017', 'MITSUBISHI L200/FN527/STRADA/SAK', 'SAK-04872', 195.00, 175.50, 12, 'อัน', '2022-06-17', 6),
-(16, '010-15', 1, 5, NULL, '5082556086', 'NISSAN SUNNY RN/B11/E13-15/SAK', 'SAK-3058', 195.00, 175.50, 13, 'อัน', '2022-06-17', 8),
-(17, '010-16', 1, 5, NULL, '5924840437', 'MITSUBISHI L200/FN527/STRADA/SAK', 'SAK-04872', 195.00, 175.50, 11, 'อัน', '2022-06-17', 8),
-(18, '010-17', 1, 5, NULL, '0494688145', 'NISSAN SUNNY RN/B11/E13-15/SAK', 'SAK-3058', 195.00, 175.50, 9, 'อัน', '2022-06-17', 8),
-(19, '010-18', 1, 5, NULL, '6050199428', 'NISSAN FRONTIER BDI/SAK', 'SAK-04866', 295.00, 265.50, 13, 'อัน', '2022-06-17', 10),
-(20, '010-19', 1, 6, NULL, '2922753293', 'ISUZU 250 KBZ NPR 6BB/SAK', 'SAK-04878', 195.00, 175.50, 10, 'อัน', '2022-06-17', 5),
-(21, '010-20', 1, 6, NULL, '2644201473', 'NISSAN TD/SAK', '15255-40F00', 195.00, 175.50, 9, 'ชิ้น', '2022-06-17', 5),
-(22, '010-21', 1, 6, NULL, '2546015131', 'ISUZU TFR NPR120 D-MAX/SAK', 'SAK-04880', 195.00, 175.50, 14, 'อัน', '2022-06-17', 5),
-(23, '010-22', 1, 6, NULL, '3328360348', 'MITSUBISHI L200 D/SAK', 'SAK-4059', 195.00, 175.50, 16, 'ชิ้น', '2022-06-17', 7),
-(24, '010-23', 1, 6, NULL, '6627365919', 'ISUZU NPR NKR BUDDY/SAK', '9-99999-901-0', 195.00, 175.50, 12, 'ชิ้น', '2022-06-17', 7),
-(25, '010-24', 1, 6, NULL, '4348532182', 'TOYOTA MIGHTY-X เหล็ก/SAK', 'SAK-7958', 195.00, 175.50, 21, 'ชิ้น', '2022-06-17', 7),
-(26, '011-001C2/3', 2, 6, NULL, '9424736926', 'HONDA CR-V2.0,96-01/DENSO', '260300-11204W', 295.00, 265.50, 4, 'ชิ้น', '2022-06-17', 5),
-(27, '011-002C2/3', 2, 6, NULL, '8731957466', 'HONDA ACCORD09-11/DENSO', '260300-12304W', 195.00, 175.50, 2, 'อัน', '2022-06-17', 5),
-(28, '011-003C2/3', 2, 6, NULL, '5625890406', 'HONDA CR-V2.4 13-17/DENSO', '260300-13304W', 395.00, 355.50, 4, 'ชิ้น', '2022-06-17', 5),
-(29, '011-004C2/3', 2, 6, NULL, '3066677335', 'HONDA CR-V2.0 13-17/DENSO', '260300-13404W', 295.00, 265.50, 4, 'ชิ้น', '2022-06-17', 5),
-(30, '011-005C1/4', 2, 5, NULL, '7708372083', 'NISSAN TIIDA06-10/DENSO', '260300-02904W', 295.00, 265.50, 4, 'อัน', '2022-06-17', 5),
-(31, '011-008C2/3', 2, 5, NULL, '4746782162', 'TOYOTA REVO/DENSO', '260300-09604W', 495.00, 445.50, 7, 'อัน', '2022-06-17', 3),
-(33, '011-008C2/3', 2, 5, NULL, '9823596760', 'กรองอากาศ Honda', 'แบบผ้า', 300.00, 270.00, 3, 'อัน', '2022-06-17', 3);
+INSERT INTO `product` (`PNo`, `Product_no`, `category_id`, `sup_id`, `brand_id`, `Product_code`, `Product_name`, `Product_desc`, `Product_price`, `Product_cost`, `Product_quantity`, `Product_unit`, `Product_exp`, `re_orderpoint`, `target_sale`) VALUES
+(1, '010-1', 2, 5, NULL, '0595076828', 'กรอง Hurricane ', 'แบบผ้า', 690.00, 621.00, 13, 'ชิ้น', '2022-06-17', 5, 2070),
+(2, '010-01', 1, 5, NULL, '7072044490', 'ISUZU ROCKY,TX,JCM', 'มีกุญแจ/940221590', 690.00, 621.00, 22, 'อัน', '2022-06-17', 10, 2070),
+(3, '010-02', 1, 5, NULL, '9388311416', 'HINO,KT', 'มีกุญแจ/773201010', 695.00, 625.50, 17, 'อัน', '2022-06-17', 10, 2085),
+(4, '010-03', 1, 5, NULL, '3733372123', 'ISUZU', 'ใหญ่/หนา/777245-444', 199.00, 179.10, 8, 'อัน', '2022-06-17', 5, 597),
+(5, '010-04', 1, 5, NULL, '6285277958', 'ISUZU ROCKY', '9-55524-0844', 199.00, 179.10, 22, 'อัน', '2022-06-17', 15, 597),
+(6, '010-05', 1, 5, NULL, '9089832490', 'HINO KT/FN527', 'ไม่มีกุญแจ /SAK/77320-1362', 199.00, 179.10, 22, 'อัน', '2022-06-17', 10, 597),
+(7, '010-06', 1, 5, NULL, '5082980210', 'ISUZU TFR D-MAX', 'SAK-04858', 295.00, 265.50, 23, 'อัน', '2022-06-17', 15, 885),
+(8, '010-07', 1, 5, NULL, '8139604152', 'MITSUBISHI STRADA/SAK', 'SAK-3039', 295.00, 265.50, 23, 'อัน', '2022-06-17', 5, 885),
+(9, '010-08', 1, 5, NULL, '5588746664', 'ISUZU D-MAX แคป/SAK', 'SAD-04851', 295.00, 265.50, 23, 'อัน', '2022-06-17', 5, 885),
+(10, '010-09', 1, 5, NULL, '7791752736', 'NISSAN BIG-M/NV/SAK', 'SAK-04847', 399.00, 359.10, 23, 'อัน', '2022-06-17', 15, 1197),
+(11, '010-10', 1, 5, NULL, '6484403514', 'TOYOTA LN40/KE70 ไดน่า/SAK', 'SAK-04873', 199.00, 179.10, 13, 'อัน', '2022-06-17', 10, 597),
+(12, '010-11', 1, 5, NULL, '0587726929', 'TOYOTA VIGO TIGER ALTIS /SAK', 'SAK-10239', 199.00, 179.10, 7, 'อัน', '2022-06-17', 10, 597),
+(13, '010-12', 1, 5, NULL, '6822109661', 'TOYOTA VIGO ALTIS D4D/SAK', 'SAK-13978', 199.00, 179.10, 13, 'อัน', '2022-06-17', 10, 597),
+(14, '010-13', 1, 5, NULL, '3369984658', 'TOYOTA TIGER-MIGHTY-X/SAK', 'SAK-04875', 195.00, 175.50, 10, 'อัน', '2022-06-17', 6, 585),
+(15, '010-14', 1, 5, NULL, '4519443017', 'MITSUBISHI L200/FN527/STRADA/SAK', 'SAK-04872', 195.00, 175.50, 12, 'อัน', '2022-06-17', 6, 585),
+(16, '010-15', 1, 5, NULL, '5082556086', 'NISSAN SUNNY RN/B11/E13-15/SAK', 'SAK-3058', 195.00, 175.50, 13, 'อัน', '2022-06-17', 8, 585),
+(17, '010-16', 1, 5, NULL, '5924840437', 'MITSUBISHI L200/FN527/STRADA/SAK', 'SAK-04872', 195.00, 175.50, 11, 'อัน', '2022-06-17', 8, 585),
+(18, '010-17', 1, 5, NULL, '0494688145', 'NISSAN SUNNY RN/B11/E13-15/SAK', 'SAK-3058', 195.00, 175.50, 9, 'อัน', '2022-06-17', 8, 585),
+(19, '010-18', 1, 5, NULL, '6050199428', 'NISSAN FRONTIER BDI/SAK', 'SAK-04866', 295.00, 265.50, 13, 'อัน', '2022-06-17', 10, 885),
+(20, '010-19', 1, 6, NULL, '2922753293', 'ISUZU 250 KBZ NPR 6BB/SAK', 'SAK-04878', 195.00, 175.50, 10, 'อัน', '2022-06-17', 5, 585),
+(21, '010-20', 1, 6, NULL, '2644201473', 'NISSAN TD/SAK', '15255-40F00', 195.00, 175.50, 9, 'ชิ้น', '2022-06-17', 5, 585),
+(22, '010-21', 1, 6, NULL, '2546015131', 'ISUZU TFR NPR120 D-MAX/SAK', 'SAK-04880', 195.00, 175.50, 14, 'อัน', '2022-06-17', 5, 585),
+(23, '010-22', 1, 6, NULL, '3328360348', 'MITSUBISHI L200 D/SAK', 'SAK-4059', 195.00, 175.50, 15, 'ชิ้น', '2022-06-17', 7, 585),
+(24, '010-23', 1, 6, NULL, '6627365919', 'ISUZU NPR NKR BUDDY/SAK', '9-99999-901-0', 195.00, 175.50, 12, 'ชิ้น', '2022-06-17', 7, 585),
+(25, '010-24', 1, 6, NULL, '4348532182', 'TOYOTA MIGHTY-X เหล็ก/SAK', 'SAK-7958', 195.00, 175.50, 21, 'ชิ้น', '2022-06-17', 7, 585),
+(26, '011-001C2/3', 2, 6, NULL, '9424736926', 'HONDA CR-V2.0,96-01/DENSO', '260300-11204W', 295.00, 265.50, 4, 'ชิ้น', '2022-06-17', 5, 885),
+(27, '011-002C2/3', 2, 6, NULL, '8731957466', 'HONDA ACCORD09-11/DENSO', '260300-12304W', 195.00, 175.50, 2, 'อัน', '2022-06-17', 5, 585),
+(28, '011-003C2/3', 2, 6, NULL, '5625890406', 'HONDA CR-V2.4 13-17/DENSO', '260300-13304W', 395.00, 355.50, 4, 'ชิ้น', '2022-06-17', 5, 1185),
+(29, '011-004C2/3', 2, 6, NULL, '3066677335', 'HONDA CR-V2.0 13-17/DENSO', '260300-13404W', 295.00, 265.50, 4, 'ชิ้น', '2022-06-17', 5, 885),
+(30, '011-005C1/4', 2, 5, NULL, '7708372083', 'NISSAN TIIDA06-10/DENSO', '260300-02904W', 295.00, 265.50, 4, 'อัน', '2022-06-17', 5, 885),
+(31, '011-008C2/3', 2, 5, NULL, '4746782162', 'TOYOTA REVO/DENSO', '260300-09604W', 495.00, 445.50, 7, 'อัน', '2022-06-17', 3, 1485),
+(33, '011-008C2/3', 2, 5, NULL, '9823596760', 'กรองอากาศ Honda', 'แบบผ้า', 300.00, 270.00, 3, 'อัน', '2022-06-17', 3, 900);
 
 -- --------------------------------------------------------
 
@@ -10254,7 +10258,7 @@ CREATE TABLE `provinces` (
   `code` varchar(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `geography_id` int(5) NOT NULL DEFAULT '0'
+  `geography_id` int(5) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -10422,19 +10426,6 @@ INSERT INTO `report` (`ch_id`, `ch_name`, `ch_price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `revenue`
--- (See below for the actual view)
---
-CREATE TABLE `revenue` (
-`Product_name` varchar(200)
-,`category_name` varchar(250)
-,`quantity` int(11)
-,`amount` double
-);
-
--- --------------------------------------------------------
-
---
 -- Stand-in structure for view `sumary_bill`
 -- (See below for the actual view)
 --
@@ -10448,6 +10439,7 @@ CREATE TABLE `sumary_bill` (
 ,`profit` double(19,2)
 ,`vat` double(19,2)
 ,`BillDate` datetime
+,`target_sale` int(11)
 );
 
 -- --------------------------------------------------------
@@ -10509,41 +10501,11 @@ INSERT INTO `user` (`userNo`, `username`, `nickname`, `password_hash`, `email`, 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `vm_item`
--- (See below for the actual view)
---
-CREATE TABLE `vm_item` (
-`PNo` int(11)
-,`product_name` varchar(200)
-,`BillDate` datetime
-);
-
--- --------------------------------------------------------
-
---
--- Structure for view `revenue`
---
-DROP TABLE IF EXISTS `revenue`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `revenue`  AS  select `product`.`Product_name` AS `Product_name`,`category`.`category_name` AS `category_name`,`bill_detail`.`quantity` AS `quantity`,`bill_detail`.`amount` AS `amount` from ((`product` join `bill_detail` on((`bill_detail`.`pno` = `product`.`PNo`))) join `category` on((`product`.`category_id` = `category`.`category_id`))) group by `product`.`Product_name` ;
-
--- --------------------------------------------------------
-
---
 -- Structure for view `sumary_bill`
 --
 DROP TABLE IF EXISTS `sumary_bill`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sumary_bill`  AS  select `product`.`PNo` AS `PNo`,`product`.`Product_name` AS `Product_name`,`category`.`category_name` AS `category_name`,`bill_detail`.`quantity` AS `quantity`,(`product`.`Product_cost` * `bill_detail`.`quantity`) AS `cost`,(`product`.`Product_price` * `bill_detail`.`quantity`) AS `price`,((`product`.`Product_price` * `bill_detail`.`quantity`) - (`product`.`Product_cost` * `bill_detail`.`quantity`)) AS `profit`,((`product`.`Product_price` * `bill_detail`.`quantity`) * 0.07) AS `vat`,`bill`.`BillDate` AS `BillDate` from (((`product` join `bill_detail` on((`bill_detail`.`pno` = `product`.`PNo`))) join `category` on((`product`.`category_id` = `category`.`category_id`))) join `bill` on((`bill_detail`.`bill_id` = `bill`.`BillNo`))) group by `product`.`PNo` ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `vm_item`
---
-DROP TABLE IF EXISTS `vm_item`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vm_item`  AS  select `sumary_bill`.`PNo` AS `PNo`,`sumary_bill`.`Product_name` AS `product_name`,`sumary_bill`.`BillDate` AS `BillDate` from `sumary_bill` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sumary_bill`  AS SELECT `product`.`PNo` AS `PNo`, `product`.`Product_name` AS `Product_name`, `category`.`category_name` AS `category_name`, `bill_detail`.`quantity` AS `quantity`, `product`.`Product_cost`* `bill_detail`.`quantity` AS `cost`, `product`.`Product_price`* `bill_detail`.`quantity` AS `price`, `product`.`Product_price`* `bill_detail`.`quantity` - `product`.`Product_cost` * `bill_detail`.`quantity` AS `profit`, `product`.`Product_price`* `bill_detail`.`quantity` * 0.07 AS `vat`, `bill`.`BillDate` AS `BillDate`, `product`.`target_sale` AS `target_sale` FROM (((`bill_detail` join `product` on(`product`.`PNo` = `bill_detail`.`pno`)) join `category` on(`category`.`category_id` = `product`.`category_id`)) join `bill` on(`bill_detail`.`bill_id` = `bill`.`BillNo`)) GROUP BY `product`.`Product_no`, month(`bill`.`BillDate`), year(`bill`.`BillDate`) ORDER BY `bill`.`BillDate` ASC ;
 
 --
 -- Indexes for dumped tables
@@ -10681,13 +10643,13 @@ ALTER TABLE `amphures`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `BillNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสใบเสร็จ', AUTO_INCREMENT=35;
+  MODIFY `BillNo` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสใบเสร็จ', AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `bill_detail`
 --
 ALTER TABLE `bill_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดี', AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `brand`
@@ -10699,7 +10661,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดีตะกร้าสินค้า', AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดีตะกร้าสินค้า', AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `category`

@@ -47,7 +47,7 @@ class Product extends \yii\db\ActiveRecord
         return [
             [['Product_no', 'Product_desc', 'Product_cost', 'Product_quantity', 'Product_unit', 'Product_exp', 're_orderpoint'], 'required'],
             [['category_id', 'sup_id', 'brand_id', 'Product_quantity', 're_orderpoint'], 'integer'],
-            [['Product_price', 'Product_cost'], 'number'],
+            [['Product_price', 'Product_cost', 'target_sale'], 'number'],
             [['Product_exp'], 'safe'],
             [['Product_no', 'Product_code'], 'string', 'max' => 11],
             [['Product_name', 'Product_desc'], 'string', 'max' => 200],
@@ -75,9 +75,10 @@ class Product extends \yii\db\ActiveRecord
             'Product_cost' => 'ราคาต้นทุน',
             'Product_quantity' => 'จำนวนสินค้า',
             'Product_unit' => 'หน่วยสินค้า',
-            'Product_exp' => 'รับประกันสินค้า',
+            'Product_exp' => 'รับประกันสินค้า (ต่อปี)',
+            'target_sale' => "เป้าหมายยอดขาย",
             're_orderpoint' => 'จุดสั่งซื้อซ้ำ',
-            
+
         ];
     }
 
