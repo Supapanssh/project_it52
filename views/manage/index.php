@@ -33,7 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['attribute' => 'PNo', 'value' => function ($model) {
                 return $model->pNo->Product_name;
             }],
-            'PeoNo', 
+            ['attribute'=>'PeoNo',
+            'value'=>function ($model){
+                return $model->peoNo->username;
+            }
+        ], 
             'Manage_Amount',
 
             [

@@ -78,23 +78,32 @@ class SiteController extends Controller
     {
         $profit = SumaryBill::find();
         $request = Yii::$app->request;
+        $chartObject = SumaryBill::find();
         $profit = $profit->select("sum(cost) as cost,sum(profit) as profit,sum(vat) as vat,BillDate,sum(price) as price");
         if (!empty($request->get("start_date"))) {
+            $profit = $chartObject->andFilterWhere([">=", "BillDate", $request->get("start_date")]);
             $profit = $profit->andFilterWhere([">=", "BillDate", $request->get("start_date")]);
         }
         if (!empty($request->get("final_date"))) {
+            $profit = $chartObject->andFilterWhere(["<=", "BillDate", $request->get("final_date")]);
             $profit = $profit->andFilterWhere(["<=", "BillDate", $request->get("final_date")]);
         }
         if (!empty($request->get("start_month"))) {
+            $profit = $chartObject->andFilterWhere([">=", "BillDate", $request->get("start_month") . "-01"]); //2021-02-01
             $profit = $profit->andFilterWhere([">=", "BillDate", $request->get("start_month") . "-01"]); //2021-02-01
+
         }
         if (!empty($request->get("final_month"))) {
+            $profit = $chartObject->andFilterWhere(["<=", "BillDate", $request->get("final_month") . "-31"]); //2021-02-31
             $profit = $profit->andFilterWhere(["<=", "BillDate", $request->get("final_month") . "-31"]); //2021-02-31
+
         }
         if (!empty($request->get("start_year"))) {
+            $profit = $chartObject->andFilterWhere([">=", "BillDate", $request->get("start_year") . "-01-01"]);
             $profit = $profit->andFilterWhere([">=", "BillDate", $request->get("start_year") . "-01-01"]);
         }
         if (!empty($request->get("final_year"))) {
+            $profit = $chartObject->andFilterWhere(["<=", "BillDate", $request->get("final_year") . "-12-31"]);
             $profit = $profit->andFilterWhere(["<=", "BillDate", $request->get("final_year") . "-12-31"]);
         }
         // return $profit->createCommand()->getRawSql();

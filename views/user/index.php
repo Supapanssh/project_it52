@@ -10,7 +10,7 @@ use yii\bootstrap4\LinkPager;
 /* @var $searchModel app\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = 'ผู้ใช้งาน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่มผู้ใช้งาน', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>

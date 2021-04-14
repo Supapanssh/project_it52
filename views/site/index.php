@@ -99,131 +99,135 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 <!-- end smallbox -->
 <section>
     <div class="row">
-        <div class="col-xl-7 col-lg-12 mb-4 pb-2">
-            <div class="view view-cascade gradient-card-header blue-gradient">
-                <div id="profit-chart" height="400"></div>
-            </div>
-        </div>
-        <div class="col-xl-5 col-lg-12 mr-0 pb-2">
-            <div class="card-body card-body-cascade pb-0">
-                <div class="row py-3 pl-4">
-                    <div class="col-12">
-                        <!-- Nav tabs -->
-                        <ul class="nav md-tabs nav-justified">
-                            <li class="nav-item waves-effect waves-light ">
-                                <a class="nav-link <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active' : '' ?>"
-                                    data-toggle="tab" href="#panel1" role="tab">วัน</a>
-                            </li>
-                            <li class="nav-item waves-effect waves-light ">
-                                <a class="nav-link <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active' : '' ?>"
-                                    data-toggle="tab" href="#panel2" role="tab">เดือน</a>
-                            </li>
-                            <li class="nav-item waves-effect waves-light ">
-                                <a class="nav-link <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active' : '' ?>"
-                                    data-toggle="tab" href="#panel3" role="tab">ปี</a>
-                            </li>
-                        </ul>
-                        <!-- Tab panels -->
-                        <div class="tab-content card">
-                            <!-- Panel 1 -->
-                            <div class="tab-pane fade p-3 <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active show' : '' ?>"
-                                id="panel1" role="tabpanel">
-                                <form action="">
-                                    <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงวัน</span>
-                                    </p>
-                                    <div class="form-group">
-                                        <label for="date">ตั้งแต่</label>
-                                        <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
-                                            value="<?= $_GET["start_date"] ?? '' ?>" id="from" name="start_date"
-                                            class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="date">ไม่เกิน</label>
-                                        <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
-                                            value="<?= $_GET["final_date"] ?? '' ?>" id="to" name="final_date"
-                                            class="form-control">
-                                    </div>
-                                    <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
-                                </form>
+        <div class="col-lg-12 mr-0 pb-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3>ค้นประวัติ</h3>
+                </div>
+                <div class="card-body card-body-cascade pb-0">
+                    <div class="row py-3 pl-4">
+                        <div class="col-12">
+                            <!-- Nav tabs -->
+                            <ul class="nav md-tabs nav-justified">
+                                <li class="nav-item waves-effect waves-light">
+                                    <a class="nav-link <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) ? 'active' : '' ?>"
+                                        data-toggle="tab" href="#panel1" role="tab">วัน</a>
+                                </li>
+                                <li class="nav-item waves-effect waves-light ">
+                                    <a class="nav-link <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active' : '' ?>"
+                                        data-toggle="tab" href="#panel2" role="tab">เดือน</a>
+                                </li>
+                                <li class="nav-item waves-effect waves-light ">
+                                    <a class="nav-link <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active' : '' ?>"
+                                        data-toggle="tab" href="#panel3" role="tab">ปี</a>
+                                </li>
+                            </ul>
+                            <!-- Tab panels -->
+                            <div class="tab-content card">
+                                <!-- Panel 1 -->
+                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_date"]) || !empty($_GET["final_date"]) || empty($_GET) ? 'active show' : '' ?>"
+                                    id="panel1" role="tabpanel">
+                                    <form action="">
+                                        <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงวัน</span>
+                                        </p>
+                                        <div class="form-group">
+                                            <label for="date">ตั้งแต่</label>
+                                            <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
+                                                value="<?= $_GET["start_date"] ?? '' ?>" id="from" name="start_date"
+                                                class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="date">ไม่เกิน</label>
+                                            <input placeholder="คลิกเพื่อเลือกวัน.." type="date"
+                                                value="<?= $_GET["final_date"] ?? '' ?>" id="to" name="final_date"
+                                                class="form-control">
+                                        </div>
+                                        <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
+                                    </form>
+                                </div>
+                                <!-- Panel 1 -->
+                                <!-- Panel 2 -->
+                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active show' : '' ?>"
+                                    id="panel2" role="tabpanel">
+                                    <form action="">
+                                        <p class="lead pt-3 pb-4"><span
+                                                class="badge info-color p-2">เลือกช่วงเดือน</span>
+                                        </p>
+                                        <div class="form-group">
+                                            <label>ตั้งแต่</label>
+                                            <input placeholder="คลิกเพื่อเลือกวัน.."
+                                                value="<?= $_GET["start_month"] ?? '' ?>" type="month" id="from"
+                                                name="start_month" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>ไม่เกิน</label>
+                                            <input placeholder="คลิกเพื่อเลือกวัน.."
+                                                value="<?= $_GET["final_month"] ?? '' ?>" type="month" id="to"
+                                                name="final_month" class="form-control">
+                                        </div>
+                                        <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
+                                    </form>
+                                </div>
+                                <!-- Panel 2 -->
+                                <!-- Panel 3 -->
+                                <div class="tab-pane fade p-3 <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active show' : '' ?>"
+                                    id="panel3" role="tabpanel">
+                                    <form action="" method="get">
+                                        <p class="lead pt-3 pb-4"><span class="badge info-color p-2">ระบุช่วงปี</span>
+                                        </p>
+                                        <div class="form-group">
+                                            <label for="from">ตั้งแต่</label>
+                                            <input placeholder="ปี ค.ศ." value="<?= $_GET["start_year"] ?? '' ?>"
+                                                type="number" id="from" name="start_year" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="to">ไม่เกิน</label>
+                                            <input placeholder="ปี ค.ศ." value="<?= $_GET["final_year"] ?? '' ?>"
+                                                type="number" id="to" name="final_year" class="form-control">
+                                        </div>
+                                        <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
+                                    </form>
+                                </div>
+                                <!-- Panel 3 -->
                             </div>
-                            <!-- Panel 1 -->
-                            <!-- Panel 2 -->
-                            <div class="tab-pane fade p-3 <?= !empty($_GET["start_month"]) || !empty($_GET["final_month"]) ? 'active show' : '' ?>"
-                                id="panel2" role="tabpanel">
-                                <form action="">
-                                    <p class="lead pt-3 pb-4"><span class="badge info-color p-2">เลือกช่วงเดือน</span>
-                                    </p>
-                                    <div class="form-group">
-                                        <label>ตั้งแต่</label>
-                                        <input placeholder="คลิกเพื่อเลือกวัน.."
-                                            value="<?= $_GET["start_month"] ?? '' ?>" type="month" id="from"
-                                            name="start_month" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>ไม่เกิน</label>
-                                        <input placeholder="คลิกเพื่อเลือกวัน.."
-                                            value="<?= $_GET["final_month"] ?? '' ?>" type="month" id="to"
-                                            name="final_month" class="form-control">
-                                    </div>
-                                    <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
-                                </form>
-                            </div>
-                            <!-- Panel 2 -->
-                            <!-- Panel 3 -->
-                            <div class="tab-pane fade p-3 <?= !empty($_GET["start_year"]) || !empty($_GET["final_year"]) ? 'active show' : '' ?>"
-                                id="panel3" role="tabpanel">
-                                <form action="" method="get">
-                                    <p class="lead pt-3 pb-4"><span class="badge info-color p-2">ระบุช่วงปี</span>
-                                    </p>
-                                    <div class="form-group">
-                                        <label for="from">ตั้งแต่</label>
-                                        <input placeholder="ปี ค.ศ." value="<?= $_GET["start_year"] ?? '' ?>"
-                                            type="number" id="from" name="start_year" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="to">ไม่เกิน</label>
-                                        <input placeholder="ปี ค.ศ." value="<?= $_GET["final_year"] ?? '' ?>"
-                                            type="number" id="to" name="final_year" class="form-control">
-                                    </div>
-                                    <?= Html::button("ค้นหา", ["type" => "submit", "class" => "btn btn-primary w-100"]) ?>
-                                </form>
-                            </div>
-                            <!-- Panel 3 -->
+                        </div>
+                        <div class="col-12 mt-3 ">
+                            <p>รวมทั้งสิ้น: <strong></strong> บาท
+                            </p>
+                            <p>เฉลี่ยวันละ: <strong></strong> บาท
+                            </p>
                         </div>
                     </div>
-                    <div class="col-12 mt-3 ">
-                        <p>รวมทั้งสิ้น: <strong></strong> บาท
-                        </p>
-                        <p>เฉลี่ยวันละ: <strong></strong> บาท
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <div class="col-md-12" style="margin-top: 1rem;margin-bottom: 1rem;">
-                <div id="low-sale">
-                </div>
-            </div>
-            <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
-                <div id="product-category">
-                </div>
-            </div>
-            <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
-                <div id="container1">
-                </div>
-            </div>
-            <figure class="highcharts-figure">
-                <div id="container00"></div>
-                <div id="container02"></div>
-                <div id="container03"></div>
-
-            </figure>
-
-
-
-
+    </div>
+    <div class="col-lg-12 mb-4 pb-2">
+        <div class="view view-cascade gradient-card-header blue-gradient">
+            <div id="profit-chart" height="400"></div>
         </div>
+    </div>
+
+    <div class="col-12">
+        <div class="col-md-12" style="margin-top: 1rem;margin-bottom: 1rem;">
+            <div id="low-sale">
+            </div>
+        </div>
+        <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
+            <div id="product-category">
+            </div>
+        </div>
+        <div class="col-md-12 " style="margin-top: 1rem;margin-bottom: 1rem;">
+            <div id="container1">
+            </div>
+        </div>
+        <figure class="highcharts-figure">
+            <div id="container00"></div>
+            <div id="container02"></div>
+            <div id="container03"></div>
+
+        </figure>
+    </div>
 
 </section>
 
@@ -233,6 +237,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 <?php $this->beginBlock("scripts"); ?>
 <?php
 $unit = ["text" => "วันที่ (ป/ด/ว)", "type" => 1, "format" => "Y-m-d"];
+
 $profit = $profit->orderBy("BillDate");
 $profit = $profit->groupBy("day(BillDate),month(BillDate),year(BillDate)");
 if (!empty($_GET["start_month"]) || !empty($_GET["final_month"])) {

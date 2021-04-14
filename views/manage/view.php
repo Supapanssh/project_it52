@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'PNo',
             ['attribute'=>'PeoNo',
             'value'=>function ($model){
-                return $model->PeoNo->username;
+                return $model->peoNo->username;
             }
         ],
             'Manage_Amount',
