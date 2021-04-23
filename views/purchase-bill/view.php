@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if (empty($_GET['print'])) : ?>
     <p>
         <?= Html::a('พิมพ์', ["view?id=$model->id&print=true"], ['class' => 'btn btn-primary', "target" => "_blank"]) ?>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+        <?= Html::a('ลบ', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
                     'confirm' => 'Are you sure you want to delete this item?',

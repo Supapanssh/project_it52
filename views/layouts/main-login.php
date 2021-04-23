@@ -14,7 +14,8 @@ $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionic
     <title>เข้าสู่ระบบ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?= SiteInfo::web() ?>plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
@@ -26,9 +27,11 @@ $this->registerCssFile('https://code.ionicframework.com/ionicons/2.0.1/css/ionic
 </head>
 
 <body>
+
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-        <a class="navbar-brand" href="<?= SiteInfo::web() ?>">ร้านบำรุงชูการไฟฟ้า</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <a class="navbar-brand" href=" <?= SiteInfo::web() ?>"> Bumrungchu N/F Service </a>
+        <button class=" navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">

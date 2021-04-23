@@ -32,11 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'Manage_No',
             'Manage_date',
             'PNo',
-            ['attribute'=>'PeoNo',
-            'value'=>function ($model){
-                return $model->peoNo->username;
-            }
-        ],
+           // 'PeoNo',
+            
             'Manage_Amount',
         ],
     ]) ?>

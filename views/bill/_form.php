@@ -20,6 +20,7 @@ use yii\helpers\ArrayHelper;
     $arraypeono = ArrayHelper::map($peonoList, 'userNo', 'user_name');
     ?>
     <?= $form->field($model, 'PeoNo')->dropDownList($arraypeono) ?>
+    <?= $form->field($model, 'Tax')->textInput() ?>
 
     <!-- <?= $form->field($model, 'Bill_detail')->textInput(['maxlength' => true]) ?> -->
 

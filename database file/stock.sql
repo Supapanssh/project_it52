@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2021 at 08:36 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Generation Time: Apr 23, 2021 at 09:59 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,7 +33,7 @@ CREATE TABLE `amphures` (
   `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `province_id` int(5) NOT NULL DEFAULT 0
+  `province_id` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -1050,11 +1051,11 @@ CREATE TABLE `bill` (
   `BillDate` datetime DEFAULT NULL COMMENT 'วันที่',
   `PeoNo` int(11) DEFAULT NULL COMMENT 'ผู้รับผิดชอบ',
   `Bill_detail` varchar(100) DEFAULT NULL COMMENT 'รายละเอียด',
-  `BillDiscount` int(11) NOT NULL DEFAULT 0 COMMENT 'ส่วนลด',
+  `BillDiscount` int(11) NOT NULL DEFAULT '0' COMMENT 'ส่วนลด',
   `BillTotal` decimal(11,2) NOT NULL COMMENT 'ราคาทั้งหมด',
   `BillCash` decimal(11,2) NOT NULL COMMENT 'เงินสด',
   `Billvat` decimal(11,2) NOT NULL COMMENT 'ภาษีมูลค่าเพิ่ม',
-  `Tax` int(11) NOT NULL COMMENT 'เลขที่กำกับใบภาษี'
+  `Tax` varchar(20) NOT NULL COMMENT 'เลขที่กำกับใบภาษี'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1062,18 +1063,18 @@ CREATE TABLE `bill` (
 --
 
 INSERT INTO `bill` (`BillNo`, `BillDate`, `PeoNo`, `Bill_detail`, `BillDiscount`, `BillTotal`, `BillCash`, `Billvat`, `Tax`) VALUES
-(24, '2020-12-31 00:00:00', 1, NULL, 0, '1167.37', '1167.37', '76.37', 0),
-(25, '2021-01-14 23:52:55', 1, NULL, 0, '2953.20', '2953.20', '193.20', 0),
-(26, '2021-02-15 20:08:38', 1, NULL, 0, '1372.81', '1372.81', '89.81', 0),
-(27, '2021-02-15 20:11:24', 1, NULL, 0, '425.86', '425.86', '27.86', 0),
-(28, '2021-02-15 20:30:02', 1, NULL, 0, '208.65', '208.65', '13.65', 0),
-(29, '2021-02-15 21:11:40', 1, NULL, 0, '528.58', '528.58', '34.58', 0),
-(30, '2021-02-15 21:14:09', 1, NULL, 0, '625.95', '625.95', '40.95', 0),
-(31, '2021-02-15 21:14:19', 1, NULL, 0, '208.65', '208.65', '13.65', 0),
-(32, '2021-02-15 21:14:33', 1, NULL, 0, '1155.60', '1155.60', '75.60', 0),
-(33, '2021-02-17 11:52:43', 1, NULL, 0, '208.65', '208.65', '13.65', 0),
-(34, '2021-03-11 13:56:56', 1, NULL, 0, '208.65', '208.65', '13.65', 0),
-(35, '2021-04-14 23:44:50', 1, NULL, 0, '634.51', '634.51', '41.51', 0);
+(24, '2020-12-31 00:00:00', 1, NULL, 0, '1167.37', '1167.37', '76.37', '321455467891'),
+(25, '2021-01-14 23:52:55', 1, NULL, 0, '2953.20', '2953.20', '193.20', '321455467891'),
+(26, '2021-02-15 20:08:38', 1, NULL, 0, '1372.81', '1372.81', '89.81', '321455467891'),
+(27, '2021-02-15 20:11:24', 1, NULL, 0, '425.86', '425.86', '27.86', '321455467891'),
+(28, '2021-02-15 20:30:02', 1, NULL, 0, '208.65', '208.65', '13.65', '321455467891'),
+(29, '2021-02-15 21:11:40', 1, NULL, 0, '528.58', '528.58', '34.58', '321455467891'),
+(30, '2021-02-15 21:14:09', 1, NULL, 0, '625.95', '625.95', '40.95', '321455467891'),
+(31, '2021-02-15 21:14:19', 1, NULL, 0, '208.65', '208.65', '13.65', '321455467891'),
+(32, '2021-02-15 21:14:33', 1, NULL, 0, '1155.60', '1155.60', '75.60', '321455467891'),
+(33, '2021-02-17 11:52:43', 1, NULL, 0, '208.65', '208.65', '13.65', '321455467891'),
+(34, '2021-03-11 13:56:56', 1, NULL, 0, '208.65', '208.65', '13.65', '321455467891'),
+(35, '2021-04-14 23:44:50', 1, NULL, 0, '634.51', '634.51', '41.51', '321455467891');
 
 -- --------------------------------------------------------
 
@@ -1209,7 +1210,7 @@ CREATE TABLE `districts` (
   `zip_code` int(11) NOT NULL,
   `name_th` varchar(150) COLLATE utf8_bin NOT NULL,
   `name_en` varchar(150) COLLATE utf8_bin NOT NULL,
-  `amphure_id` int(11) NOT NULL DEFAULT 0
+  `amphure_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='InnoDB free: 8192 kB';
 
 --
@@ -10107,7 +10108,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`ID`, `Emp_ID`, `Emp_idcard`, `Emp_name`, `Emp_lname`, `Emp_sex`, `Emp_birth`, `Emp_tel`, `Emp_address`, `Emp_moo`, `Emp_tumbol`, `Emp_amphur`, `Emp_road`, `Emp_province`, `Emp_zipcode`, `Emp_mail`, `Emp_start`, `Emp_quit`, `Emp_status`) VALUES
-(2, 'Emp02', 1307483647, 'นายศุภกร', 'เอมชนานนท์', 'ชาย', '1997-09-15', 961827437, 'บ้านเลขที่ 89/3', 1, 150203, 91, '-', 6, 14140, 'Pond_em@gmail.com', '2020-09-02', NULL, 'ทำงาน'),
+(2, 'Emp02', 1307483647, 'นายศุภกร', 'เอมชนานนท์', 'ชาย', '1997-09-15', 961827437, 'บ้านเลขที่ 89/3', 1, 150203, 91, '-', 6, 14140, 'Pond_em@gmail.com', '2020-09-02', '2021-04-05', 'ลาออก'),
 (3, 'Emp03', 2147483647, 'วิไล', 'งามวงษ์', 'หญิง', '1980-09-15', 930423444, 'บ้านเลขที่ 11 หมู่ 4 หน้าไม้ บางไทร พระนครศรีอยุธยา 13190', 4, 140405, 77, '-', 5, 13190, 'vili@gmail.com', '2020-09-23', NULL, 'ทำงาน');
 
 -- --------------------------------------------------------
@@ -10245,7 +10246,9 @@ INSERT INTO `product` (`PNo`, `Product_no`, `category_id`, `sup_id`, `brand_id`,
 (29, '011-004C2/3', 2, 6, NULL, '3066677335', 'HONDA CR-V2.0 13-17/DENSO', '260300-13404W', 295.00, 265.50, 4, 'ชิ้น', '2022-06-17', 5, 885),
 (30, '011-005C1/4', 2, 5, NULL, '7708372083', 'NISSAN TIIDA06-10/DENSO', '260300-02904W', 295.00, 265.50, 4, 'อัน', '2022-06-17', 5, 885),
 (31, '011-008C2/3', 2, 5, NULL, '4746782162', 'TOYOTA REVO/DENSO', '260300-09604W', 495.00, 445.50, 7, 'อัน', '2022-06-17', 3, 1485),
-(33, '011-008C2/3', 2, 5, NULL, '9823596760', 'กรองอากาศ Honda', 'แบบผ้า', 300.00, 270.00, 3, 'อัน', '2022-06-17', 3, 900);
+(33, '011-008C2/3', 2, 5, NULL, '9823596760', 'กรองอากาศ Honda', 'แบบผ้า', 300.00, 270.00, 3, 'อัน', '2022-06-17', 3, 900),
+(34, '012-001A3/4', 3, 5, NULL, '4142741192', 'TOYOR VIGO VIOS YARIS(447500-3070)', 'TT1004A/M-TECH', 1280.00, 1200.00, 3, 'ชิ้น', '2023-05-23', 10, NULL),
+(35, '012-002', 3, 5, NULL, '4156428738', ' R12(447500-9072)', 'TT0014A/M-TECH', 300.00, 290.00, 1, 'ชิ้น', '2022-01-25', 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -10258,7 +10261,7 @@ CREATE TABLE `provinces` (
   `code` varchar(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_th` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `geography_id` int(5) NOT NULL DEFAULT 0
+  `geography_id` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -10374,7 +10377,11 @@ INSERT INTO `purchase` (`purchase_id`, `PNo`, `quantity`, `bill_id`) VALUES
 (31, 24, 2, 9),
 (32, 23, 3, 9),
 (33, 5, 1, 10),
-(34, 2, 1, 10);
+(34, 2, 1, 10),
+(35, 6, 1, 11),
+(36, 3, 1, 11),
+(37, 6, 3, 12),
+(38, 3, 3, 12);
 
 -- --------------------------------------------------------
 
@@ -10399,7 +10406,9 @@ INSERT INTO `purchase_bill` (`id`, `date`, `sup_id`) VALUES
 (7, '2021-02-17', 6),
 (8, '2021-02-17', 6),
 (9, '2021-03-09', 6),
-(10, '2021-03-09', 5);
+(10, '2021-03-09', 5),
+(11, '2021-04-23', 5),
+(12, '2021-04-23', 5);
 
 -- --------------------------------------------------------
 
@@ -10505,7 +10514,7 @@ INSERT INTO `user` (`userNo`, `username`, `nickname`, `password_hash`, `email`, 
 --
 DROP TABLE IF EXISTS `sumary_bill`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sumary_bill`  AS SELECT `product`.`PNo` AS `PNo`, `product`.`Product_name` AS `Product_name`, `category`.`category_name` AS `category_name`, `bill_detail`.`quantity` AS `quantity`, `product`.`Product_cost`* `bill_detail`.`quantity` AS `cost`, `product`.`Product_price`* `bill_detail`.`quantity` AS `price`, `product`.`Product_price`* `bill_detail`.`quantity` - `product`.`Product_cost` * `bill_detail`.`quantity` AS `profit`, `product`.`Product_price`* `bill_detail`.`quantity` * 0.07 AS `vat`, `bill`.`BillDate` AS `BillDate`, `product`.`target_sale` AS `target_sale` FROM (((`bill_detail` join `product` on(`product`.`PNo` = `bill_detail`.`pno`)) join `category` on(`category`.`category_id` = `product`.`category_id`)) join `bill` on(`bill_detail`.`bill_id` = `bill`.`BillNo`)) GROUP BY `product`.`Product_no`, month(`bill`.`BillDate`), year(`bill`.`BillDate`) ORDER BY `bill`.`BillDate` ASC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sumary_bill`  AS  select `product`.`PNo` AS `PNo`,`product`.`Product_name` AS `Product_name`,`category`.`category_name` AS `category_name`,`bill_detail`.`quantity` AS `quantity`,(`product`.`Product_cost` * `bill_detail`.`quantity`) AS `cost`,(`product`.`Product_price` * `bill_detail`.`quantity`) AS `price`,((`product`.`Product_price` * `bill_detail`.`quantity`) - (`product`.`Product_cost` * `bill_detail`.`quantity`)) AS `profit`,((`product`.`Product_price` * `bill_detail`.`quantity`) * 0.07) AS `vat`,`bill`.`BillDate` AS `BillDate`,`product`.`target_sale` AS `target_sale` from (((`bill_detail` join `product` on((`product`.`PNo` = `bill_detail`.`pno`))) join `category` on((`category`.`category_id` = `product`.`category_id`))) join `bill` on((`bill_detail`.`bill_id` = `bill`.`BillNo`))) group by `product`.`Product_no`,month(`bill`.`BillDate`),year(`bill`.`BillDate`) order by `bill`.`BillDate` ;
 
 --
 -- Indexes for dumped tables
@@ -10661,7 +10670,7 @@ ALTER TABLE `brand`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดีตะกร้าสินค้า', AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ไอดีตะกร้าสินค้า', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -10691,7 +10700,7 @@ ALTER TABLE `manage`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `PNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `PNo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -10703,13 +10712,13 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสั่งซื้อ', AUTO_INCREMENT=35;
+  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสสั่งซื้อ', AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `purchase_bill`
 --
 ALTER TABLE `purchase_bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `supplier`

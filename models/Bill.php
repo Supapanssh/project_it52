@@ -55,6 +55,7 @@ class Bill extends \yii\db\ActiveRecord
             'PeoNo' => 'ผู้รับผิดชอบ',
             //'Bill_detail' => 'รายละเอียด',
             //'BillDiscount' => 'ส่วนลด',
+            'Tax' => 'เลขที่ประจำตัวผู้เสียภาษี',
             'BillTotal' => 'ราคาทั้งหมด',
             'BillCash' => 'เงินสด',
             'Billvat' => 'ภาษีมูลค่าเพิ่ม',
